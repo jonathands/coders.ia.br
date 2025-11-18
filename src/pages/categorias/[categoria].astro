@@ -46,7 +46,8 @@ function formatDate(date: Date) {
 }
 
 function getExcerpt(post: any) {
-  return post.data.description || 'Sem descrição disponível.';
+  // Use excerpt if available, otherwise fall back to description
+  return post.data.excerpt || post.data.description || 'Sem descrição disponível.';
 }
 
 function getCategoryColor(category: string) {

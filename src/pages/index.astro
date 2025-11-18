@@ -18,8 +18,8 @@ const categories = [...new Set(posts.map(post => post.data.category))];
 const recentPosts = posts.slice(0, 9); // Show up to 9 posts
 
 function getExcerpt(post: any) {
-  // Simple excerpt - first 150 characters
-  return post.data.description || 'Sem descrição disponível.';
+  // Use excerpt if available, otherwise fall back to description
+  return post.data.excerpt || post.data.description || 'Sem descrição disponível.';
 }
 
 function formatDate(date: Date) {
