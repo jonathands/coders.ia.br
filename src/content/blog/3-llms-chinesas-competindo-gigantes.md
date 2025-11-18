@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["ia", "llm", "china", "glm", "moonshot", "qwen", "api", "desenvolvimento"]
 ---
 
-# 3 LLMs Chinesas Competindo com os Gigantes Americanos
 
 O mercado de Large Language Models (LLMs) tem sido historicamente dominado por empresas americanas como **Anthropic** (Claude), **OpenAI** (GPT-4) e **Google** (Gemini). Com pouquíssimas exceções vindas de fora dos EUA, como a francesa **Mistral AI**, o cenário global de IA tem sido praticamente um monopólio americano.
 

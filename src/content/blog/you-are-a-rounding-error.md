@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["mindset", "indie", "comunidade", "empreendedorismo", "impacto-social"]
 ---
 
-# Você é um Erro de Arredondamento (E É Aí Que Está Seu Poder)
 
 **"You are a rounding error"** - Para as Big Techs, você é estatisticamente insignificante. Você não move a agulha. Você não aparece no relatório trimestral. Você é um número tão pequeno que pode ser ignorado.
 
@@ -185,6 +184,10 @@ Nathan Barry construiu uma ferramenta de email marketing focada em creators. Nã
 ### Indie Hackers
 
 Courtland Allen documentou sua jornada de criar produtos. Construiu uma comunidade. Foi adquirido por Stripe, mas manteve a alma indie.
+
+### Reddit
+
+Steve Huffman e Alexis Ohanian começaram o Reddit como um "erro de arredondamento" - dois jovens programadores com uma ideia simples. Enquanto competiam com gigantes estabelecidos, [focaram em construir comunidade sobre comunidade](https://www.yahoo.com/news/reddit-founder-rival-nasty-office-120305870.html), não em escala rápida. O segredo? Proximidade com os usuários e capacidade de se adaptar rapidamente. Hoje o Reddit é uma das maiores comunidades da internet, mas começou pequeno, focado e próximo das pessoas.
 
 **Nenhum desses tentou ser Google. Todos mudaram vidas.**
 

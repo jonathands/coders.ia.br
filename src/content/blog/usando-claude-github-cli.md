@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["github", "ia", "cli", "produtividade"]
 ---
 
-# Dica DEV com IA - GitHub CLI Stuff
 
 ## O Desafio: Encontrar Todas as Issues do GitHub
 

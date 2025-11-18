@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["dns", "domínio", "configuração", "networking", "devops"]
 ---
 
-# Como Fazer Direcionamento via DNS
 
 ## Introdução
 

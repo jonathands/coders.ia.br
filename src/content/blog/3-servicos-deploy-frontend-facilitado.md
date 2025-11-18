@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["deploy", "frontend", "netlify", "vercel", "cloudflare", "devops"]
 ---
 
-# 3 Serviços para Deploy de Frontend Facilitado
 
 Fazer deploy de aplicações frontend nunca foi tão simples. Existem diversos serviços que oferecem hospedagem gratuita com CI/CD integrado, permitindo que você publique suas aplicações em minutos com apenas alguns cliques.
 

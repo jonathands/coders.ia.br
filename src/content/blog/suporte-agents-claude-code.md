@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["claude", "agents", "desenvolvimento", "ferramentas"]
 ---
 
-# Adicionando suporte a AGENTS.md no Claude Code
 
 Embora a Anthropic não tenha liberado suporte para AGENTS.md no Claude Code (se eles forem), desenvolvedores em equipes de ferramentas híbridas precisam contornar as convenções de nomenclatura para cada ferramenta.
 

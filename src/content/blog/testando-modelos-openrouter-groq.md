@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["ia", "llm", "openrouter", "groq", "api", "testes", "desenvolvimento"]
 ---
 
-# Testando Modelos de IA com OpenRouter e Groq
 
 Testar diferentes modelos de IA costumava ser trabalhoso: criar contas em cada provedor, aprender APIs diferentes, gerenciar múltiplas chaves, lidar com diversos formatos de cobrança...
 

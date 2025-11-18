@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["ia", "ferramentas", "desenvolvimento", "ai-coding", "produtividade"]
 ---
 
-# Lista Definitiva de Ferramentas de IA para Desenvolvimento
 
 O ecossistema de ferramentas de IA para desenvolvimento está crescendo exponencialmente. Esta lista reúne as principais plataformas e ferramentas que estão revolucionando a forma como criamos software.
 

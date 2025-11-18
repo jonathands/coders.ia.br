@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["dyad", "desktop", "gerador", "sites", "landing-pages", "desenvolvimento"]
 ---
 
-# Dyad: O app desktop para gerar sites, apps e landing pages
 
 O **Dyad** é uma ferramenta desktop inovadora que revoluciona a forma como criamos sites, aplicações web e landing pages. Com uma interface intuitiva e recursos poderosos, o Dyad torna o desenvolvimento web acessível para todos.
 

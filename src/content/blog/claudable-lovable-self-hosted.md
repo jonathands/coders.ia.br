@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["claude", "self-hosted", "desenvolvimento", "agentes", "claude-code"]
 ---
 
-# Claudable: Seu Lovable Self Hosted que roda no seu Agente
 
 O Lovable revolucionou o desenvolvimento de aplicações com IA através de uma interface visual intuitiva. E se você pudesse ter uma experiência similar, mas rodando localmente na sua máquina com controle total?
 

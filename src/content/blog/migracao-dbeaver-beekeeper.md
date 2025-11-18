@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["dbeaver", "beekeeper", "banco-de-dados", "ia", "migração"]
 ---
 
-# Dica DEV com IA - Migração do DBeaver para BeeKeeper
 
 ## O Desafio: Migração de Ferramentas de Banco de Dados
 

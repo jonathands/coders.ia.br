@@ -8,7 +8,6 @@ author: "JonathanDS"
 draft: false
 ---
 
-# Como Comprar Seu Domínio .ia.br e .app.br
 
 ## Novos domínios .ia.br
 É oficial! O Registro.br, órgão responsável pelo registro dos domínios .br, liberou os domínios .ia.br e .app.br, especialmente para Aplicativos e Inteligência Artificial.

@@ -7,7 +7,6 @@ author: "Coders.ia.br"
 tags: ["claude-code", "git", "workflow", "integração", "produtividade"]
 ---
 
-# Integrando Claude Code ao seu projeto Git
 
 A integração do **Claude Code** com Git pode transformar completamente seu workflow de desenvolvimento. Neste guia, você aprenderá como configurar essa integração de forma eficiente e segura.
 
