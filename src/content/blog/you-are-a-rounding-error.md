@@ -1,7 +1,7 @@
 ---
 title: "Você é um Erro de Arredondamento (E É Aí Que Está Seu Poder)"
 description: "Por que ser insignificante para as Big Techs é exatamente o que te dá poder para criar mudança real"
-date: 2024-12-25
+date: 2025-11-25
 category: "Reflexão"
 author: "Coders.ia.br"
 tags: ["mindset", "indie", "comunidade", "empreendedorismo", "impacto-social"]

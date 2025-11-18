@@ -1,7 +1,7 @@
 ---
 title: "Adicionando suporte a AGENTS.md no Claude Code"
 description: "Como adicionar suporte para arquivos AGENTS.md no Claude Code para equipes de ferramentas híbridas"
-date: 2025-09-22
+date: 2025-11-10
 category: "Desenvolvimento"
 author: "Coders.ia.br"
 tags: ["claude", "agents", "desenvolvimento", "ferramentas"]

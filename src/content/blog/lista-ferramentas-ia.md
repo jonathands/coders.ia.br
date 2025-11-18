@@ -1,7 +1,7 @@
 ---
 title: "Lista Definitiva de Ferramentas de IA para Desenvolvimento"
 description: "Descubra as melhores ferramentas de IA para desenvolvimento de aplicações, desde geradores de código até plataformas completas de desenvolvimento"
-date: 2024-12-20
+date: 2025-11-20
 category: "Ferramentas"
 author: "Coders.ia.br"
 tags: ["ia", "ferramentas", "desenvolvimento", "ai-coding", "produtividade"]

@@ -1,7 +1,7 @@
 ---
 title: "Dica DEV com IA - GitHub CLI Stuff"
 description: "Descubra como a IA pode ajudá-lo a gerenciar e analisar suas issues do GitHub usando o GitHub CLI"
-date: 2025-09-22
+date: 2025-10-18
 category: "Ferramentas"
 author: "Coders.ia.br"
 tags: ["github", "ia", "cli", "produtividade"]

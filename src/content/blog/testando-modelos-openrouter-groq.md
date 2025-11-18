@@ -1,7 +1,7 @@
 ---
 title: "Testando Modelos de IA com OpenRouter e Groq"
 description: "Como usar OpenRouter e Groq para testar centenas de LLMs diferentes com uma única API, economizando tempo e dinheiro"
-date: 2025-12-01
+date: 2025-11-30
 category: "Inteligência Artificial"
 author: "Coders.ia.br"
 tags: ["ia", "llm", "openrouter", "groq", "api", "testes", "desenvolvimento"]
