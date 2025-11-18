@@ -15,7 +15,7 @@ O Lovable revolucionou o desenvolvimento de aplicações com IA através de uma 
 
 **Claudable** é um wrapper em Next.js e Python construído em torno do **Claude Code** que traz a experiência de desenvolvimento visual do Lovable para o seu ambiente local.
 
-**Repositório**: [GitHub - Claudable](https://github.com/coders-ia/claudable)
+**Repositório**: [GitHub - Claudable](https://github.com/opactorai/Claudable)
 
 ## O que é Claude Code?
 
@@ -129,6 +129,6 @@ E por ser open-source, você sempre pode adaptar a ferramenta às suas necessida
 ---
 
 **Links Úteis:**
-- [Repositório Claudable](https://github.com/coders-ia/claudable)
+- [Repositório Claudable](https://github.com/opactorai/Claudable)
 - [Claude Code Oficial](https://www.anthropic.com/claude/code)
 - [Documentação da API Claude](https://docs.anthropic.com/)
