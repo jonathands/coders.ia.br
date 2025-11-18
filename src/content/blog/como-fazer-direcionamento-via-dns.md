@@ -1,3 +1,12 @@
+---
+title: "Como Fazer Direcionamento via DNS"
+description: "Guia completo sobre direcionamento via DNS, incluindo tipos de registros, configuração prática e boas práticas para gerenciar seus domínios"
+date: 2024-09-20
+category: "Desenvolvimento Web"
+author: "Coders.ia.br"
+tags: ["dns", "domínio", "configuração", "networking", "devops"]
+---
+
 # Como Fazer Direcionamento via DNS
 
 ## Introdução

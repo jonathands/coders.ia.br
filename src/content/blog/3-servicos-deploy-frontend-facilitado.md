@@ -5,7 +5,6 @@ date: 2025-01-27
 category: "Desenvolvimento Web"
 tags: ["deploy", "frontend", "netlify", "cloudflare", "github-pages", "coolify", "laravel", "mcp", "ibge", "webservice", "api", "self-hosted", "devops"]
 author: "Jonathan"
-draft: true
 ---
 
 # 6 Soluções Essenciais para Deploy e Integração de Dados no Desenvolvimento Web
