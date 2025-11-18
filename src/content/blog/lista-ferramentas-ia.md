@@ -18,32 +18,97 @@ O ecossistema de ferramentas de IA para desenvolvimento está crescendo exponenc
 
 A ferramenta que popularizou a geração de aplicações completas com IA. Anteriormente conhecida como GPT Engineer.
 
+**Stack Tecnológico**:
+- React + Vite + Tailwind CSS
+- Supabase para backend e banco de dados
+- TypeScript
+- Integração com Stripe e GitHub
+
 **Características**:
 - Geração de aplicações web completas
 - Interface visual intuitiva
 - Deploy automático
 - Iteração com IA em tempo real
+- **Mobile**: Web apps responsivos (mobile-first), não suporta React Native
+- **Stack**: Focado em React + Supabase (stack único, mas exporta para GitHub)
 
-**Ideal para**: Prototipagem rápida e MVPs
+**Ideal para**: Prototipagem rápida e MVPs web
 
 ---
 
 ### 2. Bolt.new
 **URL**: [bolt.new](https://bolt.new)
 
-Plataforma da StackBlitz para criar aplicações web instantaneamente com IA.
+Plataforma da StackBlitz que revolucionou o desenvolvimento com IA, atingindo 1 milhão de sites criados em 5 meses (março/2025).
+
+**Stack Tecnológico**:
+- React, Next.js, Gatsby
+- Vue, Nuxt, Vite
+- Svelte, SvelteKit, Astro, Remix
+- React Native via Expo
+- WebContainers (desenvolvimento no navegador)
 
 **Características**:
 - Editor integrado no navegador
 - Preview em tempo real
 - Múltiplos frameworks suportados
 - Compartilhamento fácil
+- **Mobile**: Suporte completo via Expo/React Native (apps nativos iOS/Android)
+- **Stack**: Multi-framework (React, Vue, Svelte, React Native, PWAs)
 
-**Ideal para**: Desenvolvimento rápido e prototipagem
+**Ideal para**: Desenvolvimento rápido web e mobile, máxima flexibilidade
 
 ---
 
-### 3. Bolt.DIY
+### 3. v0 by Vercel
+**URL**: [v0.dev](https://v0.dev) (redireciona para v0.app)
+
+Gerador de componentes UI da Vercel usando IA, integrado ao shadcn/ui.
+
+**Stack Tecnológico**:
+- React + Next.js
+- Tailwind CSS
+- shadcn/ui components
+- TypeScript
+- React Native (suporte beta)
+
+**Características**:
+- Foco em componentes React
+- Integração nativa com Next.js
+- Design system shadcn/UI
+- Código exportável
+- App iOS para design on-the-go
+- **Mobile**: React Native (beta) + PWAs + componentes responsivos
+- **Stack**: Focado em React/Next.js ecosystem, mas componentes adaptáveis
+
+**Ideal para**: Desenvolvimento de interfaces modernas e design systems
+
+---
+
+### 4. Builder.io
+**URL**: [builder.io](https://builder.io)
+
+Plataforma visual de desenvolvimento com IA e CMS headless.
+
+**Stack Tecnológico**:
+- React, Vue, Angular, Svelte, Qwik
+- Integração com Figma
+- Frameworks agnóstico
+- Suporte a componentes customizados
+
+**Características**:
+- Figma to Code (pixel-perfect)
+- Visual drag & drop editor
+- A/B testing e personalização
+- Integra com código existente
+- **Mobile**: Suporta desenvolvimento mobile via React Native e outros frameworks
+- **Stack**: Totalmente agnóstico - trabalha com qualquer framework moderno
+
+**Ideal para**: Times que querem combinar visual building com código custom
+
+---
+
+### 5. Bolt.DIY
 **URL**: [bolt.diy](https://bolt.diy)
 
 Versão open-source e auto-hospedável do conceito Bolt.
@@ -53,29 +118,16 @@ Versão open-source e auto-hospedável do conceito Bolt.
 - Código aberto
 - Customizável
 - Privacidade total
+- **Mobile**: Depende da implementação (fork do Bolt.new)
+- **Stack**: Multi-framework como o Bolt original
 
 **Ideal para**: Quem quer controle total e privacidade
 
 ---
 
-### 4. v0 by Vercel
-**URL**: [v0.dev](https://v0.dev)
+## Ferramentas Self-Hosted e Desktop
 
-Gerador de componentes UI da Vercel usando IA.
-
-**Características**:
-- Foco em componentes React
-- Integração com Next.js
-- Design system Shadcn/UI
-- Código exportável
-
-**Ideal para**: Desenvolvimento de interfaces modernas
-
----
-
-## Ferramentas Self-Hosted
-
-### 5. Claudable
+### 6. Claudable
 **URL**: Projeto community-driven
 
 Alternativa self-hosted ao Lovable usando Claude.
@@ -85,12 +137,14 @@ Alternativa self-hosted ao Lovable usando Claude.
 - Auto-hospedável
 - Controle total
 - Economia de custos
+- **Mobile**: Web apps responsivos
+- **Stack**: Similar ao Lovable (React-based)
 
 **Ideal para**: Desenvolvedores que preferem self-hosting
 
 ---
 
-### 6. Dyad
+### 7. Dyad
 **URL**: [dyad.sh](https://dyad.sh)
 
 Aplicativo desktop para geração de sites e aplicações.
@@ -100,6 +154,8 @@ Aplicativo desktop para geração de sites e aplicações.
 - Funciona offline
 - Templates profissionais
 - Export de código limpo
+- **Mobile**: Foco em web, PWAs
+- **Stack**: Templates com múltiplas opções
 
 **Ideal para**: Trabalho offline e controle local
 
@@ -107,7 +163,7 @@ Aplicativo desktop para geração de sites e aplicações.
 
 ## Plataformas Emergentes
 
-### 7. MGX.dev
+### 8. MGX.dev
 **URL**: [mgx.dev](https://mgx.dev)
 
 Plataforma moderna de desenvolvimento assistido por IA.
@@ -117,10 +173,12 @@ Plataforma moderna de desenvolvimento assistido por IA.
 - Múltiplas linguagens
 - Colaboração em equipe
 - Integração Git
+- **Mobile**: Informação limitada
+- **Stack**: Suporte a múltiplos frameworks
 
 ---
 
-### 8. Base44
+### 9. Base44
 **URL**: [base44.com](https://base44.com)
 
 Ferramenta focada em aplicações enterprise.
@@ -130,10 +188,12 @@ Ferramenta focada em aplicações enterprise.
 - Templates enterprise
 - Segurança avançada
 - Suporte completo
+- **Mobile**: Enterprise apps
+- **Stack**: Múltiplas tecnologias enterprise
 
 ---
 
-### 9. BaseMVP
+### 10. BaseMVP
 **URL**: [basemvp.forgebaseai.com](https://basemvp.forgebaseai.com)
 
 Plataforma para criação rápida de MVPs.
@@ -146,7 +206,7 @@ Plataforma para criação rápida de MVPs.
 
 ---
 
-### 10. Emergent.sh
+### 11. Emergent.sh
 **URL**: [emergent.sh](https://emergent.sh)
 
 Plataforma emergente com abordagem única.
@@ -159,7 +219,7 @@ Plataforma emergente com abordagem única.
 
 ---
 
-### 11. Bloom.DIY
+### 12. Bloom.DIY
 **URL**: [bloom.diy](https://bloom.diy)
 
 Ferramenta DIY para desenvolvimento com IA.
@@ -172,7 +232,7 @@ Ferramenta DIY para desenvolvimento com IA.
 
 ---
 
-### 12. Natively.dev
+### 13. Natively.dev
 **URL**: [natively.dev](https://natively.dev)
 
 Focada em desenvolvimento nativo multiplataforma.
@@ -182,10 +242,14 @@ Focada em desenvolvimento nativo multiplataforma.
 - Multiplataforma
 - Performance otimizada
 - Código nativo
+- **Mobile**: Foco principal em apps nativos
+- **Stack**: Frameworks nativos (React Native, Flutter, etc)
+
+**Ideal para**: Desenvolvimento mobile nativo
 
 ---
 
-### 13. IdeaVO.ai
+### 14. IdeaVO.ai
 **URL**: [ideavo.ai](https://ideavo.ai)
 
 Transforma ideias em aplicações funcionais.
@@ -198,7 +262,7 @@ Transforma ideias em aplicações funcionais.
 
 ---
 
-### 14. CatDoes.com
+### 15. CatDoes.com
 **URL**: [catdoes.com](https://catdoes.com)
 
 Plataforma versátil de desenvolvimento.
@@ -211,7 +275,7 @@ Plataforma versátil de desenvolvimento.
 
 ---
 
-### 15. Rocket.new
+### 16. Rocket.new
 **URL**: [rocket.new](https://rocket.new)
 
 Gerador rápido de aplicações web.
@@ -224,7 +288,9 @@ Gerador rápido de aplicações web.
 
 ---
 
-### 16. Blackbox.ai
+## Assistentes de Código
+
+### 17. Blackbox.ai
 **URL**: [blackbox.ai](https://blackbox.ai)
 
 Assistente de código com IA avançada.
@@ -234,10 +300,13 @@ Assistente de código com IA avançada.
 - Múltiplas linguagens
 - Extensão VS Code
 - Pesquisa de código
+- **Stack**: Agnóstico - funciona com qualquer linguagem/framework
+
+**Ideal para**: Complementar seu editor de código
 
 ---
 
-### 17. Gelt.dev
+### 18. Gelt.dev
 **URL**: [gelt.dev](https://gelt.dev)
 
 Plataforma moderna para desenvolvimento rápido.
@@ -250,7 +319,7 @@ Plataforma moderna para desenvolvimento rápido.
 
 ---
 
-### 18. Jenova.ai
+### 19. Jenova.ai
 **URL**: [jenova.ai](https://jenova.ai)
 
 Assistente de IA completo para desenvolvedores.
@@ -263,27 +332,38 @@ Assistente de IA completo para desenvolvedores.
 
 ---
 
+## Comparativo: Mobile & Stack Flexibility
+
+| Ferramenta | Mobile Apps | Flexibilidade de Stack | Melhor Para |
+|-----------|-------------|------------------------|-------------|
+| **Lovable** | Web responsivo | React + Supabase fixo | Web MVPs rápidos |
+| **Bolt.new** | ✅ Nativo (Expo) + PWAs | ✅ Multi-framework | Máxima flexibilidade |
+| **v0** | React Native (beta) + PWAs | React ecosystem | UI/Design systems |
+| **Builder.io** | ✅ Via frameworks | ✅ Framework agnóstico | Integração com existente |
+| **Natively.dev** | ✅ Foco principal | Frameworks nativos | Apps mobile nativos |
+| **Bolt.DIY** | ✅ (como Bolt) | ✅ Multi-framework | Self-hosted + controle |
+
 ## Categorias por Uso
 
-### Para Prototipagem Rápida
-1. **Lovable** - Interface visual amigável
-2. **Bolt.new** - Desenvolvimento instantâneo
-3. **v0** - Componentes UI modernos
+### Para Web Apps Rápidos
+1. **Lovable** - Interface visual amigável, React + Supabase
+2. **Bolt.new** - Multi-framework, desenvolvimento instantâneo
+3. **v0** - Componentes UI modernos, shadcn/ui
 
-### Para Produção
-1. **Base44** - Enterprise-ready
-2. **MGX.dev** - Solução completa
-3. **Natively.dev** - Apps nativos
+### Para Apps Mobile Nativos
+1. **Bolt.new** - Expo/React Native com preview no device
+2. **Natively.dev** - Foco em nativo multiplataforma
+3. **Builder.io** - Via frameworks mobile integrados
+
+### Para Flexibilidade Máxima
+1. **Builder.io** - Framework agnóstico, integra com existente
+2. **Bolt.new** - Suporta React, Vue, Svelte, React Native
+3. **Bolt.DIY** - Open-source e customizável
 
 ### Para Self-Hosting
 1. **Bolt.DIY** - Open-source completo
 2. **Claudable** - Controle total
-3. **Dyad** - Desktop app
-
-### Para Desenvolvimento Mobile
-1. **Natively.dev** - Foco em nativo
-2. **Rocket.new** - PWAs
-3. **BaseMVP** - MVPs mobile
+3. **Dyad** - Desktop app offline
 
 ## Comparativo de Preços
 
@@ -292,8 +372,9 @@ Assistente de IA completo para desenvolvedores.
 | **Lovable** | Assinatura | $$$ |
 | **Bolt.new** | Freemium | $$ |
 | **v0** | Por uso | $$ |
-| **Bolt.DIY** | Gratuito | $ |
-| **Claudable** | API costs | $ |
+| **Builder.io** | Tiers + Enterprise | $$-$$$ |
+| **Bolt.DIY** | Gratuito (open-source) | $ |
+| **Claudable** | API costs apenas | $ |
 | **Dyad** | Compra única | $$ |
 | **Blackbox.ai** | Freemium | $ |
 
@@ -318,48 +399,42 @@ Assistente de IA completo para desenvolvedores.
    - Menos iterações necessárias
 
 4. **Open Source Crescendo**
-   - Mais alternativas abertas
+   - Mais alternativas abertas como Bolt.DIY
    - Comunidades mais fortes
    - Customização facilitada
 
-## Como Escolher
-
-### Para Iniciantes
-- **Lovable**: Interface mais amigável
-- **Bolt.new**: Sem setup necessário
-- **v0**: Foco em UI/componentes
-
-### Para Profissionais
-- **MGX.dev**: Features avançadas
-- **Base44**: Enterprise features
-- **Natively.dev**: Produção mobile
-
-### Para Experimentadores
-- **Bolt.DIY**: Máxima customização
-- **Emergent.sh**: Features experimentais
-- **Bloom.DIY**: Abordagem DIY
+5. **Mobile-First**
+   - Mais ferramentas suportando React Native/Expo
+   - PWAs como padrão
+   - Apps híbridos de alta qualidade
 
 ## Dicas de Uso
 
 ### 1. Comece Pequeno
 - Teste com projetos simples
-- Aprenda as limitações
-- Entenda o workflow
+- Aprenda as limitações de cada ferramenta
+- Entenda qual stack cada uma usa
 
-### 2. Combine Ferramentas
-- Use v0 para UI
-- Use Bolt para lógica
-- Use Blackbox para código específico
+### 2. Considere Mobile Desde o Início
+- Se precisa de app nativo, escolha Bolt.new ou Natively.dev
+- Para web + PWA, Lovable ou v0 funcionam bem
+- Builder.io é ideal se já tem codebase existente
 
-### 3. Mantenha o Controle
+### 3. Avalie Lock-in
+- **Menos lock-in**: Bolt.new, Builder.io, Bolt.DIY
+- **Lock-in moderado**: Lovable (mas exporta para GitHub)
+- **Mais flexível**: Builder.io (usa seus próprios componentes)
+
+### 4. Mantenha o Controle
 - Sempre revise o código gerado
 - Entenda as decisões da IA
 - Customize conforme necessário
+- Exporte para seu próprio repositório
 
-### 4. Participe das Comunidades
-- Junte-se aos Discord/Slack
+### 5. Participe das Comunidades
+- Junte-se aos Discord/Slack de cada ferramenta
 - Compartilhe experiências
-- Aprenda com outros
+- Aprenda com outros desenvolvedores
 
 ## Recursos Adicionais
 
@@ -371,7 +446,7 @@ Assistente de IA completo para desenvolvedores.
 ### Comunidades
 - Discord servers das ferramentas
 - Reddit: r/AIcoding
-- Twitter/X: #AIcoding
+- Twitter/X: #AIcoding, #bolt, #lovable
 
 ### Tutoriais
 - YouTube channels especializados
@@ -391,12 +466,18 @@ O ecossistema de ferramentas de IA para desenvolvimento está em constante evolu
 
 ### Próximos Passos
 
-1. Escolha 2-3 ferramentas desta lista
+1. Escolha 2-3 ferramentas desta lista baseado nas suas necessidades
 2. Crie um projeto de teste com cada uma
-3. Compare resultados e workflow
+3. Avalie: velocidade, qualidade do código, flexibilidade, e lock-in
 4. Integre a melhor ao seu processo
 
-O futuro do desenvolvimento está aqui, e essas ferramentas são apenas o começo!
+---
+
+## Minha Opinião Pessoal
+
+Depois de testar várias ferramentas, **Lovable, Bolt e Builder são as escolhas mais sólidas na minha opinião**.
+
+**Lovable** para quem quer velocidade máxima em web MVPs, **Bolt** para quem precisa de flexibilidade (especialmente mobile), e **Builder** para quem quer integrar IA em projetos existentes sem jogar tudo fora.
 
 ---
 
