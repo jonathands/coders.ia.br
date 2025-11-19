@@ -3,7 +3,7 @@ title: "3 LLMs Chinesas Competindo com os Gigantes Americanos"
 description: "Conheça GLM-4.6, Moonshot Kimi K2 e Qwen Coder: modelos chineses de IA que rivalizam com Claude, GPT-4 e outras LLMs americanas"
 date: 2025-11-15
 category: "Inteligência Artificial"
-author: "Coders.ia.br"
+author: "Jonathan dos Santos"
 tags: ["ia", "llm", "china", "glm", "moonshot", "qwen", "api", "desenvolvimento"]
 ---
 

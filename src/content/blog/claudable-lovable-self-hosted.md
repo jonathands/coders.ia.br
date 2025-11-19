@@ -3,7 +3,7 @@ title: "Claudable: Seu Lovable Self Hosted que roda no seu Agente"
 description: "Um wrapper Next.js e Python em torno do Claude Code que traz a experiência do Lovable para sua própria máquina"
 date: 2025-10-10
 category: "Inteligência Artificial"
-author: "Coders.ia.br"
+author: "Jonathan dos Santos"
 tags: ["claude", "self-hosted", "desenvolvimento", "agentes", "claude-code"]
 ---
 
