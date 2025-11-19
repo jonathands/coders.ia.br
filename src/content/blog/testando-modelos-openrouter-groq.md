@@ -211,7 +211,7 @@ OpenRouter tem [página de rankings](https://openrouter.ai/rankings) mostrando o
 ### Crescimento
 
 **Dados impressionantes (2025):**
-- **Outubro 2024**: $10M annual run-rate
+- **Outubro 2025**: $10M annual run-rate
 - **Maio 2025**: $100M+ annual run-rate (10x em 7 meses!)
 - **1+ milhão de desenvolvedores** usando a plataforma
 - **Investimento**: $40M levantados em junho de 2025

@@ -110,4 +110,4 @@ O importante é começar. Escolha uma plataforma, conecte seu projeto, e experim
 
 ---
 
-*Última atualização: Dezembro 2024*
+*Última atualização: Dezembro 2025*

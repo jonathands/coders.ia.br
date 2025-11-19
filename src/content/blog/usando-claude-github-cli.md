@@ -45,8 +45,8 @@ Com base na pesquisa com IA, aqui está uma análise completa:
 
 1. **NativeScript/NativeScript #10758**: Links do playground NativeScript de configuração rápida estão quebrados [bug-pending-triage] (2025-07-06)
 2. **jellyfin/jellyfin-tizen #349**: Usou com sucesso o Tizenbrew-Device-Manager para implantar Jellyfin-Tizen (2025-05-11)
-3. **AllanCerveaux/svg_repo_dl #4**: Segui as instruções mas o svgrepodl não executa (2024-05-03)
-4. **EscolaLMS/Create-LMS-App #46**: Falha na instalação com SQLSTATE[08006] [7] FATAL: falha na autenticação de senha para o usuário "default" no container PostgreSQL (2024-03-22)
+3. **AllanCerveaux/svg_repo_dl #4**: Segui as instruções mas o svgrepodl não executa (2025-05-03)
+4. **EscolaLMS/Create-LMS-App #46**: Falha na instalação com SQLSTATE[08006] [7] FATAL: falha na autenticação de senha para o usuário "default" no container PostgreSQL (2025-03-22)
 5. **elizandrodantas/cnpj-data-go #1**: Falta de memória ao processar arquivo Estabelecimento0.zip (2023-09-24)
 6. **EscolaLMS/H5P-player #37**: URL malformada no editor sem contexto (2023-05-22)
 7. **moberwasserlechner/capacitor-filesharer #47**: Bug: Instagram não aparece no diálogo de compartilhamento para meu app, mas aparece para outros apps com o mesmo arquivo (2023-03-30)
