@@ -480,4 +480,4 @@ Depois de testar várias ferramentas, **Lovable, Bolt e Builder são as escolhas
 
 ---
 
-*Esta lista é atualizada regularmente. Última atualização: Dezembro 2024*
+*Esta lista é atualizada regularmente. Última atualização: Dezembro 2025*

@@ -1,301 +1,324 @@
 ---
 title: "Como Fazer Direcionamento via DNS"
-description: "Guia completo sobre direcionamento via DNS, incluindo tipos de registros, configuração prática e boas práticas para gerenciar seus domínios"
+description: "Entenda por que DNS não suporta redirecionamentos HTTP e como usar forwarddomain.net para redirecionar domínios de forma simples e eficiente"
 date: 2025-10-05
 category: "Desenvolvimento Web"
 author: "Jonathan dos Santos"
-tags: ["dns", "domínio", "configuração", "networking", "devops"]
+tags: ["dns", "domínio", "redirecionamento", "networking", "forwarddomain"]
 ---
 
+## O Problema: DNS Não Faz Redirecionamentos
 
-## Introdução
+Vamos direto ao ponto: **DNS não suporta redirecionamentos HTTP**. Muita gente se confunde com isso, então vou explicar de forma clara.
 
-O direcionamento via DNS é uma técnica fundamental para gerenciar como os visitantes acessam seus sites e serviços online. Seja para redirecionar um domínio para outro, configurar subdomínios ou implementar balanceamento de carga, entender DNS é essencial para qualquer desenvolvedor ou administrador de sistemas.
+### O Que DNS Realmente Faz
 
-## O que é DNS?
+DNS (Domain Name System) é basicamente um tradutor. Ele pega um nome de domínio como `exemplo.com` e devolve um endereço IP como `192.168.1.100`. É só isso. DNS não entende conceitos de HTTP como:
 
-O Sistema de Nomes de Domínio (DNS) funciona como uma "agenda telefônica" da internet, traduzindo nomes de domínio legíveis (como exemplo.com) em endereços IP que os computadores podem entender (como 192.168.1.1).
+- Redirecionamentos 301 ou 302
+- URLs com caminhos (`/pagina`)
+- Protocolos (http vs https)
+- Parâmetros de query string
 
-## Tipos de Registros DNS
+Quando você digita `exemplo.com` no navegador, acontece isso:
 
-### Registros Principais
+1. **DNS resolve**: `exemplo.com` → `192.168.1.100`
+2. **Navegador conecta**: ao servidor no IP `192.168.1.100`
+3. **Servidor responde**: com o conteúdo ou redirecionamento HTTP
 
-#### A Record
-- **Função**: Aponta um domínio para um endereço IPv4
-- **Exemplo**: `exemplo.com → 192.168.1.100`
-- **Uso**: Direcionamento básico de domínio para servidor
+O redirecionamento acontece no passo 3, não no DNS. Para fazer um redirecionamento HTTP, você precisa de um servidor web respondendo no IP de destino.
 
-#### AAAA Record
-- **Função**: Aponta um domínio para um endereço IPv6
-- **Exemplo**: `exemplo.com → 2001:db8::1`
-- **Uso**: Suporte a IPv6
+### Por Que Isso É Um Problema?
 
-#### CNAME Record
-- **Função**: Cria um "apelido" para outro domínio
-- **Exemplo**: `www.exemplo.com → exemplo.com`
-- **Uso**: Redirecionamentos e aliases
+Se você quer redirecionar `dominio-antigo.com` para `dominio-novo.com`, você não pode simplesmente "configurar no DNS". Você precisa de:
 
-#### MX Record
-- **Função**: Define servidores de email
-- **Exemplo**: `mail.exemplo.com`
-- **Uso**: Configuração de email
+1. Um servidor web rodando
+2. Configurado para responder no domínio antigo
+3. Que retorne um redirect HTTP 301/302 para o domínio novo
 
-### Registros para Direcionamento
+E manter um servidor só para fazer redirecionamentos é caro e trabalhoso.
 
-#### URL Redirect
-- **Função**: Redirecionamento HTTP/HTTPS
-- **Tipos**: 301 (permanente), 302 (temporário)
-- **Uso**: Mudança de domínio, páginas específicas
+## A Solução: ForwardDomain.net
 
-## Métodos de Direcionamento
+É aí que entra o [ForwardDomain.net](https://forwarddomain.net). É um serviço gratuito que faz exatamente isso: fornece o servidor que responde com redirecionamentos HTTP.
 
-### 1. Direcionamento por A Record
+### Como Funciona
 
-```dns
-# Configuração básica
-exemplo.com.     A     192.168.1.100
-www.exemplo.com. A     192.168.1.100
-```
+1. Você aponta seu domínio antigo para o IP do ForwardDomain
+2. Você configura no ForwardDomain para onde quer redirecionar
+3. Quando alguém acessa seu domínio antigo, o servidor do ForwardDomain responde com um redirect HTTP
 
-**Vantagens:**
-- Simples e direto
-- Melhor performance
-- Controle total
+Simples assim.
 
-**Desvantagens:**
-- Requer endereço IP fixo
-- Mudanças exigem atualização manual
+## Como Usar ForwardDomain.net
 
-### 2. Direcionamento por CNAME
+### Passo 1: Configure o DNS do Seu Domínio
+
+Primeiro, você precisa apontar seu domínio para o ForwardDomain. Vá no painel de controle onde você gerencia seu domínio (Registro.br, Cloudflare, etc.) e adicione estes registros DNS:
 
 ```dns
-# Redirecionando subdomínio
-www.exemplo.com. CNAME exemplo.com.
-blog.exemplo.com. CNAME servidor.hosting.com.
+# Registro A para o domínio raiz
+@    A    88.198.58.135
+
+# Registro A para www (opcional)
+www  A    88.198.58.135
 ```
 
-**Vantagens:**
-- Flexibilidade para mudanças
-- Não requer IP fixo
-- Facilita migrações
+**Importante:** Esse IP (`88.198.58.135`) é do ForwardDomain. Verifique sempre o IP atual no site deles, pois pode mudar.
 
-**Desvantagens:**
-- Adiciona uma consulta DNS extra
-- Não pode ser usado no domínio raiz
+### Passo 2: Configure o Redirecionamento
 
-### 3. Direcionamento por URL Redirect
+Agora você precisa informar ao ForwardDomain para onde redirecionar. Você faz isso criando um arquivo de configuração especial:
 
-```dns
-# Redirect 301 permanente
-exemplo.com → https://novosite.com
+1. **Acesse seu domínio antigo**: `http://seu-dominio.com/.well-known/forwarddomain.json`
 
-# Redirect 302 temporário
-manutencao.exemplo.com → https://exemplo.com/manutencao
+2. **Crie o arquivo** no seu servidor web ou hosting (se você tem acesso), ou use o método alternativo abaixo
+
+O arquivo deve estar em: `/.well-known/forwarddomain.json`
+
+**Conteúdo do arquivo:**
+
+```json
+{
+  "forward": "https://dominio-novo.com"
+}
 ```
 
-## Configuração Prática
+### Método Alternativo: Sem Arquivo de Configuração
 
-### Cloudflare
+Se você não tem onde hospedar o arquivo `.well-known/forwarddomain.json`, você pode usar o método de redirecionamento padrão do ForwardDomain:
 
-1. **Acesse o painel do Cloudflare**
-2. **Selecione seu domínio**
-3. **Vá para DNS**
-4. **Adicione os registros:**
+1. Aponte o DNS para o IP do ForwardDomain
+2. Acesse `http://seu-dominio.com`
+3. O ForwardDomain vai mostrar uma página onde você pode configurar o redirecionamento
 
-```dns
-Tipo: A
-Nome: @
-Conteúdo: 192.168.1.100
-TTL: Auto
+**Mas atenção:** Este método pode não funcionar para todos os casos. O método recomendado é sempre usar o arquivo de configuração.
 
-Tipo: CNAME
-Nome: www
-Conteúdo: exemplo.com
-TTL: Auto
-```
+### Passo 3: Teste o Redirecionamento
 
-### Google Domains
-
-1. **Acesse Google Domains**
-2. **Selecione seu domínio**
-3. **Vá para DNS**
-4. **Configure os registros:**
-
-```dns
-Host: @
-Tipo: A
-Dados: 192.168.1.100
-
-Host: www
-Tipo: CNAME
-Dados: exemplo.com
-```
-
-### Registro.br
-
-1. **Acesse o painel do provedor**
-2. **Localize configurações DNS**
-3. **Adicione/edite registros:**
-
-```dns
-exemplo.com.     IN A     192.168.1.100
-www.exemplo.com. IN CNAME exemplo.com.
-```
-
-## Casos de Uso Comuns
-
-### 1. Redirecionamento www para não-www
-
-```dns
-# Método 1: CNAME
-www.exemplo.com. CNAME exemplo.com.
-
-# Método 2: A Record
-www.exemplo.com. A 192.168.1.100
-```
-
-### 2. Subdomínios para Serviços
-
-```dns
-api.exemplo.com.  CNAME servidor-api.cloud.com.
-blog.exemplo.com. CNAME blog-host.com.
-mail.exemplo.com. A     192.168.1.200
-```
-
-### 3. Balanceamento de Carga
-
-```dns
-exemplo.com. A 192.168.1.100
-exemplo.com. A 192.168.1.101
-exemplo.com. A 192.168.1.102
-```
-
-### 4. Migração de Domínio
-
-```dns
-# Redirect permanente
-exemplo-antigo.com → https://exemplo-novo.com
-```
-
-## Ferramentas de Teste
-
-### Linha de Comando
+Depois de configurar, teste para garantir que está funcionando:
 
 ```bash
-# Teste A Record
-nslookup exemplo.com
+# Teste com curl
+curl -I http://seu-dominio.com
 
-# Teste específico
-dig exemplo.com A
-
-# Teste CNAME
-dig www.exemplo.com CNAME
-
-# Teste completo
-dig exemplo.com ANY
+# Você deve ver algo como:
+# HTTP/1.1 301 Moved Permanently
+# Location: https://dominio-novo.com
 ```
 
-### Ferramentas Online
-- **DNSChecker.org** - Propagação global
-- **MXToolbox** - Análise completa de DNS
-- **WhatsMyDNS** - Verificação mundial
-- **DNS Propagation Checker**
+Ou simplesmente abra `http://seu-dominio.com` no navegador e veja se redireciona corretamente.
 
-## Tempo de Propagação (TTL)
+## Configurações Avançadas
 
-### Configuração de TTL
+### Redirecionar com Caminho Preservado
+
+Se você quer que `dominio-antigo.com/pagina` redirecione para `dominio-novo.com/pagina`, configure assim:
+
+```json
+{
+  "forward": "https://dominio-novo.com",
+  "preserve_path": true
+}
+```
+
+### Redirecionamento Temporário (302)
+
+Por padrão, o ForwardDomain usa redirect 301 (permanente). Para usar 302 (temporário):
+
+```json
+{
+  "forward": "https://dominio-novo.com",
+  "status_code": 302
+}
+```
+
+### Redirecionamento com www
+
+Para redirecionar tanto `dominio.com` quanto `www.dominio.com`:
 
 ```dns
-# TTL baixo para mudanças frequentes
-exemplo.com. 300 A 192.168.1.100
-
-# TTL alto para estabilidade
-exemplo.com. 86400 A 192.168.1.100
+# Configure ambos os registros A
+@    A    88.198.58.135
+www  A    88.198.58.135
 ```
 
-### Tempos Típicos
-- **300 segundos (5 min)**: Mudanças frequentes
-- **3600 segundos (1 hora)**: Padrão recomendado
-- **86400 segundos (24 horas)**: Configurações estáveis
+E no arquivo de configuração:
+
+```json
+{
+  "forward": "https://dominio-novo.com",
+  "redirect_www": true
+}
+```
+
+## Alternativas ao ForwardDomain
+
+Se o ForwardDomain não atender suas necessidades, existem outras opções:
+
+### 1. Cloudflare Page Rules (Gratuito)
+
+Se você usa Cloudflare, pode criar regras de redirecionamento:
+
+1. Vá em **Rules** → **Page Rules**
+2. Crie uma regra: `*dominio-antigo.com/*`
+3. Selecione **Forwarding URL** → **301 Permanent Redirect**
+4. Destino: `https://dominio-novo.com/$2`
+
+**Vantagem:** Integrado com CDN e proteção DDoS
+**Desvantagem:** Precisa usar os nameservers do Cloudflare
+
+### 2. Seu Próprio Servidor
+
+Se você tem um servidor, pode configurar um redirect simples:
+
+**Nginx:**
+```nginx
+server {
+    listen 80;
+    server_name dominio-antigo.com www.dominio-antigo.com;
+    return 301 https://dominio-novo.com$request_uri;
+}
+```
+
+**Apache (.htaccess):**
+```apache
+RewriteEngine On
+RewriteRule ^(.*)$ https://dominio-novo.com/$1 [R=301,L]
+```
+
+### 3. Serviços de Hosting com Redirect
+
+Muitos serviços de hosting oferecem redirecionamento nativo:
+- **Netlify**: Redirects via `_redirects` file
+- **Vercel**: Redirects via `vercel.json`
+- **GitHub Pages**: Limitado, mas possível com meta refresh
 
 ## Problemas Comuns e Soluções
 
-### 1. Propagação Lenta
+### Redirect Não Funciona
+
+**Problema:** Acesso o domínio mas não redireciona
+
+**Soluções:**
 ```bash
-# Verificar TTL atual
-dig exemplo.com
+# 1. Verifique se o DNS está apontando corretamente
+dig seu-dominio.com A
 
-# Limpar cache DNS local
-sudo systemctl flush-dns
+# Deve retornar o IP do ForwardDomain (88.198.58.135)
+
+# 2. Verifique se o arquivo de configuração está acessível
+curl http://seu-dominio.com/.well-known/forwarddomain.json
+
+# Deve retornar o JSON de configuração
+
+# 3. Limpe o cache do navegador
+# Ctrl+Shift+Delete (Chrome/Firefox)
 ```
 
-### 2. Loops de CNAME
-```dns
-# ERRADO - cria loop
-www.exemplo.com. CNAME blog.exemplo.com.
-blog.exemplo.com. CNAME www.exemplo.com.
+### Demora para Propagar
 
-# CORRETO
-www.exemplo.com. CNAME exemplo.com.
+**Problema:** Configurei mas ainda não funciona
+
+**Causa:** Propagação DNS pode levar até 48 horas (mas geralmente é mais rápido)
+
+**Solução:**
+```bash
+# Verifique a propagação em diferentes servidores DNS
+# Use: https://dnschecker.org
+
+# Para forçar atualização local (Linux/Mac)
+sudo systemd-resolve --flush-caches
+
+# Windows
+ipconfig /flushdns
 ```
 
-### 3. CNAME no Root
-```dns
-# ERRADO - CNAME no root
-exemplo.com. CNAME servidor.host.com.
+### HTTPS Não Funciona
 
-# CORRETO - usar A record
-exemplo.com. A 192.168.1.100
-```
+**Problema:** `https://seu-dominio.com` não funciona
+
+**Causa:** ForwardDomain pode não ter certificado SSL para seu domínio
+
+**Solução:** Use um serviço que suporte HTTPS, como Cloudflare Page Rules
+
+## Quando NÃO Usar ForwardDomain
+
+O ForwardDomain é ótimo para redirecionamentos simples, mas não é ideal para:
+
+### 1. Sites de Produção Críticos
+- Use serviços pagos com SLA
+- Considere Cloudflare ou seu próprio servidor
+
+### 2. Redirecionamentos Complexos
+- Múltiplas regras condicionais
+- Redirecionamentos baseados em geolocalização
+- Precisa de analytics detalhado
+
+### 3. Quando Você Precisa de HTTPS
+- ForwardDomain pode ter limitações com SSL
+- Use alternativas com certificados gerenciados
 
 ## Boas Práticas
 
-### Segurança
-- Use HTTPS sempre que possível
-- Configure registros SPF para email
-- Implemente DMARC quando apropriado
-- Monitore mudanças não autorizadas
+### 1. Sempre Use Redirect 301 para Mudanças Permanentes
 
-### Performance
-- Configure TTL apropriado
-- Use CDN quando necessário
-- Minimize número de CNAMEs em cadeia
-- Monitore tempos de resposta
-
-### Manutenção
-- Documente todas as configurações
-- Teste mudanças em ambiente de desenvolvimento
-- Mantenha backups das configurações
-- Monitore disponibilidade regularmente
-
-## Monitoramento
-
-### Ferramentas Recomendadas
-- **UptimeRobot** - Monitoramento gratuito
-- **Pingdom** - Análise detalhada
-- **StatusCake** - Múltiplas localizações
-- **New Relic** - Monitoramento avançado
-
-### Scripts de Monitoramento
-```bash
-#!/bin/bash
-# Script simples de monitoramento DNS
-DOMAIN="exemplo.com"
-IP=$(dig +short $DOMAIN)
-echo "IP atual para $DOMAIN: $IP"
+```json
+{
+  "forward": "https://dominio-novo.com",
+  "status_code": 301
+}
 ```
+
+Isso ajuda com SEO - os buscadores transferem o "ranking" do domínio antigo para o novo.
+
+### 2. Preserve o Caminho Quando Possível
+
+```json
+{
+  "forward": "https://dominio-novo.com",
+  "preserve_path": true
+}
+```
+
+Assim, links específicos continuam funcionando:
+- `dominio-antigo.com/artigo` → `dominio-novo.com/artigo`
+
+### 3. Teste Antes de Anunciar
+
+```bash
+# Teste todos os cenários
+curl -L http://dominio-antigo.com
+curl -L http://www.dominio-antigo.com
+curl -L http://dominio-antigo.com/pagina-especifica
+curl -L https://dominio-antigo.com
+```
+
+### 4. Monitore por Algum Tempo
+
+- Use Google Analytics para ver se há tráfego no domínio antigo
+- Configure alertas para saber se o redirecionamento parar de funcionar
+- Mantenha o redirecionamento por pelo menos 6-12 meses
 
 ## Conclusão
 
-O direcionamento via DNS é uma ferramenta poderosa que permite flexibilidade e controle sobre como seus visitantes acessam seus serviços. Entender os diferentes tipos de registros e suas aplicações é fundamental para uma gestão eficaz de domínios.
+DNS não faz redirecionamentos HTTP porque essa não é a função dele. DNS resolve nomes para IPs, ponto final. Para fazer redirecionamentos, você precisa de um servidor web respondendo com códigos HTTP 301 ou 302.
 
-## Recursos Adicionais
+O ForwardDomain.net resolve esse problema fornecendo gratuitamente a infraestrutura necessária para fazer redirecionamentos simples. É perfeito para:
 
-- [RFC 1035](https://tools.ietf.org/html/rfc1035) - Especificação DNS
-- [DNS Learning Center](https://www.cloudflare.com/learning/dns/)
-- [Google Public DNS](https://developers.google.com/speed/public-dns)
-- [Documentação Registro.br](https://registro.br/tecnologia/dns/)
+- Redirecionar domínios antigos para novos
+- Criar aliases simples
+- Projetos pessoais ou pequenos
+
+Para necessidades mais complexas ou críticas, considere usar Cloudflare, seu próprio servidor, ou serviços pagos com melhor SLA.
+
+## Recursos Úteis
+
+- [ForwardDomain.net](https://forwarddomain.net) - Serviço gratuito de redirecionamento
+- [DNSChecker.org](https://dnschecker.org) - Verificar propagação DNS
+- [Cloudflare](https://cloudflare.com) - Alternativa com CDN e Page Rules
+- [RFC 7231](https://tools.ietf.org/html/rfc7231#section-6.4) - Especificação de redirects HTTP
 
 ---
 
-*Última atualização: Setembro 2024*
+*Última atualização: Novembro 2025*
