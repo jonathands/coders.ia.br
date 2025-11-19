@@ -3,7 +3,7 @@ title: "10 Ferramentas como o Lovable ou Bolt.new que você provavelmente não c
 description: "Descubra alternativas poderosas ao Lovable e Bolt.new para desenvolvimento assistido por IA que podem revolucionar seu workflow"
 date: 2025-10-15
 category: "Ferramentas"
-author: "Coders.ia.br"
+author: "Jonathan dos Santos"
 tags: ["lovable", "bolt", "ia", "desenvolvimento", "ferramentas", "ai-coding"]
 ---
 

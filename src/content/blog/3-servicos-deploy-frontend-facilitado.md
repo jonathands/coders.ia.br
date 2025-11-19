@@ -3,7 +3,7 @@ title: "3 Serviços para Deploy de Frontend Facilitado"
 description: "Conheça os principais serviços para fazer deploy de aplicações frontend de forma rápida e gratuita: Netlify, Vercel e Cloudflare Pages"
 date: 2025-10-20
 category: "Ferramentas"
-author: "Coders.ia.br"
+author: "Jonathan dos Santos"
 tags: ["deploy", "frontend", "netlify", "vercel", "cloudflare", "devops"]
 ---
 

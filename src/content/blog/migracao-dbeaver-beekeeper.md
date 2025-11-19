@@ -3,7 +3,7 @@ title: "Dica DEV com IA - Migração do DBeaver para BeeKeeper"
 description: "Descubra como a IA pode ajudar na migração de ferramentas de banco de dados do DBeaver para o BeeKeeper"
 date: 2025-10-22
 category: "Inteligência Artificial"
-author: "Coders.ia.br"
+author: "Jonathan dos Santos"
 tags: ["dbeaver", "beekeeper", "banco-de-dados", "ia", "migração"]
 ---
 

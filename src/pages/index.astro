@@ -15,7 +15,7 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
 const categories = [...new Set(posts.map(post => post.data.category))];
 
 // Featured post
-const featuredPost = posts.find(post => post.slug === 'you-are-a-rounding-error');
+const featuredPost = posts.find(post => post.slug === 'lista-ferramentas-ia');
 
 // All posts for listing
 const recentPosts = posts.slice(0, 9); // Show up to 9 posts
