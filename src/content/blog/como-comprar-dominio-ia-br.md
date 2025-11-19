@@ -1,14 +1,13 @@
 ---
 title: "Como Comprar Seu Domínio .ia.br e .app.br"
 description: "Os novos domínios do NIC.BR na nova fronteira de IA no Brasil: registro, considerações para SEO e domain parking à brasileira."
-date: 2025-09-27
+date: 2025-10-27
 category: "Infra"
 tags: ["domínios", "ia.br", "app.br", "registro.br", "SEO", "marketing digital"]
 author: "JonathanDS"
 draft: false
 ---
 
-# Como Comprar Seu Domínio .ia.br e .app.br
 
 ## Novos domínios .ia.br
 É oficial! O Registro.br, órgão responsável pelo registro dos domínios .br, liberou os domínios .ia.br e .app.br, especialmente para Aplicativos e Inteligência Artificial.

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { GraduationCap, Zap, Users, Mail, Linkedin, Github } from 'lucide-astro';
+import { Code, Brain, TrendingUp, Rocket, Mail, Linkedin, Github } from 'lucide-astro';
 ---
 
 <BaseLayout
@@ -14,51 +14,80 @@ import { GraduationCap, Zap, Users, Mail, Linkedin, Github } from 'lucide-astro'
         Sobre o <span class="bg-gradient-to-r from-accent-400 to-primary-500 bg-clip-text text-transparent">Coders.ia.br</span>
       </h1>
       <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-        Transformando conhecimento em código, código em soluções.
+        Dicas para o novo dia-a-dia dev
       </p>
       <div class="w-24 h-1 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto mt-6 rounded-full"></div>
     </div>
 
-    <!-- Mission Section -->
+    <!-- About Section -->
     <section class="mb-16">
       <div class="max-w-4xl mx-auto">
         <div class="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
-          <h2 class="text-3xl font-bold text-white mb-6 text-center">Nossa Missão</h2>
-          <p class="text-lg text-slate-300 leading-relaxed text-center mb-8">
-            Coders é um blog brasileiro sobre desenvolvimento de software, com Inteligência Artificial,
-            falamos sobre ferramentas de desenvolvimento, tendências do mercado e ideais para o mercado brasileiro.
-            Nossa missão é democratizar o aprendizado em tecnologia, fornecendo conteúdo de qualidade
-            que capacita desenvolvedores de todos os níveis a criar soluções inovadoras.
-          </p>
+          <h2 class="text-3xl font-bold text-white mb-6 text-center">Sobre o Coders.ia.br</h2>
+          <div class="prose prose-lg prose-invert max-w-none mb-8">
+            <p class="text-lg text-slate-300 leading-relaxed">
+              Olá, eu sou <strong class="text-white">Jonathan</strong>, desenvolvedor web das antigas. Comecei na época do
+              <strong class="text-white">tableless</strong> e quando o <strong class="text-white">Ajax</strong> estava nascendo.
+              Hoje sou dev <strong class="text-accent-400">full stack</strong> com <strong class="text-white">PHP</strong> e
+              <strong class="text-white">JavaScript</strong>.
+            </p>
+            <p class="text-lg text-slate-300 leading-relaxed mt-4">
+              Este blog nasceu da necessidade de compartilhar conhecimento sobre <strong class="text-accent-400">programação moderna</strong>
+              e como a <strong class="text-accent-400">Inteligência Artificial Agêntica</strong> está transformando o dia-a-dia
+              do desenvolvedor. Principalmente para <strong class="text-white">web e mobile</strong>.
+            </p>
+            <p class="text-lg text-slate-300 leading-relaxed mt-4">
+              Aqui você encontra conteúdo prático sobre <strong class="text-white">Desenvolvimento</strong>,
+              <strong class="text-white">IA</strong>, <strong class="text-white">Mercado</strong> e
+              <strong class="text-white">Empreendedorismo</strong>. São dicas, tutoriais e análises que uso
+              no meu trabalho diário e compartilho com a comunidade.
+            </p>
+            <p class="text-lg text-slate-300 leading-relaxed mt-4">
+              O foco principal é mostrar <strong class="text-white">ferramentas práticas</strong>,
+              <strong class="text-white">workflows modernos</strong> e como aproveitar ao máximo as
+              <strong class="text-accent-400">IAs generativas</strong> no desenvolvimento de software.
+              Sem hype, sem promessas mirabolantes - apenas o que realmente funciona no mundo real.
+            </p>
+          </div>
 
-          <div class="grid md:grid-cols-3 gap-6">
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Code class="w-8 h-8 text-white" />
+              </div>
+              <h3 class="text-lg font-semibold text-white mb-2">Desenvolvimento</h3>
+              <p class="text-slate-400 text-sm">
+                Web, mobile e as melhores práticas de programação.
+              </p>
+            </div>
+
             <div class="text-center">
               <div class="w-16 h-16 bg-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <GraduationCap class="w-8 h-8 text-white" />
+                <Brain class="w-8 h-8 text-white" />
               </div>
-              <h3 class="text-lg font-semibold text-white mb-2">Educação</h3>
+              <h3 class="text-lg font-semibold text-white mb-2">IA</h3>
               <p class="text-slate-400 text-sm">
-                Conteúdo educacional de qualidade para todos os níveis de experiência.
+                Inteligência Artificial Agêntica e ferramentas de IA para devs.
               </p>
             </div>
 
             <div class="text-center">
-              <div class="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Zap class="w-8 h-8 text-white" />
+              <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <TrendingUp class="w-8 h-8 text-white" />
               </div>
-              <h3 class="text-lg font-semibold text-white mb-2">Inovação</h3>
+              <h3 class="text-lg font-semibold text-white mb-2">Mercado</h3>
               <p class="text-slate-400 text-sm">
-                Exploramos as mais recentes tecnologias e tendências do mercado.
+                Tendências, carreira e oportunidades no mercado tech.
               </p>
             </div>
 
             <div class="text-center">
-              <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Users class="w-8 h-8 text-white" />
+              <div class="w-16 h-16 bg-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Rocket class="w-8 h-8 text-white" />
               </div>
-              <h3 class="text-lg font-semibold text-white mb-2">Comunidade</h3>
+              <h3 class="text-lg font-semibold text-white mb-2">Empreendedorismo</h3>
               <p class="text-slate-400 text-sm">
-                Construindo uma comunidade forte de desenvolvedores apaixonados.
+                Startups, produtos e negócios no universo tech.
               </p>
             </div>
           </div>
@@ -99,7 +128,7 @@ import { GraduationCap, Zap, Users, Mail, Linkedin, Github } from 'lucide-astro'
               <span class="text-sm text-slate-400 group-hover:text-accent-400 transition-colors duration-200">LinkedIn</span>
             </a>
 
-            <a href="https://github.com/codersiadev" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center space-y-2 p-4 rounded-lg hover:bg-slate-700/50 transition-colors duration-200">
+            <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center space-y-2 p-4 rounded-lg hover:bg-slate-700/50 transition-colors duration-200">
               <Github class="w-8 h-8 text-slate-400 group-hover:text-accent-400 transition-colors duration-200" />
               <span class="text-sm text-slate-400 group-hover:text-accent-400 transition-colors duration-200">GitHub</span>
             </a>

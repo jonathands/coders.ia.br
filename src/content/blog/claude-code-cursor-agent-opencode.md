@@ -1,13 +1,12 @@
 ---
 title: "Claude Code, Cursor Agent e OpenCode - o que são os agentes de terminal"
 description: "Entenda o que são agentes de terminal e como Claude Code, Cursor Agent e OpenCode estão revolucionando a experiência de desenvolvimento"
-date: 2024-11-28
+date: 2025-11-28
 category: "Inteligência Artificial"
 author: "Coders.ia.br"
 tags: ["claude-code", "cursor", "opencode", "agentes", "terminal", "ia"]
 ---
 
-# Claude Code, Cursor Agent e OpenCode - o que são os agentes de terminal
 
 Os **agentes de terminal** representam uma nova fronteira no desenvolvimento de software, onde a inteligência artificial não apenas sugere código, mas executa tarefas completas através do terminal. Vamos explorar três ferramentas que estão liderando essa revolução.
 
