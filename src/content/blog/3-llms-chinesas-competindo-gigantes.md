@@ -5,6 +5,7 @@ date: 2025-11-15
 category: "Inteligência Artificial"
 author: "Jonathan dos Santos"
 tags: ["ia", "llm", "china", "glm", "moonshot", "qwen", "api", "desenvolvimento"]
+featured: true
 ---
 
 O mercado de Large Language Models tem sido historicamente dominado por empresas americanas como Anthropic com o Claude, OpenAI com o GPT-4 e Google com o Gemini. Com pouquíssimas exceções vindas de fora dos EUA, como a francesa Mistral AI, o cenário global de IA tem sido praticamente um monopólio americano.
