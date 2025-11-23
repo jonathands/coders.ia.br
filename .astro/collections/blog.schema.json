@@ -10,6 +10,9 @@
         "description": {
           "type": "string"
         },
+        "excerpt": {
+          "type": "string"
+        },
         "date": {
           "anyOf": [
             {
@@ -43,6 +46,10 @@
           "type": "string"
         },
         "draft": {
+          "type": "boolean",
+          "default": false
+        },
+        "featured": {
           "type": "boolean",
           "default": false
         },

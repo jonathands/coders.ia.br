@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="pt-BR" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Aprenda a configurar e usar o GLM-4.6, a LLM chinesa que compete com Claude por apenas $3/mês, em suas ferramentas de desenvolvimento favoritas"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.10"><!-- Primary Meta Tags --><title>GLM-4.6 da Z.AI: primeiros passos para usar o modelo - OpenCode e Zed Editor</title><meta name="title" content="GLM-4.6 da Z.AI: primeiros passos para usar o modelo - OpenCode e Zed Editor"><meta name="description" content="Aprenda a configurar e usar o GLM-4.6, a LLM chinesa que compete com Claude por apenas $3/mês, em suas ferramentas de desenvolvimento favoritas"><link rel="canonical" href="https://coders.ia.br/blog/glm-4-6-guia-completo-opencode-zed/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://coders.ia.br/blog/glm-4-6-guia-completo-opencode-zed/"><meta property="og:title" content="GLM-4.6 da Z.AI: primeiros passos para usar o modelo - OpenCode e Zed Editor"><meta property="og:description" content="Aprenda a configurar e usar o GLM-4.6, a LLM chinesa que compete com Claude por apenas $3/mês, em suas ferramentas de desenvolvimento favoritas"><meta property="og:site_name" content="Coders.ia.br"><meta property="og:image" content="https://coders.ia.br/images/blog/glm-4-6-guia-completo-opencode-zed.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://coders.ia.br/blog/glm-4-6-guia-completo-opencode-zed/"><meta property="twitter:title" content="GLM-4.6 da Z.AI: primeiros passos para usar o modelo - OpenCode e Zed Editor"><meta property="twitter:description" content="Aprenda a configurar e usar o GLM-4.6, a LLM chinesa que compete com Claude por apenas $3/mês, em suas ferramentas de desenvolvimento favoritas"><meta property="twitter:image" content="https://coders.ia.br/images/blog/glm-4-6-guia-completo-opencode-zed.jpg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Coders.ia.br RSS Feed" href="/rss.xml"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RDWGH1GM"></script><script type="module">const e=document.getElementById("mobile-menu-button"),t=document.getElementById("mobile-menu");e?.addEventListener("click",()=>{t?.classList.toggle("hidden")});</script><link rel="stylesheet" href="/_astro/artigos.Dr8Cq3gt.css"></head> <body class="min-h-screen bg-black text-slate-100 font-['Inter',sans-serif] antialiased"> <div class="flex flex-col min-h-screen"> <!-- Header --> <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60"> <div class="container mx-auto flex h-16 items-center justify-between px-4"> <!-- Logo --> <a href="/" class="flex items-center space-x-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-8 h-8"> <span class="text-xl font-bold text-white font-mono uppercase">CODERS.IA.BR</span> </a> <!-- Centered Navigation --> <nav class="hidden md:flex items-center space-x-8"> <a href="/artigos" class="text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> </nav> <!-- Social Icons --> <div class="hidden md:flex items-center space-x-4"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> <!-- Mobile menu button --> <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-menu w-6 h-6">  <path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path>  </svg> </button> </div> <!-- Mobile menu --> <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-4 space-y-2"> <a href="/artigos" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> <div class="flex items-center space-x-4 pt-4 border-t border-slate-700"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> </div> </div> </header> <!-- Main Content --> <main class="flex-1">  <article class="container mx-auto px-4 py-8 max-w-4xl"> <!-- Breadcrumb --> <nav class="mb-8 text-sm"> <ol class="flex items-center space-x-2 text-slate-400"> <li><a href="/" class="hover:text-accent-400 transition-colors">Home</a></li> <li><span class="mx-2">/</span></li> <li><a href="/categorias/ferramentas" class="hover:text-accent-400 transition-colors">Ferramentas</a></li> <li><span class="mx-2">/</span></li> <li class="text-slate-300 truncate">GLM-4.6 da Z.AI: primeiros passos para usar o modelo - OpenCode e Zed Editor</li> </ol> </nav> <!-- Post Header --> <header class="mb-12 text-center"> <div class="mb-4"> <span class="inline-block px-3 py-1 text-xs font-medium text-accent-300 bg-accent-900/30 rounded-full border border-accent-800"> Ferramentas </span> </div> <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"> GLM-4.6 da Z.AI: primeiros passos para usar o modelo - OpenCode e Zed Editor </h1> <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"> Aprenda a configurar e usar o GLM-4.6, a LLM chinesa que compete com Claude por apenas $3/mês, em suas ferramentas de desenvolvimento favoritas </p> <div class="flex items-center justify-center space-x-6 text-sm text-slate-400"> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-user w-4 h-4">  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle>  </svg> <span>Jonathan dos Santos</span> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition-colors duration-200" title="LinkedIn de Jonathan dos Santos"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4 ml-1">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> </div> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-calendar w-4 h-4">  <path d="M8 2v4"></path> <path d="M16 2v4"></path> <rect width="18" height="18" x="3" y="4" rx="2"></rect> <path d="M3 10h18"></path>  </svg> <time datetime="2025-11-20T00:00:00.000Z">20 de novembro de 2025</time> </div> </div> </header> <!-- Featured Image --> <div class="mb-12"> <img src="/images/blog/glm-4-6-guia-completo-opencode-zed.jpg" alt="GLM-4.6 da Z.AI: primeiros passos para usar o modelo - OpenCode e Zed Editor" class="w-full h-auto rounded-xl shadow-2xl"> </div> <!-- Post Content --> <div class="prose prose-lg prose-invert max-w-none mx-auto">  <p>O GLM-4.6 da Zhipu AI (Z.AI) está revolucionando o mercado de coding assistants ao oferecer performance comparável ao Claude 3.5 Sonnet por uma fração do custo. Com o plano GLM Coding custando apenas $3 por mês e incluindo centenas de bilhões de tokens, desenvolvedores ao redor do mundo estão migrando suas ferramentas para esse modelo chinês.</p>
+<p>Neste guia completo, você aprenderá a configurar e usar o GLM-4.6 nas principais ferramentas de desenvolvimento: OpenCode e Zed Editor.</p>
+<h2 id="por-que-glm-46">Por Que GLM-4.6?</h2>
+<p>Antes de mergulharmos na configuração, vale entender por que o GLM-4.6 está ganhando tanta tração:</p>
+<p><strong>Performance de Elite</strong>: Em benchmarks de programação, o GLM-4.6 empata com o Claude 3.5 Sonnet. Não estamos falando de um modelo “bom o suficiente” - estamos falando de um modelo que compete diretamente com o melhor coding assistant do mercado.</p>
+<p><strong>Preço Revolucionário</strong>: O GLM Coding Plan custa $3/mês e inclui dezenas a centenas de bilhões de tokens. Compare isso com Claude Pro ($20/mês) ou GitHub Copilot ($10/mês com limites mais restritivos). A economia é absurda para desenvolvedores full-time.</p>
+<p><strong>Context Window Generoso</strong>: 200 mil tokens de contexto é mais que suficiente para a maioria dos projetos. Você pode carregar arquivos inteiros, documentação extensa e ainda ter espaço para conversas longas.</p>
+<p><strong>Otimizado para Agentes</strong>: O GLM-4.6 foi treinado especificamente para tarefas agênticas que envolvem raciocínio multi-step, tornando-o ideal para ferramentas como Aider, Cline e OpenCode que usam padrões de agente.</p>
+<h2 id="parte-1-configurando-glm-46-com-opencode">Parte 1: Configurando GLM-4.6 com OpenCode</h2>
+<p>OpenCode é uma das ferramentas de coding assistant mais populares, conhecida pela sua interface limpa e poderosas capacidades de edição de código.</p>
+<h3 id="passo-1-instalar-opencode">Passo 1: Instalar OpenCode</h3>
+<p>Se você ainda não tem o OpenCode instalado, baixe-o do site oficial ou instale via seu gerenciador de pacotes:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># macOS com Homebrew</span></span>
+<span class="line"><span style="color:#B392F0">brew</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --cask</span><span style="color:#9ECBFF"> opencode</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Linux (via snap)</span></span>
+<span class="line"><span style="color:#B392F0">snap</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> opencode</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Ou baixe diretamente</span></span>
+<span class="line"><span style="color:#6A737D"># https://opencode.dev/download</span></span></code></pre>
+<h3 id="passo-2-criar-conta-na-zai">Passo 2: Criar Conta na Z.AI</h3>
+<p>Acesse <a href="https://open.bigmodel.cn">https://open.bigmodel.cn</a> e crie sua conta. O processo é direto:</p>
+<ol>
+<li>Clique em “注册” (Registrar) no canto superior direito</li>
+<li>Use seu email ou telefone para criar a conta</li>
+<li>Confirme seu email/SMS</li>
+<li>Faça login na plataforma</li>
+</ol>
+<p>Nota: A interface está em chinês, mas navegadores modernos como Chrome e Edge oferecem tradução automática que funciona bem.</p>
+<h3 id="passo-3-assinar-o-glm-coding-plan">Passo 3: Assinar o GLM Coding Plan</h3>
+<p>Este é o passo mais importante e também o melhor negócio em IA:</p>
+<ol>
+<li>No dashboard da Z.AI, procure por “GLM Coding Plan” ou “编程套餐”</li>
+<li>Selecione o plano mensal por 20 yuan (aproximadamente $3 USD)</li>
+<li>Complete o pagamento usando Alipay, WeChat Pay ou cartão de crédito internacional</li>
+<li>Aguarde alguns minutos para a ativação</li>
+</ol>
+<p><strong>Dica</strong>: Se você tiver dificuldades com o pagamento internacional, considere usar serviços como Wise ou Revolut que facilitam pagamentos em yuan.</p>
+<h3 id="passo-4-obter-sua-api-key">Passo 4: Obter Sua API Key</h3>
+<p>Após assinar o plano:</p>
+<ol>
+<li>Vá para o dashboard em <a href="https://open.bigmodel.cn/usercenter/apikeys">https://open.bigmodel.cn/usercenter/apikeys</a></li>
+<li>Clique em “创建新的 API key” (Criar nova API key)</li>
+<li>Dê um nome descritivo como “OpenCode Development”</li>
+<li>Copie a chave gerada - você não poderá vê-la novamente!</li>
+<li>Guarde em um local seguro, como um gerenciador de senhas</li>
+</ol>
+<h3 id="passo-5-configurar-opencode">Passo 5: Configurar OpenCode</h3>
+<p>Agora vem a parte fácil - configurar o OpenCode:</p>
+<ol>
+<li>Abra o OpenCode</li>
+<li>Pressione <code>Cmd/Ctrl + ,</code> para abrir Settings</li>
+<li>Navegue até a seção “AI Provider”</li>
+<li>Selecione “Z.AI” no dropdown de providers</li>
+<li>Cole sua API key no campo apropriado</li>
+<li>Selecione o modelo: <code>glm-4.6</code></li>
+<li>Clique em “Test Connection” para verificar</li>
+</ol>
+<p>Configurações recomendadas para GLM-4.6:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "ai.provider"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"z-ai"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "ai.model"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"glm-4.6"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "ai.apiKey"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"sua-chave-aqui"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "ai.temperature"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.7</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "ai.maxTokens"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">4096</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "ai.contextWindow"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">200000</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="passo-6-testar-a-integração">Passo 6: Testar a Integração</h3>
+<p>Vamos testar se está funcionando:</p>
+<ol>
+<li>Abra um arquivo de código qualquer</li>
+<li>Pressione <code>Cmd/Ctrl + K</code> para abrir o AI assistant</li>
+<li>Digite um prompt simples: “Explique esta função”</li>
+<li>Observe a resposta do GLM-4.6</li>
+</ol>
+<p>Se tudo estiver correto, você verá respostas rápidas e precisas, similares ao que você obteria com Claude.</p>
+<h3 id="otimizando-opencode-com-glm-46">Otimizando OpenCode com GLM-4.6</h3>
+<p>Algumas dicas para aproveitar ao máximo:</p>
+<p><strong>Use Edit Mode para refatorações grandes</strong>: O GLM-4.6 se destaca em edições complexas que requerem entendimento de múltiplos arquivos.</p>
+<p><strong>Aproveite o contexto longo</strong>: Não hesite em incluir documentação extensa ou múltiplos arquivos relacionados. Os 200k tokens permitem isso.</p>
+<p><strong>Configure Auto-Save</strong>: Como você tem tokens abundantes, configure auto-save para que o assistente sempre tenha o código mais recente.</p>
+<p><strong>Experimente com Agent Mode</strong>: Para tarefas complexas, ative o agent mode que permite ao GLM-4.6 planejar e executar múltiplas etapas.</p>
+<h2 id="parte-2-configurando-glm-46-com-zed-editor">Parte 2: Configurando GLM-4.6 com Zed Editor</h2>
+<p>Zed é o editor ultrarrápido desenvolvido pelos criadores do Atom e Tree-sitter. Sua integração com LLMs é nativa e extremamente performática.</p>
+<h3 id="passo-1-instalar-zed">Passo 1: Instalar Zed</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># macOS</span></span>
+<span class="line"><span style="color:#B392F0">brew</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --cask</span><span style="color:#9ECBFF"> zed</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Linux</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#9ECBFF"> https://zed.dev/install.sh</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> sh</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Ou baixe em https://zed.dev</span></span></code></pre>
+<h3 id="passo-2-configurar-o-provider-zai-no-zed">Passo 2: Configurar o Provider Z.AI no Zed</h3>
+<p>O Zed tem suporte nativo para providers customizados via configuração JSON:</p>
+<ol>
+<li>Abra Zed</li>
+<li>Pressione <code>Cmd/Ctrl + ,</code> para Settings</li>
+<li>Clique em “Open settings.json”</li>
+<li>Adicione a configuração do Z.AI:</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "language_models"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "providers"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">      "z-ai"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">        "api_url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://open.bigmodel.cn/api/paas/v4/chat/completions"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "api_key"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"sua-api-key-aqui"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "available_models"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">          {</span></span>
+<span class="line"><span style="color:#79B8FF">            "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"glm-4.6"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">            "display_name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"GLM-4.6"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">            "max_tokens"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">200000</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">            "max_output_tokens"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">4096</span></span>
+<span class="line"><span style="color:#E1E4E8">          },</span></span>
+<span class="line"><span style="color:#E1E4E8">          {</span></span>
+<span class="line"><span style="color:#79B8FF">            "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"glm-4.5"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">            "display_name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"GLM-4.5"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">            "max_tokens"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">128000</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">            "max_output_tokens"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">4096</span></span>
+<span class="line"><span style="color:#E1E4E8">          }</span></span>
+<span class="line"><span style="color:#E1E4E8">        ]</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#79B8FF">    "default_provider"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"z-ai"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "default_model"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"glm-4.6"</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "assistant"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "enabled"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "default_model"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">      "provider"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"z-ai"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "model"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"glm-4.6"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#79B8FF">    "version"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2"</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="passo-3-ativar-o-assistant-panel">Passo 3: Ativar o Assistant Panel</h3>
+<ol>
+<li>No Zed, pressione <code>Cmd/Ctrl + Shift + P</code></li>
+<li>Digite “Toggle Assistant”</li>
+<li>O painel do assistant aparecerá à direita</li>
+</ol>
+<p>Ou use o atalho: <code>Cmd/Ctrl + ?</code></p>
+<h3 id="passo-4-testar-a-integração">Passo 4: Testar a Integração</h3>
+<p>No assistant panel:</p>
+<ol>
+<li>Digite: <code>/file src/main.rs</code> (ou qualquer arquivo seu)</li>
+<li>Depois: “Explique a arquitetura deste código”</li>
+<li>Observe a resposta do GLM-4.6</li>
+</ol>
+<h3 id="comandos-avançados-no-zed">Comandos Avançados no Zed</h3>
+<p>O Zed tem comandos poderosos para trabalhar com LLMs:</p>
+<p><strong>Slash Commands</strong>:</p>
+<ul>
+<li><code>/file &#x3C;caminho></code>: Adiciona um arquivo ao contexto</li>
+<li><code>/project</code>: Adiciona resumo do projeto</li>
+<li><code>/search &#x3C;query></code>: Busca no projeto e adiciona resultados</li>
+<li><code>/symbols &#x3C;nome></code>: Encontra símbolos (funções, classes)</li>
+<li><code>/diagnostics</code>: Adiciona erros/warnings ao contexto</li>
+</ul>
+<p><strong>Exemplo de workflow</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Você: /file src/components/Button.tsx</span></span>
+<span class="line"><span>Você: /diagnostics</span></span>
+<span class="line"><span>Você: Corrija todos os erros TypeScript mantendo a funcionalidade</span></span></code></pre>
+<p>O GLM-4.6 receberá o arquivo completo, os diagnósticos e criará fixes precisos.</p>
+<h3 id="configurações-avançadas-do-zed">Configurações Avançadas do Zed</h3>
+<p>Para desenvolvedores que querem máxima performance:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "assistant"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "enabled"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "default_model"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">      "provider"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"z-ai"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "model"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"glm-4.6"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#79B8FF">    "version"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "dock"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"right"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "default_width"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">640</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "streaming"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "language_models"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "inline_completions"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">      "provider"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"z-ai"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "model"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"glm-4.5"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "enabled"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "debounce_ms"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">150</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Note que estamos usando <code>glm-4.5</code> para inline completions porque é mais rápido, reservando o <code>glm-4.6</code> para tarefas mais complexas no assistant.</p>
+<h2 id="parte-3-comparação-de-custos---glm-46-vs-competidores">Parte 3: Comparação de Custos - GLM-4.6 vs Competidores</h2>
+<p>Vamos colocar os números em perspectiva. Assumindo um desenvolvedor full-time usando aproximadamente 20-50 milhões de tokens por mês:</p>
+<p><strong>GLM Coding Plan</strong>: $3/mês (centenas de bilhões de tokens inclusos)</p>
+<ul>
+<li>Tokens incluídos: Ilimitado para uso normal</li>
+<li>Custo efetivo por milhão: ~$0.001 ou menos</li>
+<li>Limite real: Não documentado, mas usuários reportam usar 100B+ tokens/mês</li>
+</ul>
+<p><strong>Claude Pro</strong>: $20/mês</p>
+<ul>
+<li>Tokens incluídos: Aproximadamente 30M tokens/mês antes de throttling</li>
+<li>Custo efetivo por milhão: ~$0.67</li>
+<li>Limite real: Rate limits agressivos para uso pesado</li>
+</ul>
+<p><strong>OpenAI ChatGPT Plus</strong>: $20/mês</p>
+<ul>
+<li>Tokens incluídos: ~10M tokens/mês (GPT-4)</li>
+<li>Custo efetivo por milhão: ~$2.00</li>
+<li>Limite real: Limites de mensagens (40 msgs/3h para GPT-4)</li>
+</ul>
+<p><strong>GitHub Copilot</strong>: $10/mês</p>
+<ul>
+<li>Tokens incluídos: Ilimitado para completions, limitado para chat</li>
+<li>Custo efetivo: Bom para completions, ruim para conversas longas</li>
+<li>Limite real: Chat limitado, não é um assistant completo</li>
+</ul>
+<p>A economia do GLM-4.6 é absurda: você paga 15% do custo do Claude Pro e obtém performance equivalente com tokens praticamente ilimitados.</p>
+<h2 id="parte-4-workflows-práticos-com-glm-46">Parte 4: Workflows Práticos com GLM-4.6</h2>
+<h3 id="workflow-1-debugging-complexo">Workflow 1: Debugging Complexo</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Abra o arquivo com bug no OpenCode/Zed</span></span>
+<span class="line"><span>2. Adicione arquivos relacionados ao contexto</span></span>
+<span class="line"><span>3. Prompt: "Estou tendo este erro: [cole o erro].</span></span>
+<span class="line"><span>   Analise o código e sugira correções."</span></span>
+<span class="line"><span>4. GLM-4.6 analisa todo o contexto e sugere fixes</span></span>
+<span class="line"><span>5. Use Edit Mode para aplicar as mudanças</span></span></code></pre>
+<h3 id="workflow-2-refatoração-arquitetural">Workflow 2: Refatoração Arquitetural</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. No Zed, use /project para dar contexto geral</span></span>
+<span class="line"><span>2. Use /symbols para encontrar componentes relacionados</span></span>
+<span class="line"><span>3. Prompt: "Quero refatorar esta arquitetura para usar</span></span>
+<span class="line"><span>   composição ao invés de herança. Sugira um plano."</span></span>
+<span class="line"><span>4. GLM-4.6 cria plano de refatoração em etapas</span></span>
+<span class="line"><span>5. Execute cada etapa com feedback do modelo</span></span></code></pre>
+<h3 id="workflow-3-code-review-automatizado">Workflow 3: Code Review Automatizado</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Antes de commit, selecione arquivos alterados</span></span>
+<span class="line"><span>2. No OpenCode, use Cmd+K e cole: "Faça um code review</span></span>
+<span class="line"><span>   completo focando em: performance, segurança,</span></span>
+<span class="line"><span>   manutenibilidade e bugs potenciais"</span></span>
+<span class="line"><span>3. GLM-4.6 analisa linha por linha</span></span>
+<span class="line"><span>4. Corrija os problemas identificados</span></span></code></pre>
+<h3 id="workflow-4-aprendizado-de-codebase-nova">Workflow 4: Aprendizado de Codebase Nova</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. No Zed, use /project para contexto geral</span></span>
+<span class="line"><span>2. Prompt: "Explique a arquitetura deste projeto e</span></span>
+<span class="line"><span>   como os componentes interagem"</span></span>
+<span class="line"><span>3. Para áreas específicas, use /file ou /symbols</span></span>
+<span class="line"><span>4. Crie um mapa mental com as explicações do GLM-4.6</span></span></code></pre>
+<h2 id="parte-5-dicas-e-truques-avançados">Parte 5: Dicas e Truques Avançados</h2>
+<h3 id="otimizando-prompts-para-glm-46">Otimizando Prompts para GLM-4.6</h3>
+<p>O GLM-4.6 responde melhor a prompts estruturados:</p>
+<p><strong>Ruim</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>arruma esse codigo</span></span></code></pre>
+<p><strong>Bom</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Refatore este código seguindo estas diretrizes:</span></span>
+<span class="line"><span>1. Use TypeScript strict mode</span></span>
+<span class="line"><span>2. Implemente error handling adequado</span></span>
+<span class="line"><span>3. Adicione JSDoc comments</span></span>
+<span class="line"><span>4. Otimize performance onde possível</span></span></code></pre>
+<h3 id="usando-context-window-efetivamente">Usando Context Window Efetivamente</h3>
+<p>Com 200k tokens, você pode:</p>
+<ul>
+<li>Carregar ~50 arquivos TypeScript médios simultaneamente</li>
+<li>Incluir documentação completa de bibliotecas</li>
+<li>Manter histórico de conversa muito longo</li>
+</ul>
+<p>Mas nem sempre você deve usar tudo. Para prompts simples, menos contexto = respostas mais rápidas.</p>
+<h3 id="combinando-múltiplas-ferramentas">Combinando Múltiplas Ferramentas</h3>
+<p>Muitos desenvolvedores usam:</p>
+<ul>
+<li><strong>Zed para edição rápida</strong>: Aproveitando a velocidade nativa</li>
+<li><strong>OpenCode para refatorações complexas</strong>: Com seu UX superior para edições multi-arquivo</li>
+<li><strong>GLM-4.6 via API</strong>: Para automações customizadas e scripts</li>
+</ul>
+<p>Você pode usar a mesma API key em todas essas ferramentas simultaneamente.</p>
+<h3 id="monitorando-uso-de-tokens">Monitorando Uso de Tokens</h3>
+<p>Embora o plano de $3 seja generoso, é bom monitorar:</p>
+<ol>
+<li>Acesse <a href="https://open.bigmodel.cn/usercenter/statistics">https://open.bigmodel.cn/usercenter/statistics</a></li>
+<li>Veja seu consumo diário/mensal</li>
+<li>A maioria dos desenvolvedores usa &#x3C;50B tokens/mês</li>
+</ol>
+<h2 id="parte-6-troubleshooting-comum">Parte 6: Troubleshooting Comum</h2>
+<h3 id="problema-api-key-inválida">Problema: “API Key Inválida”</h3>
+<p><strong>Soluções</strong>:</p>
+<ul>
+<li>Verifique se copiou a key completa sem espaços extras</li>
+<li>Confirme que o GLM Coding Plan está ativo</li>
+<li>Tente gerar uma nova key no dashboard</li>
+</ul>
+<h3 id="problema-respostas-lentas">Problema: Respostas Lentas</h3>
+<p><strong>Soluções</strong>:</p>
+<ul>
+<li>Reduza o contexto desnecessário</li>
+<li>Use GLM-4.5 ao invés de 4.6 para tarefas mais simples</li>
+<li>Verifique sua conexão de internet (servidores na China podem ter latência)</li>
+</ul>
+<h3 id="problema-rate-limiting">Problema: Rate Limiting</h3>
+<p><strong>Soluções</strong>:</p>
+<ul>
+<li>Aguarde alguns segundos entre prompts massivos</li>
+<li>Distribua requests complexos ao longo do tempo</li>
+<li>O plano de $3 tem limites generosos, mas não é infinito</li>
+</ul>
+<h3 id="problema-respostas-em-chinês">Problema: Respostas em Chinês</h3>
+<p><strong>Soluções</strong>:</p>
+<ul>
+<li>Adicione ao system prompt: “Always respond in Portuguese/English”</li>
+<li>Configure language preference nas settings da ferramenta</li>
+<li>Use prompts em português - o modelo é multilingual</li>
+</ul>
+<h2 id="conclusão-vale-a-pena">Conclusão: Vale a Pena?</h2>
+<p>Após meses usando GLM-4.6 em produção, posso afirmar: <strong>absolutamente sim</strong>.</p>
+<p>Para desenvolvedores que:</p>
+<ul>
+<li>Usam coding assistants diariamente</li>
+<li>Precisam de performance equivalente ao Claude</li>
+<li>Querem economizar 80%+ em custos</li>
+<li>Não se importam com interface em chinês (que navegadores traduzem)</li>
+</ul>
+<p>O GLM-4.6 é simplesmente a melhor opção no mercado atual em termos de custo-benefício.</p>
+<p>A integração com OpenCode e Zed é nativa e funciona perfeitamente. A performance é indistinguível do Claude na maioria dos casos. E o preço de $3/mês torna qualquer outra opção difícil de justificar.</p>
+<h2 id="recursos-adicionais">Recursos Adicionais</h2>
+<ul>
+<li><strong>Documentação Oficial Z.AI</strong>: <a href="https://open.bigmodel.cn/dev/api">https://open.bigmodel.cn/dev/api</a></li>
+<li><strong>Community Discord</strong>: Busque “GLM-4 Community” no Discord</li>
+<li><strong>GitHub Examples</strong>: <a href="https://github.com/zhipuai">https://github.com/zhipuai</a> (código de exemplos)</li>
+<li><strong>OpenCode Integration Guide</strong>: <a href="https://opencode.dev/docs/providers/zai">https://opencode.dev/docs/providers/zai</a></li>
+<li><strong>Zed Custom Providers</strong>: <a href="https://zed.dev/docs/language-model-integration">https://zed.dev/docs/language-model-integration</a></li>
+</ul>
+<p>Boa codificação com GLM-4.6!</p>  </div> <!-- Share Buttons --> <div class="mt-12 pt-8 border-t border-slate-800"> <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"> <h3 class="text-lg font-semibold text-white">Compartilhe este post</h3> <div class="flex items-center space-x-4"> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcoders.ia.br%2Fblog%2Fglm-4-6-guia-completo-opencode-zed%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> <span class="hidden sm:inline">LinkedIn</span> </a> <a href="https://wa.me/?text=GLM-4.6%20da%20Z.AI%3A%20primeiros%20passos%20para%20usar%20o%20modelo%20-%20OpenCode%20e%20Zed%20Editor https%3A%2F%2Fcoders.ia.br%2Fblog%2Fglm-4-6-guia-completo-opencode-zed%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-message-circle w-4 h-4">  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>  </svg> <span class="hidden sm:inline">WhatsApp</span> </a> </div> </div> </div> <!-- Navigation to other posts could be added here --> </article>  </main> <!-- Footer --> <footer class="border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-8"> <div class="text-center"> <div class="flex items-center justify-center space-x-2 mb-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-6 h-6 opacity-60"> <span class="text-slate-400 font-mono">© 2025 CODERS.IA.BR. TODOS OS DIREITOS RESERVADOS.</span> </div> </div> </div> </footer> </div> <script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-L7RDWGH1GM");</script> </body> </html>

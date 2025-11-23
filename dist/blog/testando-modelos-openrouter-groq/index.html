@@ -1,0 +1,536 @@
+<!DOCTYPE html><html lang="pt-BR" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Como usar OpenRouter e Groq para testar centenas de LLMs diferentes com uma única API, economizando tempo e dinheiro"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.10"><!-- Primary Meta Tags --><title>Testando modelos de IA com OpenRouter e Groq</title><meta name="title" content="Testando modelos de IA com OpenRouter e Groq"><meta name="description" content="Como usar OpenRouter e Groq para testar centenas de LLMs diferentes com uma única API, economizando tempo e dinheiro"><link rel="canonical" href="https://coders.ia.br/blog/testando-modelos-openrouter-groq/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://coders.ia.br/blog/testando-modelos-openrouter-groq/"><meta property="og:title" content="Testando modelos de IA com OpenRouter e Groq"><meta property="og:description" content="Como usar OpenRouter e Groq para testar centenas de LLMs diferentes com uma única API, economizando tempo e dinheiro"><meta property="og:site_name" content="Coders.ia.br"><meta property="og:image" content="https://coders.ia.br/images/blog/testando-modelos-openrouter-groq.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://coders.ia.br/blog/testando-modelos-openrouter-groq/"><meta property="twitter:title" content="Testando modelos de IA com OpenRouter e Groq"><meta property="twitter:description" content="Como usar OpenRouter e Groq para testar centenas de LLMs diferentes com uma única API, economizando tempo e dinheiro"><meta property="twitter:image" content="https://coders.ia.br/images/blog/testando-modelos-openrouter-groq.jpg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Coders.ia.br RSS Feed" href="/rss.xml"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RDWGH1GM"></script><script type="module">const e=document.getElementById("mobile-menu-button"),t=document.getElementById("mobile-menu");e?.addEventListener("click",()=>{t?.classList.toggle("hidden")});</script><link rel="stylesheet" href="/_astro/artigos.Dr8Cq3gt.css"></head> <body class="min-h-screen bg-black text-slate-100 font-['Inter',sans-serif] antialiased"> <div class="flex flex-col min-h-screen"> <!-- Header --> <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60"> <div class="container mx-auto flex h-16 items-center justify-between px-4"> <!-- Logo --> <a href="/" class="flex items-center space-x-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-8 h-8"> <span class="text-xl font-bold text-white font-mono uppercase">CODERS.IA.BR</span> </a> <!-- Centered Navigation --> <nav class="hidden md:flex items-center space-x-8"> <a href="/artigos" class="text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> </nav> <!-- Social Icons --> <div class="hidden md:flex items-center space-x-4"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> <!-- Mobile menu button --> <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-menu w-6 h-6">  <path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path>  </svg> </button> </div> <!-- Mobile menu --> <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-4 space-y-2"> <a href="/artigos" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> <div class="flex items-center space-x-4 pt-4 border-t border-slate-700"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> </div> </div> </header> <!-- Main Content --> <main class="flex-1">  <article class="container mx-auto px-4 py-8 max-w-4xl"> <!-- Breadcrumb --> <nav class="mb-8 text-sm"> <ol class="flex items-center space-x-2 text-slate-400"> <li><a href="/" class="hover:text-accent-400 transition-colors">Home</a></li> <li><span class="mx-2">/</span></li> <li><a href="/categorias/inteligência artificial" class="hover:text-accent-400 transition-colors">Inteligência Artificial</a></li> <li><span class="mx-2">/</span></li> <li class="text-slate-300 truncate">Testando modelos de IA com OpenRouter e Groq</li> </ol> </nav> <!-- Post Header --> <header class="mb-12 text-center"> <div class="mb-4"> <span class="inline-block px-3 py-1 text-xs font-medium text-accent-300 bg-accent-900/30 rounded-full border border-accent-800"> Inteligência Artificial </span> </div> <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"> Testando modelos de IA com OpenRouter e Groq </h1> <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"> Como usar OpenRouter e Groq para testar centenas de LLMs diferentes com uma única API, economizando tempo e dinheiro </p> <div class="flex items-center justify-center space-x-6 text-sm text-slate-400"> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-user w-4 h-4">  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle>  </svg> <span>Jonathan dos Santos</span> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition-colors duration-200" title="LinkedIn de Jonathan dos Santos"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4 ml-1">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> </div> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-calendar w-4 h-4">  <path d="M8 2v4"></path> <path d="M16 2v4"></path> <rect width="18" height="18" x="3" y="4" rx="2"></rect> <path d="M3 10h18"></path>  </svg> <time datetime="2025-11-30T00:00:00.000Z">30 de novembro de 2025</time> </div> </div> </header> <!-- Featured Image --> <div class="mb-12"> <img src="/images/blog/testando-modelos-openrouter-groq.jpg" alt="Testando modelos de IA com OpenRouter e Groq" class="w-full h-auto rounded-xl shadow-2xl"> </div> <!-- Post Content --> <div class="prose prose-lg prose-invert max-w-none mx-auto">  <p>Testar diferentes modelos de IA costumava ser trabalhoso: criar contas em cada provedor, aprender APIs diferentes, gerenciar múltiplas chaves, lidar com diversos formatos de cobrança…</p>
+<p><strong>Isso mudou.</strong></p>
+<p>Hoje existem duas plataformas que revolucionam como desenvolvedores testam e usam LLMs:</p>
+<ul>
+<li><strong>OpenRouter</strong>: Acesso a 400+ modelos através de uma única API</li>
+<li><strong>Groq</strong>: Inferência ultra-rápida com hardware especializado</li>
+</ul>
+<p>Neste artigo, vamos explorar como usar essas duas ferramentas para testar modelos de forma eficiente.</p>
+<hr>
+<h2 id="openrouter-400-modelos-em-uma-api">OpenRouter: 400+ Modelos em Uma API</h2>
+<p><strong>Website</strong>: <a href="https://openrouter.ai">openrouter.ai</a></p>
+<h3 id="o-que-é-openrouter">O Que É OpenRouter?</h3>
+<p>OpenRouter é um <strong>gateway gerenciado de LLMs</strong> que expõe uma interface compatível com OpenAI para centenas de modelos de diferentes provedores.</p>
+<p><strong>Em português claro</strong>: Uma única API que te dá acesso a GPT-4, Claude, Gemini, Mistral, Llama, modelos chineses e centenas de outros - sem precisar criar conta em cada provedor.</p>
+<h3 id="por-que-usar-openrouter">Por Que Usar OpenRouter?</h3>
+<p><strong>Antes (sem OpenRouter):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>❌ Criar conta na OpenAI → Aprender a API deles</span></span>
+<span class="line"><span>❌ Criar conta na Anthropic → Aprender a API deles</span></span>
+<span class="line"><span>❌ Criar conta no Google → Aprender a API deles</span></span>
+<span class="line"><span>❌ Gerenciar 10+ chaves de API diferentes</span></span>
+<span class="line"><span>❌ Lidar com formatos de resposta diferentes</span></span>
+<span class="line"><span>❌ Billing separado em cada plataforma</span></span></code></pre>
+<p><strong>Depois (com OpenRouter):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>✅ Uma conta no OpenRouter</span></span>
+<span class="line"><span>✅ Uma chave de API</span></span>
+<span class="line"><span>✅ Uma interface (compatível com OpenAI)</span></span>
+<span class="line"><span>✅ Um único billing</span></span>
+<span class="line"><span>✅ Troca de modelos sem reescrever código</span></span></code></pre>
+<h3 id="características-principais">Características Principais</h3>
+<p><strong>1. Compatibilidade OpenAI</strong></p>
+<ul>
+<li>Se você já usa a API da OpenAI, já sabe usar o OpenRouter</li>
+<li>Basta mudar a URL base e a chave</li>
+<li>Código existente funciona sem modificações</li>
+</ul>
+<p><strong>2. Normalização de API</strong></p>
+<ul>
+<li>Converte formatos específicos de cada provedor</li>
+<li>Interface padronizada para todos os modelos</li>
+<li>Parâmetros familiares: <code>temperature</code>, <code>top_p</code>, <code>max_tokens</code></li>
+</ul>
+<p><strong>3. Fallbacks Inteligentes</strong></p>
+<ul>
+<li>Se um modelo está offline, roteia automaticamente para alternativa</li>
+<li>Garante continuidade do serviço</li>
+<li>Configurável por você</li>
+</ul>
+<p><strong>4. Recursos Avançados</strong></p>
+<ul>
+<li>Streaming</li>
+<li>Function/tool calling</li>
+<li>Multimodal (texto, imagens, PDFs)</li>
+<li>Modelos com até 2M tokens de contexto</li>
+</ul>
+<p><strong>5. Transparência de Custos</strong></p>
+<ul>
+<li>Ver preço de cada modelo antes de usar</li>
+<li>Billing centralizado</li>
+<li>Rankings de custo-benefício</li>
+</ul>
+<h3 id="modelos-disponíveis">Modelos Disponíveis</h3>
+<p>OpenRouter oferece acesso a <strong>400+ modelos</strong>, incluindo:</p>
+<p><strong>Modelos Americanos:</strong></p>
+<ul>
+<li>OpenAI: GPT-4 Turbo, GPT-4, GPT-3.5</li>
+<li>Anthropic: Claude 3.5 Sonnet, Claude 3 Opus</li>
+<li>Google: Gemini 1.5 Pro, Gemini Flash</li>
+<li>Meta: Llama 3.1, Llama 3</li>
+</ul>
+<p><strong>Modelos Europeus:</strong></p>
+<ul>
+<li>Mistral Large, Mistral Medium, Mixtral</li>
+</ul>
+<p><strong>Modelos Chineses:</strong></p>
+<ul>
+<li>GLM-4.6, GLM-4.5</li>
+<li>Qwen Coder (Alibaba)</li>
+<li>DeepSeek</li>
+<li>Moonshot Kimi K2</li>
+</ul>
+<p><strong>Modelos Open Source:</strong></p>
+<ul>
+<li>Llama (Meta)</li>
+<li>Phi-3 (Microsoft)</li>
+<li>Command R+ (Cohere)</li>
+<li>WizardLM</li>
+<li>Toppy, Zephyr</li>
+</ul>
+<p><strong>Modelos Gratuitos:</strong></p>
+<ul>
+<li>DeepSeek R1</li>
+<li>Toppy</li>
+<li>Zephyr</li>
+<li>E mais…</li>
+</ul>
+<h3 id="como-usar-openrouter">Como Usar OpenRouter</h3>
+<p><strong>1. Criar Conta</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Acesse openrouter.ai</span></span>
+<span class="line"><span>2. Crie sua conta</span></span>
+<span class="line"><span>3. Obtenha sua API key no dashboard</span></span></code></pre>
+<p><strong>2. Código Básico (Python)</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> openai</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Configure para usar OpenRouter</span></span>
+<span class="line"><span style="color:#E1E4E8">client </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> openai.OpenAI(</span></span>
+<span class="line"><span style="color:#FFAB70">    base_url</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"https://openrouter.ai/api/v1"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    api_key</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"sk-or-v1-..."</span><span style="color:#6A737D">  # Sua chave do OpenRouter</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Use qualquer modelo disponível</span></span>
+<span class="line"><span style="color:#E1E4E8">response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> client.chat.completions.create(</span></span>
+<span class="line"><span style="color:#FFAB70">    model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"anthropic/claude-3.5-sonnet"</span><span style="color:#E1E4E8">,  </span><span style="color:#6A737D"># Ou qualquer outro</span></span>
+<span class="line"><span style="color:#FFAB70">    messages</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Explique recursão"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    ]</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(response.choices[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">].message.content)</span></span></code></pre>
+<p><strong>3. Trocar de Modelo (Sem Mudar Código)</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Antes: Claude</span></span>
+<span class="line"><span style="color:#E1E4E8">model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"anthropic/claude-3.5-sonnet"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Depois: GPT-4 (só muda o nome)</span></span>
+<span class="line"><span style="color:#E1E4E8">model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"openai/gpt-4-turbo"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Ou: Modelo chinês barato</span></span>
+<span class="line"><span style="color:#E1E4E8">model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"qwen/qwen-3-coder"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Ou: Modelo grátis</span></span>
+<span class="line"><span style="color:#E1E4E8">model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"deepseek/deepseek-r1"</span></span></code></pre>
+<h3 id="casos-de-uso">Casos de Uso</h3>
+<p><strong>1. Testar Performance de Modelos</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">models_to_test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#9ECBFF">    "anthropic/claude-3.5-sonnet"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    "openai/gpt-4-turbo"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    "google/gemini-1.5-pro"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    "qwen/qwen-3-coder"</span></span>
+<span class="line"><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> model </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> models_to_test:</span></span>
+<span class="line"><span style="color:#E1E4E8">    response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> client.chat.completions.create(</span></span>
+<span class="line"><span style="color:#FFAB70">        model</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">model,</span></span>
+<span class="line"><span style="color:#FFAB70">        messages</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[{</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">: prompt}]</span></span>
+<span class="line"><span style="color:#E1E4E8">    )</span></span>
+<span class="line"><span style="color:#6A737D">    # Comparar respostas, latência, custo</span></span></code></pre>
+<p><strong>2. Fallback Automático</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Se Claude está offline, tenta GPT-4</span></span>
+<span class="line"><span style="color:#E1E4E8">model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"anthropic/claude-3.5-sonnet,openai/gpt-4-turbo"</span></span></code></pre>
+<p><strong>3. Otimizar Custos</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Usa modelo barato para tarefas simples</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> task </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "simple"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    model </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "qwen/qwen-3-coder"</span><span style="color:#6A737D">  # $0.14/M tokens</span></span>
+<span class="line"><span style="color:#F97583">else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    model </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "anthropic/claude-3.5-sonnet"</span><span style="color:#6A737D">  # $3/M tokens</span></span></code></pre>
+<h3 id="pricing">Pricing</h3>
+<p><strong>Como Funciona:</strong></p>
+<ul>
+<li>Você paga o preço do modelo original</li>
+<li>OpenRouter cobra uma pequena margem</li>
+<li>Tudo em um único billing</li>
+</ul>
+<p><strong>Exemplo de Preços (aproximados):</strong></p>
+<ul>
+<li>GPT-4 Turbo: ~$10-30 por milhão de tokens</li>
+<li>Claude 3.5 Sonnet: ~$3-15 por milhão de tokens</li>
+<li>Gemini 1.5 Pro: ~$1.25-10 por milhão de tokens</li>
+<li>Qwen Coder: ~$0.14 por milhão de tokens</li>
+<li>DeepSeek R1: <strong>Grátis</strong> (com limites)</li>
+</ul>
+<p><strong>Rankings:</strong>
+OpenRouter tem <a href="https://openrouter.ai/rankings">página de rankings</a> mostrando os modelos mais populares e melhor custo-benefício.</p>
+<h3 id="crescimento">Crescimento</h3>
+<p><strong>Dados impressionantes (2025):</strong></p>
+<ul>
+<li><strong>Outubro 2025</strong>: $10M annual run-rate</li>
+<li><strong>Maio 2025</strong>: $100M+ annual run-rate (10x em 7 meses!)</li>
+<li><strong>1+ milhão de desenvolvedores</strong> usando a plataforma</li>
+<li><strong>Investimento</strong>: $40M levantados em junho de 2025</li>
+</ul>
+<hr>
+<h2 id="groq-inferência-ultra-rápida">Groq: Inferência Ultra-Rápida</h2>
+<p><strong>Website</strong>: <a href="https://groq.com">groq.com</a></p>
+<h3 id="o-que-é-groq">O Que É Groq?</h3>
+<p>Groq não é apenas mais um provedor de API. É uma empresa de <strong>hardware especializado</strong> que criou o <strong>LPU (Language Processing Unit)</strong> - um chip desenhado especificamente para inferência de LLMs.</p>
+<p><strong>Resultado</strong>: Velocidades absurdamente rápidas.</p>
+<h3 id="o-que-torna-groq-especial">O Que Torna Groq Especial?</h3>
+<p><strong>1. Hardware Customizado (LPU)</strong></p>
+<ul>
+<li>Chip desenhado especificamente para LLMs</li>
+<li>Não usa GPUs tradicionais</li>
+<li>Otimizado para inferência (não treinamento)</li>
+</ul>
+<p><strong>2. Velocidade Insana</strong></p>
+<ul>
+<li><strong>500+ tokens por segundo</strong> (vs 30-50 de outros provedores)</li>
+<li>Latência ultra-baixa</li>
+<li>Ideal para aplicações real-time</li>
+</ul>
+<p><strong>3. Custo Previsível</strong></p>
+<ul>
+<li>Pricing baseado em tokens processados</li>
+<li>Pay-as-you-go</li>
+<li>Free trial com créditos gratuitos</li>
+</ul>
+<p><strong>4. Parceria com Meta</strong></p>
+<ul>
+<li><strong>Llama 4 API</strong> oficial rodando em Groq (abril 2025)</li>
+<li>Acesso prioritário a modelos Llama</li>
+<li>Performance otimizada</li>
+</ul>
+<h3 id="modelos-disponíveis-1">Modelos Disponíveis</h3>
+<p>Groq foca em modelos <strong>open source</strong> de alta qualidade:</p>
+<p><strong>Meta Llama:</strong></p>
+<ul>
+<li>Llama 4 (via parceria oficial)</li>
+<li>Llama 3.1 (405B, 70B, 8B)</li>
+<li>Llama 3 (70B, 8B)</li>
+</ul>
+<p><strong>Mixtral:</strong></p>
+<ul>
+<li>Mixtral 8x7B</li>
+<li>Mixtral 8x22B</li>
+</ul>
+<p><strong>Outros:</strong></p>
+<ul>
+<li>Gemma 7B (Google)</li>
+<li>Modelos especializados</li>
+</ul>
+<h3 id="como-usar-groq">Como Usar Groq</h3>
+<p><strong>1. Criar Conta</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1. Acesse groq.com</span></span>
+<span class="line"><span>2. Crie sua conta GroqCloud</span></span>
+<span class="line"><span>3. Obtenha sua API key</span></span></code></pre>
+<p><strong>2. Código Básico (Python)</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> groq </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Groq</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">client </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Groq(</span><span style="color:#FFAB70">api_key</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"gsk_..."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Inferência ultra-rápida</span></span>
+<span class="line"><span style="color:#E1E4E8">response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> client.chat.completions.create(</span></span>
+<span class="line"><span style="color:#FFAB70">    model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"llama-3.1-70b-versatile"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    messages</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">"role"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"user"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Explique machine learning"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    ],</span></span>
+<span class="line"><span style="color:#FFAB70">    stream</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#6A737D">  # Streaming em tempo real</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> chunk </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> response:</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(chunk.choices[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">].delta.content, </span><span style="color:#FFAB70">end</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p><strong>3. Integração com Frameworks</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Vercel AI SDK</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { createGroq } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ai-sdk/groq'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># LangChain</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> langchain_groq </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> ChatGroq</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># LlamaIndex</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> llama_index.llms </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Groq</span></span></code></pre>
+<h3 id="casos-de-uso-ideais">Casos de Uso Ideais</h3>
+<p><strong>1. Aplicações Real-Time</strong></p>
+<ul>
+<li>Chatbots com resposta instantânea</li>
+<li>Assistentes de voz</li>
+<li>Live coding assistants</li>
+<li>Análise de dados em tempo real</li>
+</ul>
+<p><strong>2. Protótipos e Testes</strong></p>
+<ul>
+<li>Feedback instantâneo</li>
+<li>Iteração rápida</li>
+<li>Experimentos com prompts</li>
+</ul>
+<p><strong>3. Streaming de Conteúdo</strong></p>
+<ul>
+<li>Geração de texto em tempo real</li>
+<li>UX mais fluida</li>
+<li>Menor percepção de latência</li>
+</ul>
+<p><strong>4. Aplicações de Produção</strong></p>
+<ul>
+<li><strong>1.4+ milhões de desenvolvedores</strong> já usam</li>
+<li>Empresas Fortune 500 em produção</li>
+<li>Confiável e escalável</li>
+</ul>
+<h3 id="compound-on-groqcloud">Compound on GroqCloud</h3>
+<p>Em outubro de 2025, Groq lançou <strong>Compound</strong> em General Availability:</p>
+<p><strong>O Que É:</strong></p>
+<ul>
+<li>IA Agêntica integrada</li>
+<li>Pode executar código</li>
+<li>Controla browsers</li>
+<li>Navega na web</li>
+<li>Conduz pesquisas</li>
+</ul>
+<p><strong>Por Que Importa:</strong></p>
+<ul>
+<li>Agentes de IA precisam de velocidade</li>
+<li>Multi-step reasoning precisa de baixa latência</li>
+<li>Groq + Compound = Agentes ultra-rápidos</li>
+</ul>
+<h3 id="pricing-1">Pricing</h3>
+<p><strong>Free Tier:</strong></p>
+<ul>
+<li>Créditos gratuitos para começar</li>
+<li>Ótimo para testes e protótipos</li>
+</ul>
+<p><strong>Pay-as-You-Go:</strong></p>
+<ul>
+<li>Baseado em tokens processados</li>
+<li>Custos previsíveis</li>
+<li>Escalável conforme uso</li>
+</ul>
+<p><strong>Enterprise:</strong></p>
+<ul>
+<li>Custom pricing</li>
+<li>SLAs dedicados</li>
+<li>Suporte prioritário</li>
+</ul>
+<hr>
+<h2 id="openrouter-vs-groq-qual-usar">OpenRouter vs Groq: Qual Usar?</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Característica</th><th>OpenRouter</th><th>Groq</th></tr></thead><tbody><tr><td><strong>Foco</strong></td><td>Variedade de modelos</td><td>Velocidade de inferência</td></tr><tr><td><strong>Modelos</strong></td><td>400+ (todos os provedores)</td><td>~10 (open source)</td></tr><tr><td><strong>Velocidade</strong></td><td>Padrão (depende do modelo)</td><td><strong>Ultra-rápida</strong> (500+ tok/s)</td></tr><tr><td><strong>Preço</strong></td><td>Varia (todos os ranges)</td><td>Competitivo</td></tr><tr><td><strong>Caso de Uso</strong></td><td>Testar vários modelos</td><td>Real-time, produção rápida</td></tr><tr><td><strong>Hardware</strong></td><td>Cloud padrão</td><td><strong>LPU customizado</strong></td></tr><tr><td><strong>API</strong></td><td>OpenAI-compatible</td><td>OpenAI-compatible</td></tr><tr><td><strong>Grátis</strong></td><td>✅ Modelos grátis disponíveis</td><td>✅ Free trial</td></tr></tbody></table>
+<h3 id="escolha-openrouter-se-você">Escolha OpenRouter Se Você:</h3>
+<p>✅ Quer testar <strong>muitos modelos diferentes</strong>
+✅ Precisa de <strong>modelos proprietários</strong> (GPT-4, Claude, Gemini)
+✅ Quer <strong>uma API única</strong> para tudo
+✅ Busca <strong>flexibilidade máxima</strong>
+✅ Precisa de <strong>fallbacks automáticos</strong></p>
+<h3 id="escolha-groq-se-você">Escolha Groq Se Você:</h3>
+<p>✅ Precisa de <strong>velocidade máxima</strong>
+✅ Trabalha com modelos <strong>open source</strong> (Llama, Mixtral)
+✅ Desenvolve aplicações <strong>real-time</strong>
+✅ Quer <strong>custo previsível</strong>
+✅ Constrói <strong>agentes de IA</strong></p>
+<hr>
+<h2 id="usando-ambos-a-estratégia-ideal">Usando Ambos: A Estratégia Ideal</h2>
+<p>Muitos desenvolvedores usam <strong>OpenRouter + Groq juntos</strong>:</p>
+<p><strong>Groq para:</strong></p>
+<ul>
+<li>Protótipos rápidos</li>
+<li>Aplicações real-time</li>
+<li>Chatbots e assistentes</li>
+<li>Modelos open source</li>
+</ul>
+<p><strong>OpenRouter para:</strong></p>
+<ul>
+<li>Testar modelos proprietários</li>
+<li>Comparar performance</li>
+<li>Tasks que precisam de Claude/GPT-4</li>
+<li>Fallbacks se Groq estiver offline</li>
+</ul>
+<p><strong>Exemplo de Arquitetura:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Rápido e barato: Groq</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> task_type </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "simple"</span><span style="color:#F97583"> or</span><span style="color:#E1E4E8"> need_speed:</span></span>
+<span class="line"><span style="color:#E1E4E8">    use_groq()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Complexo: OpenRouter com Claude</span></span>
+<span class="line"><span style="color:#F97583">elif</span><span style="color:#E1E4E8"> task_type </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "complex"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    use_openrouter(</span><span style="color:#9ECBFF">"anthropic/claude-3.5-sonnet"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Testes: OpenRouter para comparar</span></span>
+<span class="line"><span style="color:#F97583">elif</span><span style="color:#E1E4E8"> testing:</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> model </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> models:</span></span>
+<span class="line"><span style="color:#E1E4E8">        use_openrouter(model)</span></span></code></pre>
+<hr>
+<h2 id="ferramentas-complementares">Ferramentas Complementares</h2>
+<h3 id="1-llm-cli-simon-willison">1. LLM CLI (Simon Willison)</h3>
+<p>Plugin para testar modelos via linha de comando:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Instalar</span></span>
+<span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> llm</span><span style="color:#9ECBFF"> llm-openrouter</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Usar OpenRouter</span></span>
+<span class="line"><span style="color:#B392F0">llm</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> openrouter/anthropic/claude-3.5-sonnet</span><span style="color:#9ECBFF"> "Explique IA"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Listar modelos disponíveis</span></span>
+<span class="line"><span style="color:#B392F0">llm</span><span style="color:#9ECBFF"> models</span><span style="color:#9ECBFF"> list</span></span></code></pre>
+<p><strong>GitHub</strong>: <a href="https://github.com/simonw/llm-openrouter">github.com/simonw/llm-openrouter</a></p>
+<h3 id="2-postman-collection-groq">2. Postman Collection (Groq)</h3>
+<p>Groq oferece <strong>Postman Collection</strong> pronta:</p>
+<ul>
+<li>Testar API sem escrever código</li>
+<li>Ver exemplos de requests</li>
+<li>Experimentar parâmetros</li>
+</ul>
+<p><strong>Acesso</strong>: Disponível na documentação Groq</p>
+<h3 id="3-vercel-ai-sdk">3. Vercel AI SDK</h3>
+<p>Integração nativa com ambas as plataformas:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { createOpenRouter } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@openrouter/vercel-ai-sdk'</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { createGroq } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ai-sdk/groq'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Usar em apps Next.js</span></span></code></pre>
+<h3 id="4-langchain">4. LangChain</h3>
+<p>Suporte para OpenRouter e Groq:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> langchain_groq </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> ChatGroq</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> langchain_openai </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> ChatOpenAI</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Groq</span></span>
+<span class="line"><span style="color:#E1E4E8">llm_groq </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ChatGroq(</span><span style="color:#FFAB70">model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"llama-3.1-70b"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># OpenRouter</span></span>
+<span class="line"><span style="color:#E1E4E8">llm_or </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ChatOpenAI(</span></span>
+<span class="line"><span style="color:#FFAB70">    base_url</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"https://openrouter.ai/api/v1"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    model</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"anthropic/claude-3.5-sonnet"</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span></code></pre>
+<hr>
+<h2 id="workflow-recomendado-para-testes">Workflow Recomendado para Testes</h2>
+<p><strong>1. Prototipagem (Groq)</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Teste rápido com Llama via Groq</span></span>
+<span class="line"><span style="color:#6A737D"># Feedback instantâneo</span></span>
+<span class="line"><span style="color:#6A737D"># Iteração em segundos</span></span></code></pre>
+<p><strong>2. Comparação (OpenRouter)</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">models </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#9ECBFF">    "groq/llama-3.1-70b"</span><span style="color:#E1E4E8">,          </span><span style="color:#6A737D"># Via OpenRouter</span></span>
+<span class="line"><span style="color:#9ECBFF">    "anthropic/claude-3.5-sonnet"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    "openai/gpt-4-turbo"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    "qwen/qwen-3-coder"</span></span>
+<span class="line"><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> model </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> models:</span></span>
+<span class="line"><span style="color:#E1E4E8">    test_model(model, benchmark_tasks)</span></span>
+<span class="line"><span style="color:#6A737D">    # Compare: qualidade, custo, latência</span></span></code></pre>
+<p><strong>3. Produção (Híbrido)</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Groq para tasks rápidas</span></span>
+<span class="line"><span style="color:#6A737D"># OpenRouter com Claude para tasks complexas</span></span>
+<span class="line"><span style="color:#6A737D"># Fallback automático entre eles</span></span></code></pre>
+<hr>
+<h2 id="casos-de-uso-reais">Casos de Uso Reais</h2>
+<h3 id="1-startup-de-chatbot">1. Startup de Chatbot</h3>
+<p><strong>Problema</strong>: Precisava testar 20+ modelos para achar o melhor</p>
+<p><strong>Solução</strong>: OpenRouter</p>
+<ul>
+<li>Testou Claude, GPT-4, Mistral, modelos chineses</li>
+<li>Mesma codebase</li>
+<li>Descobriu que Qwen Coder tinha melhor custo-benefício</li>
+</ul>
+<h3 id="2-app-de-tradução-real-time">2. App de Tradução Real-Time</h3>
+<p><strong>Problema</strong>: Latência matava a UX</p>
+<p><strong>Solução</strong>: Groq</p>
+<ul>
+<li>Migrou de OpenAI para Groq</li>
+<li>Latência caiu de 2s para 0.3s</li>
+<li>Custo manteve similar</li>
+</ul>
+<h3 id="3-plataforma-de-coding-assistants">3. Plataforma de Coding Assistants</h3>
+<p><strong>Problema</strong>: Claude era caro, mas necessário</p>
+<p><strong>Solução</strong>: OpenRouter + Groq</p>
+<ul>
+<li>Groq (Llama) para autocomplete</li>
+<li>OpenRouter (Claude) para refactoring complexo</li>
+<li>Custo caiu 60%</li>
+</ul>
+<hr>
+<h2 id="conclusão">Conclusão</h2>
+<p><strong>OpenRouter</strong> e <strong>Groq</strong> democratizaram o acesso a LLMs de formas diferentes:</p>
+<p><strong>OpenRouter</strong>:</p>
+<ul>
+<li>Acesso a 400+ modelos</li>
+<li>Uma API para tudo</li>
+<li>Testes facilitados</li>
+<li>Crescimento explosivo</li>
+</ul>
+<p><strong>Groq</strong>:</p>
+<ul>
+<li>Velocidade imbatível</li>
+<li>Hardware customizado</li>
+<li>Real-time viável</li>
+<li>Parceria com Meta</li>
+</ul>
+<p><strong>Juntos</strong>, eles representam o futuro de como desenvolvedores trabalham com IA:</p>
+<p>✅ <strong>Sem vendor lock-in</strong>
+✅ <strong>Testes fáceis e rápidos</strong>
+✅ <strong>Flexibilidade máxima</strong>
+✅ <strong>Custos otimizados</strong></p>
+<p>Se você ainda não usa nem OpenRouter nem Groq, está perdendo tempo e dinheiro.</p>
+<p><strong>Próximo passo</strong>: Crie uma conta em ambos (são grátis para começar) e teste seus modelos favoritos hoje mesmo.</p>
+<hr>
+<h2 id="links-úteis">Links Úteis</h2>
+<ul>
+<li><a href="https://openrouter.ai">OpenRouter</a></li>
+<li><a href="https://openrouter.ai/rankings">OpenRouter Rankings</a> (veja modelos mais populares)</li>
+<li><a href="https://groq.com">Groq</a></li>
+<li><a href="https://groq.com/groqcloud">GroqCloud</a> (dashboard)</li>
+<li><a href="https://github.com/simonw/llm-openrouter">LLM CLI Tool</a></li>
+<li><a href="https://groq.com/news/meta-and-groq-collaborate-to-deliver-fast-inference-for-the-official-llama-api">Groq + Meta Partnership</a></li>
+</ul>
+<hr>
+<p><em>Última atualização: Dezembro 2025</em></p>  </div> <!-- Share Buttons --> <div class="mt-12 pt-8 border-t border-slate-800"> <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"> <h3 class="text-lg font-semibold text-white">Compartilhe este post</h3> <div class="flex items-center space-x-4"> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcoders.ia.br%2Fblog%2Ftestando-modelos-openrouter-groq%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> <span class="hidden sm:inline">LinkedIn</span> </a> <a href="https://wa.me/?text=Testando%20modelos%20de%20IA%20com%20OpenRouter%20e%20Groq https%3A%2F%2Fcoders.ia.br%2Fblog%2Ftestando-modelos-openrouter-groq%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-message-circle w-4 h-4">  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>  </svg> <span class="hidden sm:inline">WhatsApp</span> </a> </div> </div> </div> <!-- Navigation to other posts could be added here --> </article>  </main> <!-- Footer --> <footer class="border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-8"> <div class="text-center"> <div class="flex items-center justify-center space-x-2 mb-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-6 h-6 opacity-60"> <span class="text-slate-400 font-mono">© 2025 CODERS.IA.BR. TODOS OS DIREITOS RESERVADOS.</span> </div> </div> </div> </footer> </div> <script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-L7RDWGH1GM");</script> </body> </html>

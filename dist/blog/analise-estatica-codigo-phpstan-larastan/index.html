@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="pt-BR" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Como usar PHPStan e Larastan para encontrar bugs antes de rodar o código e melhorar a qualidade do seu projeto Laravel"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.10"><!-- Primary Meta Tags --><title>Análise estática de código com PHPStan e Larastan</title><meta name="title" content="Análise estática de código com PHPStan e Larastan"><meta name="description" content="Como usar PHPStan e Larastan para encontrar bugs antes de rodar o código e melhorar a qualidade do seu projeto Laravel"><link rel="canonical" href="https://coders.ia.br/blog/analise-estatica-codigo-phpstan-larastan/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://coders.ia.br/blog/analise-estatica-codigo-phpstan-larastan/"><meta property="og:title" content="Análise estática de código com PHPStan e Larastan"><meta property="og:description" content="Como usar PHPStan e Larastan para encontrar bugs antes de rodar o código e melhorar a qualidade do seu projeto Laravel"><meta property="og:site_name" content="Coders.ia.br"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://coders.ia.br/blog/analise-estatica-codigo-phpstan-larastan/"><meta property="twitter:title" content="Análise estática de código com PHPStan e Larastan"><meta property="twitter:description" content="Como usar PHPStan e Larastan para encontrar bugs antes de rodar o código e melhorar a qualidade do seu projeto Laravel"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Coders.ia.br RSS Feed" href="/rss.xml"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RDWGH1GM"></script><script type="module">const e=document.getElementById("mobile-menu-button"),t=document.getElementById("mobile-menu");e?.addEventListener("click",()=>{t?.classList.toggle("hidden")});</script><link rel="stylesheet" href="/_astro/artigos.Dr8Cq3gt.css"></head> <body class="min-h-screen bg-black text-slate-100 font-['Inter',sans-serif] antialiased"> <div class="flex flex-col min-h-screen"> <!-- Header --> <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60"> <div class="container mx-auto flex h-16 items-center justify-between px-4"> <!-- Logo --> <a href="/" class="flex items-center space-x-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-8 h-8"> <span class="text-xl font-bold text-white font-mono uppercase">CODERS.IA.BR</span> </a> <!-- Centered Navigation --> <nav class="hidden md:flex items-center space-x-8"> <a href="/artigos" class="text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> </nav> <!-- Social Icons --> <div class="hidden md:flex items-center space-x-4"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> <!-- Mobile menu button --> <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-menu w-6 h-6">  <path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path>  </svg> </button> </div> <!-- Mobile menu --> <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-4 space-y-2"> <a href="/artigos" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> <div class="flex items-center space-x-4 pt-4 border-t border-slate-700"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> </div> </div> </header> <!-- Main Content --> <main class="flex-1">  <article class="container mx-auto px-4 py-8 max-w-4xl"> <!-- Breadcrumb --> <nav class="mb-8 text-sm"> <ol class="flex items-center space-x-2 text-slate-400"> <li><a href="/" class="hover:text-accent-400 transition-colors">Home</a></li> <li><span class="mx-2">/</span></li> <li><a href="/categorias/desenvolvimento" class="hover:text-accent-400 transition-colors">Desenvolvimento</a></li> <li><span class="mx-2">/</span></li> <li class="text-slate-300 truncate">Análise estática de código com PHPStan e Larastan</li> </ol> </nav> <!-- Post Header --> <header class="mb-12 text-center"> <div class="mb-4"> <span class="inline-block px-3 py-1 text-xs font-medium text-accent-300 bg-accent-900/30 rounded-full border border-accent-800"> Desenvolvimento </span> </div> <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"> Análise estática de código com PHPStan e Larastan </h1> <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"> Como usar PHPStan e Larastan para encontrar bugs antes de rodar o código e melhorar a qualidade do seu projeto Laravel </p> <div class="flex items-center justify-center space-x-6 text-sm text-slate-400"> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-user w-4 h-4">  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle>  </svg> <span>Jonathan dos Santos</span> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition-colors duration-200" title="LinkedIn de Jonathan dos Santos"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4 ml-1">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> </div> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-calendar w-4 h-4">  <path d="M8 2v4"></path> <path d="M16 2v4"></path> <rect width="18" height="18" x="3" y="4" rx="2"></rect> <path d="M3 10h18"></path>  </svg> <time datetime="2025-11-21T00:00:00.000Z">21 de novembro de 2025</time> </div> </div> </header> <!-- Featured Image -->  <!-- Post Content --> <div class="prose prose-lg prose-invert max-w-none mx-auto">  <p>Se você trabalha com PHP, especialmente Laravel, já deve ter passado por aquela situação frustrante: seu código passa em todos os testes, você faz deploy, e aí aparece um erro de tipo que poderia ter sido evitado. “Undefined property”, “Call to undefined method”, “Argument type mismatch”… Erros que o PHP só descobre em runtime.</p>
+<p>Análise estática de código resolve exatamente isso. PHPStan e Larastan analisam seu código <strong>sem executá-lo</strong>, encontrando erros de tipo, lógica e inconsistências antes mesmo de você rodar a aplicação.</p>
+<p>Neste artigo, vou mostrar como configurar e usar essas ferramentas no seu projeto Laravel, e como elas podem salvar horas de debug.</p>
+<h2 id="o-que-é-análise-estática-e-por-que-você-precisa">O que é análise estática e por que você precisa</h2>
+<p>Análise estática é quando uma ferramenta lê seu código-fonte e procura por problemas potenciais <strong>sem executar</strong> o código. É como ter um revisor extremamente meticuloso que verifica cada linha antes de você commitar.</p>
+<h3 id="o-problema-com-php">O problema com PHP</h3>
+<p>PHP é uma linguagem <strong>dinamicamente tipada</strong>. Isso significa que você pode fazer coisas assim:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> getUserName</span><span style="color:#E1E4E8">($user) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> $user</span><span style="color:#F97583">-></span><span style="color:#E1E4E8">name;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Isso compila normalmente</span></span>
+<span class="line"><span style="color:#B392F0">getUserName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"string qualquer"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// Mas quebra em runtime!</span></span></code></pre>
+<p>O PHP não reclama até você realmente executar esse código. Se esse trecho estiver numa parte pouco usada da aplicação, o bug pode ficar escondido por dias ou semanas.</p>
+<h3 id="a-solução-phpstan">A solução: PHPStan</h3>
+<p>PHPStan analisa seu código e detecta problemas como:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">// PHPStan detecta: Property App\Models\User::$name is not defined</span></span>
+<span class="line"><span style="color:#E1E4E8">$user</span><span style="color:#F97583">-></span><span style="color:#E1E4E8">name;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// PHPStan detecta: Parameter #1 expects User, string given</span></span>
+<span class="line"><span style="color:#B392F0">getUserName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"string"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// PHPStan detecta: Method App\Models\Product::getPrice() should return float but returns string</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> getPrice</span><span style="color:#E1E4E8">()</span><span style="color:#F97583">:</span><span style="color:#F97583"> float</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> "19.99"</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// Oops!</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Tudo isso <strong>antes</strong> de rodar o código. É quase como ter TypeScript para PHP.</p>
+<h2 id="phpstan-vs-larastan-qual-usar">PHPStan vs Larastan: Qual usar?</h2>
+<h3 id="phpstan">PHPStan</h3>
+<p>É a ferramenta base, funciona com qualquer projeto PHP. Muito poderosa, configurável, e amplamente adotada.</p>
+<p><strong>Use se:</strong></p>
+<ul>
+<li>Trabalha com PHP puro ou frameworks que não Laravel</li>
+<li>Quer máximo controle sobre configurações</li>
+<li>Está começando com análise estática</li>
+</ul>
+<h3 id="larastan">Larastan</h3>
+<p>É o PHPStan <strong>otimizado para Laravel</strong>. Entende Facades, Eloquent, helpers do Laravel, e outras magias que o PHPStan sozinho não compreende bem.</p>
+<p><strong>Use se:</strong></p>
+<ul>
+<li>Trabalha com Laravel (99% dos casos)</li>
+<li>Quer menos configuração manual</li>
+<li>Quer análise específica de padrões Laravel</li>
+</ul>
+<p><strong>Minha recomendação:</strong> Se você usa Laravel, use Larastan. Ele é PHPStan + extensões Laravel. Melhor dos dois mundos.</p>
+<h2 id="instalando-larastan-no-laravel">Instalando Larastan no Laravel</h2>
+<p>Vou mostrar o processo completo com Larastan, mas os conceitos aplicam-se a PHPStan também.</p>
+<h3 id="passo-1-instalar-via-composer">Passo 1: Instalar via Composer</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">composer</span><span style="color:#9ECBFF"> require</span><span style="color:#79B8FF"> --dev</span><span style="color:#9ECBFF"> nunomaduro/larastan</span></span></code></pre>
+<p>O <code>--dev</code> instala apenas no ambiente de desenvolvimento. Não precisa dessa ferramenta em produção.</p>
+<h3 id="passo-2-criar-arquivo-de-configuração">Passo 2: Criar arquivo de configuração</h3>
+<p>Crie <code>phpstan.neon</code> na raiz do projeto:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>includes:</span></span>
+<span class="line"><span>    - ./vendor/nunomaduro/larastan/extension.neon</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>parameters:</span></span>
+<span class="line"><span>    paths:</span></span>
+<span class="line"><span>        - app</span></span>
+<span class="line"><span>        - config</span></span>
+<span class="line"><span>        - database</span></span>
+<span class="line"><span>        - routes</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    level: 5</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ignoreErrors:</span></span>
+<span class="line"><span>        - '#Unsafe usage of new static#'</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    excludePaths:</span></span>
+<span class="line"><span>        - ./*/*/FileToBeExcluded.php</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    checkMissingIterableValueType: false</span></span></code></pre>
+<p>Vamos entender cada parte:</p>
+<p><strong>includes:</strong> Carrega as configurações do Larastan.</p>
+<p><strong>paths:</strong> Onde o PHPStan deve analisar. Geralmente <code>app</code>, <code>config</code>, <code>database</code>, <code>routes</code>.</p>
+<p><strong>level:</strong> Nível de rigor (0 a 9). Quanto maior, mais estrito. Começe com 5, depois aumente gradualmente.</p>
+<p><strong>ignoreErrors:</strong> Erros específicos que você quer ignorar (use com moderação).</p>
+<p><strong>excludePaths:</strong> Arquivos ou pastas para ignorar completamente.</p>
+<h3 id="passo-3-executar-análise">Passo 3: Executar análise</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">./vendor/bin/phpstan</span><span style="color:#9ECBFF"> analyse</span></span></code></pre>
+<p>Você vai ver algo assim:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span> ------ ----------------------------------------------------------------</span></span>
+<span class="line"><span>  Line   app/Http/Controllers/UserController.php</span></span>
+<span class="line"><span> ------ ----------------------------------------------------------------</span></span>
+<span class="line"><span>  23     Parameter #1 $user of method getUserName() expects</span></span>
+<span class="line"><span>         App\Models\User, string given.</span></span>
+<span class="line"><span>  45     Property App\Models\User::$email is not defined.</span></span>
+<span class="line"><span> ------ ----------------------------------------------------------------</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span> [ERROR] Found 2 errors</span></span></code></pre>
+<p>Agora você sabe exatamente onde estão os problemas, sem rodar o código!</p>
+<h2 id="níveis-de-análise-do-básico-ao-hardcore">Níveis de análise: Do básico ao hardcore</h2>
+<p>PHPStan tem 10 níveis (0-9). Quanto maior o nível, mais checagens são feitas.</p>
+<h3 id="level-0---básico">Level 0 - Básico</h3>
+<p>Checa apenas erros óbvios:</p>
+<ul>
+<li>Classes não existentes</li>
+<li>Métodos não definidos</li>
+<li>Propriedades inexistentes</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">// Level 0 pega isso</span></span>
+<span class="line"><span style="color:#E1E4E8">$user</span><span style="color:#F97583">-></span><span style="color:#B392F0">metodoQueNaoExiste</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="level-5---recomendado-para-começar">Level 5 - Recomendado para começar</h3>
+<p>Adiciona checagens de tipos:</p>
+<ul>
+<li>Parâmetros de função</li>
+<li>Tipos de retorno</li>
+<li>Tipos de propriedades</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">// Level 5 pega isso</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> getAge</span><span style="color:#E1E4E8">()</span><span style="color:#F97583">:</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> "vinte e cinco"</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// Tipo errado</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="level-8-9---modo-paranóico">Level 8-9 - Modo paranóico</h3>
+<p>Checa absolutamente tudo:</p>
+<ul>
+<li>Propriedades não usadas</li>
+<li>Métodos privados desnecessários</li>
+<li>Dead code</li>
+<li>Mixed types (quando não consegue inferir tipo)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">// Level 8+ pega isso</span></span>
+<span class="line"><span style="color:#F97583">private</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> helperNuncaUsado</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // Method is never used</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>Estratégia recomendada:</strong></p>
+<ol>
+<li>Comece com level 5</li>
+<li>Corrija todos os erros</li>
+<li>Aumente para level 6</li>
+<li>Corrija, aumente, repita</li>
+<li>Pare em level 7 ou 8 (9 é bem extremo)</li>
+</ol>
+<h2 id="integrando-no-workflow">Integrando no workflow</h2>
+<p>Não adianta ter PHPStan instalado se ninguém roda. Integre no seu workflow automático.</p>
+<h3 id="git-hooks-com-huskylint-staged">Git Hooks com Husky/Lint-staged</h3>
+<p>Se você usa Node.js no projeto (geralmente tem pra compilar assets):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save-dev</span><span style="color:#9ECBFF"> husky</span><span style="color:#9ECBFF"> lint-staged</span></span>
+<span class="line"><span style="color:#B392F0">npx</span><span style="color:#9ECBFF"> husky</span><span style="color:#9ECBFF"> install</span></span></code></pre>
+<p>Configure <code>.husky/pre-commit</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D">#!/bin/sh</span></span>
+<span class="line"><span style="color:#B392F0">./vendor/bin/phpstan</span><span style="color:#9ECBFF"> analyse</span><span style="color:#79B8FF"> --error-format=table</span></span></code></pre>
+<p>Agora toda vez que você tentar commitar, PHPStan roda automaticamente. Commit só passa se análise estiver limpa.</p>
+<h3 id="cicd-github-actions">CI/CD (GitHub Actions)</h3>
+<p>Adicione no seu <code>.github/workflows/tests.yml</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Tests</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">on</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">push</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">pull_request</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">jobs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  phpstan</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    runs-on</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">ubuntu-latest</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">    steps</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">uses</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">actions/checkout@v3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Setup PHP</span></span>
+<span class="line"><span style="color:#85E89D">        uses</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">shivammathur/setup-php@v2</span></span>
+<span class="line"><span style="color:#85E89D">        with</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">          php-version</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">8.2</span></span>
+<span class="line"><span style="color:#85E89D">          extensions</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">mbstring, pdo, pdo_mysql</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Install dependencies</span></span>
+<span class="line"><span style="color:#85E89D">        run</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">composer install --prefer-dist --no-progress</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Run PHPStan</span></span>
+<span class="line"><span style="color:#85E89D">        run</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">./vendor/bin/phpstan analyse --error-format=github</span></span></code></pre>
+<p>Agora todo push e PR roda análise estática. PRs com erros não passam no CI.</p>
+<h3 id="script-composer">Script Composer</h3>
+<p>Adicione no <code>composer.json</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">    "scripts"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">        "phpstan"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"phpstan analyse"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        "phpstan:baseline"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"phpstan analyse --generate-baseline"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Agora pode rodar simplesmente:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">composer</span><span style="color:#9ECBFF"> phpstan</span></span></code></pre>
+<h2 id="casos-de-uso-práticos">Casos de uso práticos</h2>
+<p>Vamos ver exemplos reais de bugs que PHPStan encontra.</p>
+<h3 id="1-typos-em-nomes-de-métodospropriedades">1. Typos em nomes de métodos/propriedades</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">// Controller</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> store</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">Request</span><span style="color:#E1E4E8"> $request) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    $user </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> User</span><span style="color:#F97583">::</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">($request</span><span style="color:#F97583">-></span><span style="color:#B392F0">all</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Typo: deveria ser 'email', não 'emial'</span></span>
+<span class="line"><span style="color:#79B8FF">    Mail</span><span style="color:#F97583">::</span><span style="color:#B392F0">to</span><span style="color:#E1E4E8">($user</span><span style="color:#F97583">-></span><span style="color:#E1E4E8">emial)</span><span style="color:#F97583">-></span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#79B8FF"> WelcomeEmail</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>PHPStan detecta:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Property App\Models\User::$emial is not defined.</span></span></code></pre>
+<p>Sem PHPStan, isso só seria descoberto quando alguém se cadastrasse e o email não fosse enviado.</p>
+<h3 id="2-tipos-errados-em-funções">2. Tipos errados em funções</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">// Service</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> calculateDiscount</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">Product</span><span style="color:#E1E4E8"> $product, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> $percentage)</span><span style="color:#F97583">:</span><span style="color:#F97583"> float</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // Alguém passou string ao invés de int</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> $product</span><span style="color:#F97583">-></span><span style="color:#E1E4E8">price </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> ($percentage </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 100</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Controller</span></span>
+<span class="line"><span style="color:#E1E4E8">$discount </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> $this</span><span style="color:#F97583">-></span><span style="color:#B392F0">calculateDiscount</span><span style="color:#E1E4E8">($product, </span><span style="color:#9ECBFF">"10"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// String!</span></span></code></pre>
+<p><strong>PHPStan detecta:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Parameter #2 $percentage of method calculateDiscount() expects int, string given.</span></span></code></pre>
+<h3 id="3-retornos-inconsistentes">3. Retornos inconsistentes</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> getUserRole</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">User</span><span style="color:#E1E4E8"> $user)</span><span style="color:#F97583">:</span><span style="color:#F97583"> string</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> ($user</span><span style="color:#F97583">-></span><span style="color:#B392F0">isAdmin</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#9ECBFF"> 'admin'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> ($user</span><span style="color:#F97583">-></span><span style="color:#B392F0">isModerator</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#9ECBFF"> 'moderator'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Esqueceu de retornar algo aqui!</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>PHPStan detecta:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Method getUserRole() should return string but return statement is missing.</span></span></code></pre>
+<h3 id="4-relações-eloquent-erradas">4. Relações Eloquent erradas</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">// Model</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Post</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Model</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> author</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> $this</span><span style="color:#F97583">-></span><span style="color:#B392F0">belongsTo</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">User</span><span style="color:#F97583">::class</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Controller</span></span>
+<span class="line"><span style="color:#E1E4E8">$posts </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Post</span><span style="color:#F97583">::</span><span style="color:#B392F0">with</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'autor'</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">-></span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// Typo: 'autor' ao invés de 'author'</span></span></code></pre>
+<p><strong>PHPStan (com Larastan) detecta:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Call to undefined relationship 'autor' on model Post.</span></span></code></pre>
+<h2 id="baseline-lidando-com-projetos-legados">Baseline: Lidando com projetos legados</h2>
+<p>Se você adicionar PHPStan num projeto existente, provavelmente vai encontrar centenas ou milhares de erros. Corrigir tudo de uma vez é inviável.</p>
+<h3 id="solução-baseline">Solução: Baseline</h3>
+<p>Baseline “congela” os erros atuais e só alerta sobre erros <strong>novos</strong>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">./vendor/bin/phpstan</span><span style="color:#9ECBFF"> analyse</span><span style="color:#79B8FF"> --generate-baseline</span></span></code></pre>
+<p>Isso cria <code>phpstan-baseline.neon</code> com todos os erros atuais. Atualize <code>phpstan.neon</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>includes:</span></span>
+<span class="line"><span>    - ./vendor/nunomaduro/larastan/extension.neon</span></span>
+<span class="line"><span>    - phpstan-baseline.neon  # Adicione esta linha</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>parameters:</span></span>
+<span class="line"><span>    # ... resto da configuração</span></span></code></pre>
+<p>Agora PHPStan ignora erros que já existiam, mas pega qualquer erro novo que você introduzir.</p>
+<p><strong>Estratégia com baseline:</strong></p>
+<ol>
+<li>Gere baseline inicial</li>
+<li>Configure CI para rodar PHPStan</li>
+<li>Aos poucos, corrija erros antigos</li>
+<li>Periodicamente, regenere baseline para diminuir a lista</li>
+<li>Eventualmente, elimine o baseline completamente</li>
+</ol>
+<h2 id="configurações-avançadas">Configurações avançadas</h2>
+<h3 id="ignorar-erros-específicos">Ignorar erros específicos</h3>
+<p>Às vezes PHPStan reclama de algo que você <strong>sabe</strong> que está correto. Você pode ignorar especificamente:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>parameters:</span></span>
+<span class="line"><span>    ignoreErrors:</span></span>
+<span class="line"><span>        # Ignorar erro específico em arquivo específico</span></span>
+<span class="line"><span>        - message: '#Access to an undefined property#'</span></span>
+<span class="line"><span>          path: app/Legacy/OldCode.php</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        # Ignorar padrão de erro em todos os arquivos</span></span>
+<span class="line"><span>        - '#Cannot call method format\(\) on DateTime\|null#'</span></span></code></pre>
+<p>Use com moderação. Se você ignora tudo, perde o benefício da ferramenta.</p>
+<h3 id="checagem-de-tipos-em-arrays">Checagem de tipos em arrays</h3>
+<p>Por padrão, PHPStan é permissivo com arrays. Para ser mais estrito:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>parameters:</span></span>
+<span class="line"><span>    checkMissingIterableValueType: true</span></span></code></pre>
+<p>Agora você precisa documentar tipos de arrays:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * </span><span style="color:#F97583">@param</span><span style="color:#F97583"> array</span><span style="color:#6A737D">&#x3C;</span><span style="color:#F97583">int</span><span style="color:#6A737D">, User> $users</span></span>
+<span class="line"><span style="color:#6A737D"> * </span><span style="color:#F97583">@return</span><span style="color:#F97583"> array</span><span style="color:#6A737D">&#x3C;</span><span style="color:#F97583">string</span><span style="color:#6A737D">, string></span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> formatUsers</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">array</span><span style="color:#E1E4E8"> $users)</span><span style="color:#F97583">:</span><span style="color:#F97583"> array</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="stub-files-para-código-problemático">Stub files para código problemático</h3>
+<p>Se você usa biblioteca externa que não tem tipagem boa, crie stub files:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#6A737D">// stubs/ProblematicLibrary.stub</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">namespace</span><span style="color:#B392F0"> ProblematicVendor</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> SomeClass</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> someMethod</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">string</span><span style="color:#E1E4E8"> $param)</span><span style="color:#F97583">:</span><span style="color:#F97583"> array</span><span style="color:#E1E4E8"> {}</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Configure no <code>phpstan.neon</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>parameters:</span></span>
+<span class="line"><span>    stubFiles:</span></span>
+<span class="line"><span>        - stubs/ProblematicLibrary.stub</span></span></code></pre>
+<h2 id="phpstan-com-ia-claude-code">PHPStan com IA (Claude Code)</h2>
+<p>Aqui fica interessante. PHPStan encontra erros, mas você ainda precisa corrigi-los. Com Claude Code, esse processo fica muito mais rápido.</p>
+<h3 id="workflow-com-ia">Workflow com IA</h3>
+<ol>
+<li><strong>Rode PHPStan:</strong></li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">./vendor/bin/phpstan</span><span style="color:#9ECBFF"> analyse</span></span></code></pre>
+<ol start="2">
+<li><strong>Copie os erros e peça ao Claude:</strong></li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>PHPStan encontrou estes erros no UserController:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Line 23: Parameter #1 expects User, string given</span></span>
+<span class="line"><span>Line 45: Property User::$email is not defined</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Corrija estes erros mantendo a funcionalidade.</span></span></code></pre>
+<ol start="3">
+<li><strong>Claude analisa o código e corrige:</strong></li>
+</ol>
+<ul>
+<li>Adiciona type hints corretos</li>
+<li>Ajusta chamadas de métodos</li>
+<li>Corrige propriedades inexistentes</li>
+<li>Sugere melhorias de arquitetura</li>
+</ul>
+<ol start="4">
+<li><strong>Rode PHPStan novamente</strong> pra confirmar que está limpo.</li>
+</ol>
+<h3 id="dica-use-phpstan-durante-desenvolvimento-com-ia">Dica: Use PHPStan durante desenvolvimento com IA</h3>
+<p>Quando estiver criando features novas com Claude Code:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Crie um serviço de processamento de pagamentos.</span></span>
+<span class="line"><span>Use Stripe API e salve no banco de dados.</span></span>
+<span class="line"><span>IMPORTANTE: O código precisa passar no PHPStan level 6.</span></span></code></pre>
+<p>Claude vai criar código já com:</p>
+<ul>
+<li>Type hints corretos</li>
+<li>DocBlocks apropriados</li>
+<li>Null safety</li>
+<li>Tipos de retorno explícitos</li>
+</ul>
+<p>Resultado: menos refatoração depois.</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>PHPStan e Larastan transformam PHP de linguagem dinâmica (onde erros aparecem em runtime) para quase estaticamente tipada (erros encontrados antes de rodar).</p>
+<p><strong>Benefícios concretos:</strong></p>
+<p>✅ <strong>Menos bugs em produção</strong> - Erros de tipo são pegos antes de deploy
+✅ <strong>Refatoração segura</strong> - Pode mudar código com confiança
+✅ <strong>Documentação automática</strong> - Type hints documentam o código
+✅ <strong>Onboarding mais rápido</strong> - Novos devs entendem contratos de funções
+✅ <strong>CI/CD confiável</strong> - Análise estática pega erros que testes não pegam</p>
+<p><strong>Próximos passos:</strong></p>
+<ol>
+<li>Instale Larastan no seu projeto Laravel</li>
+<li>Comece com level 5</li>
+<li>Configure no CI/CD</li>
+<li>Vá aumentando o level gradualmente</li>
+<li>Use com Claude Code para corrigir erros rapidamente</li>
+</ol>
+<p>E lembre: análise estática <strong>não substitui</strong> testes automatizados. São complementares. Testes validam comportamento, PHPStan valida tipos e estrutura. Use os dois.</p>
+<hr>
+<h2 id="referências">Referências</h2>
+<ul>
+<li><a href="https://phpstan.org/">PHPStan - Documentação Oficial</a></li>
+<li><a href="https://github.com/nunomaduro/larastan">Larastan - GitHub</a></li>
+<li><a href="https://phpstan.org/user-guide/rule-levels">PHPStan Rules Reference</a></li>
+<li><a href="https://laravel.com/docs/master">Laravel Best Practices</a></li>
+</ul>
+<hr>
+<p><em>Última atualização: Novembro 2025</em></p>  </div> <!-- Share Buttons --> <div class="mt-12 pt-8 border-t border-slate-800"> <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"> <h3 class="text-lg font-semibold text-white">Compartilhe este post</h3> <div class="flex items-center space-x-4"> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcoders.ia.br%2Fblog%2Fanalise-estatica-codigo-phpstan-larastan%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> <span class="hidden sm:inline">LinkedIn</span> </a> <a href="https://wa.me/?text=An%C3%A1lise%20est%C3%A1tica%20de%20c%C3%B3digo%20com%20PHPStan%20e%20Larastan https%3A%2F%2Fcoders.ia.br%2Fblog%2Fanalise-estatica-codigo-phpstan-larastan%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-message-circle w-4 h-4">  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>  </svg> <span class="hidden sm:inline">WhatsApp</span> </a> </div> </div> </div> <!-- Navigation to other posts could be added here --> </article>  </main> <!-- Footer --> <footer class="border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-8"> <div class="text-center"> <div class="flex items-center justify-center space-x-2 mb-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-6 h-6 opacity-60"> <span class="text-slate-400 font-mono">© 2025 CODERS.IA.BR. TODOS OS DIREITOS RESERVADOS.</span> </div> </div> </div> </footer> </div> <script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-L7RDWGH1GM");</script> </body> </html>

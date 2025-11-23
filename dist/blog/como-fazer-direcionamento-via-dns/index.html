@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="pt-BR" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Entenda por que DNS não suporta redirecionamentos HTTP e como usar forwarddomain.net para redirecionar domínios de forma simples e eficiente"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.10"><!-- Primary Meta Tags --><title>Como fazer direcionamento via DNS</title><meta name="title" content="Como fazer direcionamento via DNS"><meta name="description" content="Entenda por que DNS não suporta redirecionamentos HTTP e como usar forwarddomain.net para redirecionar domínios de forma simples e eficiente"><link rel="canonical" href="https://coders.ia.br/blog/como-fazer-direcionamento-via-dns/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://coders.ia.br/blog/como-fazer-direcionamento-via-dns/"><meta property="og:title" content="Como fazer direcionamento via DNS"><meta property="og:description" content="Entenda por que DNS não suporta redirecionamentos HTTP e como usar forwarddomain.net para redirecionar domínios de forma simples e eficiente"><meta property="og:site_name" content="Coders.ia.br"><meta property="og:image" content="https://coders.ia.br/images/blog/como-fazer-direcionamento-via-dns.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://coders.ia.br/blog/como-fazer-direcionamento-via-dns/"><meta property="twitter:title" content="Como fazer direcionamento via DNS"><meta property="twitter:description" content="Entenda por que DNS não suporta redirecionamentos HTTP e como usar forwarddomain.net para redirecionar domínios de forma simples e eficiente"><meta property="twitter:image" content="https://coders.ia.br/images/blog/como-fazer-direcionamento-via-dns.jpg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Coders.ia.br RSS Feed" href="/rss.xml"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RDWGH1GM"></script><script type="module">const e=document.getElementById("mobile-menu-button"),t=document.getElementById("mobile-menu");e?.addEventListener("click",()=>{t?.classList.toggle("hidden")});</script><link rel="stylesheet" href="/_astro/artigos.Dr8Cq3gt.css"></head> <body class="min-h-screen bg-black text-slate-100 font-['Inter',sans-serif] antialiased"> <div class="flex flex-col min-h-screen"> <!-- Header --> <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60"> <div class="container mx-auto flex h-16 items-center justify-between px-4"> <!-- Logo --> <a href="/" class="flex items-center space-x-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-8 h-8"> <span class="text-xl font-bold text-white font-mono uppercase">CODERS.IA.BR</span> </a> <!-- Centered Navigation --> <nav class="hidden md:flex items-center space-x-8"> <a href="/artigos" class="text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> </nav> <!-- Social Icons --> <div class="hidden md:flex items-center space-x-4"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> <!-- Mobile menu button --> <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-menu w-6 h-6">  <path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path>  </svg> </button> </div> <!-- Mobile menu --> <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-4 space-y-2"> <a href="/artigos" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> <div class="flex items-center space-x-4 pt-4 border-t border-slate-700"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> </div> </div> </header> <!-- Main Content --> <main class="flex-1">  <article class="container mx-auto px-4 py-8 max-w-4xl"> <!-- Breadcrumb --> <nav class="mb-8 text-sm"> <ol class="flex items-center space-x-2 text-slate-400"> <li><a href="/" class="hover:text-accent-400 transition-colors">Home</a></li> <li><span class="mx-2">/</span></li> <li><a href="/categorias/desenvolvimento web" class="hover:text-accent-400 transition-colors">Desenvolvimento Web</a></li> <li><span class="mx-2">/</span></li> <li class="text-slate-300 truncate">Como fazer direcionamento via DNS</li> </ol> </nav> <!-- Post Header --> <header class="mb-12 text-center"> <div class="mb-4"> <span class="inline-block px-3 py-1 text-xs font-medium text-accent-300 bg-accent-900/30 rounded-full border border-accent-800"> Desenvolvimento Web </span> </div> <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"> Como fazer direcionamento via DNS </h1> <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"> Entenda por que DNS não suporta redirecionamentos HTTP e como usar forwarddomain.net para redirecionar domínios de forma simples e eficiente </p> <div class="flex items-center justify-center space-x-6 text-sm text-slate-400"> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-user w-4 h-4">  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle>  </svg> <span>Jonathan dos Santos</span> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition-colors duration-200" title="LinkedIn de Jonathan dos Santos"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4 ml-1">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> </div> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-calendar w-4 h-4">  <path d="M8 2v4"></path> <path d="M16 2v4"></path> <rect width="18" height="18" x="3" y="4" rx="2"></rect> <path d="M3 10h18"></path>  </svg> <time datetime="2025-10-05T00:00:00.000Z">5 de outubro de 2025</time> </div> </div> </header> <!-- Featured Image --> <div class="mb-12"> <img src="/images/blog/como-fazer-direcionamento-via-dns.jpg" alt="Como fazer direcionamento via DNS" class="w-full h-auto rounded-xl shadow-2xl"> </div> <!-- Post Content --> <div class="prose prose-lg prose-invert max-w-none mx-auto">  <h2 id="o-problema-dns-não-faz-redirecionamentos">O Problema: DNS Não Faz Redirecionamentos</h2>
+<p>Vamos direto ao ponto: <strong>DNS não suporta redirecionamentos HTTP</strong>. Muita gente se confunde com isso, então vou explicar de forma clara.</p>
+<h3 id="o-que-dns-realmente-faz">O Que DNS Realmente Faz</h3>
+<p>DNS (Domain Name System) é basicamente um tradutor. Ele pega um nome de domínio como <code>exemplo.com</code> e devolve um endereço IP como <code>192.168.1.100</code>. É só isso. DNS não entende conceitos de HTTP como:</p>
+<ul>
+<li>Redirecionamentos 301 ou 302</li>
+<li>URLs com caminhos (<code>/pagina</code>)</li>
+<li>Protocolos (http vs https)</li>
+<li>Parâmetros de query string</li>
+</ul>
+<p>Quando você digita <code>exemplo.com</code> no navegador, acontece isso:</p>
+<ol>
+<li><strong>DNS resolve</strong>: <code>exemplo.com</code> → <code>192.168.1.100</code></li>
+<li><strong>Navegador conecta</strong>: ao servidor no IP <code>192.168.1.100</code></li>
+<li><strong>Servidor responde</strong>: com o conteúdo ou redirecionamento HTTP</li>
+</ol>
+<p>O redirecionamento acontece no passo 3, não no DNS. Para fazer um redirecionamento HTTP, você precisa de um servidor web respondendo no IP de destino.</p>
+<h3 id="por-que-isso-é-um-problema">Por Que Isso É Um Problema?</h3>
+<p>Se você quer redirecionar <code>dominio-antigo.com</code> para <code>dominio-novo.com</code>, você não pode simplesmente “configurar no DNS”. Você precisa de:</p>
+<ol>
+<li>Um servidor web rodando</li>
+<li>Configurado para responder no domínio antigo</li>
+<li>Que retorne um redirect HTTP 301/302 para o domínio novo</li>
+</ol>
+<p>E manter um servidor só para fazer redirecionamentos é caro e trabalhoso.</p>
+<h2 id="a-solução-forwarddomainnet">A Solução: ForwardDomain.net</h2>
+<p>É aí que entra o <a href="https://forwarddomain.net">ForwardDomain.net</a>. É um serviço gratuito que faz exatamente isso: fornece o servidor que responde com redirecionamentos HTTP.</p>
+<h3 id="como-funciona">Como Funciona</h3>
+<ol>
+<li>Você aponta seu domínio antigo para o IP do ForwardDomain</li>
+<li>Você configura no ForwardDomain para onde quer redirecionar</li>
+<li>Quando alguém acessa seu domínio antigo, o servidor do ForwardDomain responde com um redirect HTTP</li>
+</ol>
+<p>Simples assim.</p>
+<h2 id="como-usar-forwarddomainnet">Como Usar ForwardDomain.net</h2>
+<h3 id="passo-1-configure-o-dns-do-seu-domínio">Passo 1: Configure o DNS do Seu Domínio</h3>
+<p>Primeiro, você precisa apontar seu domínio para o ForwardDomain. Vá no painel de controle onde você gerencia seu domínio (Registro.br, Cloudflare, etc.) e adicione estes registros DNS:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Registro A para o domínio raiz</span></span>
+<span class="line"><span>@    A    88.198.58.135</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Registro A para www (opcional)</span></span>
+<span class="line"><span>www  A    88.198.58.135</span></span></code></pre>
+<p><strong>Importante:</strong> Esse IP (<code>88.198.58.135</code>) é do ForwardDomain. Verifique sempre o IP atual no site deles, pois pode mudar.</p>
+<h3 id="passo-2-configure-o-redirecionamento">Passo 2: Configure o Redirecionamento</h3>
+<p>Agora você precisa informar ao ForwardDomain para onde redirecionar. Você faz isso criando um arquivo de configuração especial:</p>
+<ol>
+<li>
+<p><strong>Acesse seu domínio antigo</strong>: <code>http://seu-dominio.com/.well-known/forwarddomain.json</code></p>
+</li>
+<li>
+<p><strong>Crie o arquivo</strong> no seu servidor web ou hosting (se você tem acesso), ou use o método alternativo abaixo</p>
+</li>
+</ol>
+<p>O arquivo deve estar em: <code>/.well-known/forwarddomain.json</code></p>
+<p><strong>Conteúdo do arquivo:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "forward"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://dominio-novo.com"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="método-alternativo-sem-arquivo-de-configuração">Método Alternativo: Sem Arquivo de Configuração</h3>
+<p>Se você não tem onde hospedar o arquivo <code>.well-known/forwarddomain.json</code>, você pode usar o método de redirecionamento padrão do ForwardDomain:</p>
+<ol>
+<li>Aponte o DNS para o IP do ForwardDomain</li>
+<li>Acesse <code>http://seu-dominio.com</code></li>
+<li>O ForwardDomain vai mostrar uma página onde você pode configurar o redirecionamento</li>
+</ol>
+<p><strong>Mas atenção:</strong> Este método pode não funcionar para todos os casos. O método recomendado é sempre usar o arquivo de configuração.</p>
+<h3 id="passo-3-teste-o-redirecionamento">Passo 3: Teste o Redirecionamento</h3>
+<p>Depois de configurar, teste para garantir que está funcionando:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Teste com curl</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -I</span><span style="color:#9ECBFF"> http://seu-dominio.com</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Você deve ver algo como:</span></span>
+<span class="line"><span style="color:#6A737D"># HTTP/1.1 301 Moved Permanently</span></span>
+<span class="line"><span style="color:#6A737D"># Location: https://dominio-novo.com</span></span></code></pre>
+<p>Ou simplesmente abra <code>http://seu-dominio.com</code> no navegador e veja se redireciona corretamente.</p>
+<h2 id="configurações-avançadas">Configurações Avançadas</h2>
+<h3 id="redirecionar-com-caminho-preservado">Redirecionar com Caminho Preservado</h3>
+<p>Se você quer que <code>dominio-antigo.com/pagina</code> redirecione para <code>dominio-novo.com/pagina</code>, configure assim:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "forward"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://dominio-novo.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "preserve_path"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="redirecionamento-temporário-302">Redirecionamento Temporário (302)</h3>
+<p>Por padrão, o ForwardDomain usa redirect 301 (permanente). Para usar 302 (temporário):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "forward"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://dominio-novo.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "status_code"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">302</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="redirecionamento-com-www">Redirecionamento com www</h3>
+<p>Para redirecionar tanto <code>dominio.com</code> quanto <code>www.dominio.com</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Configure ambos os registros A</span></span>
+<span class="line"><span>@    A    88.198.58.135</span></span>
+<span class="line"><span>www  A    88.198.58.135</span></span></code></pre>
+<p>E no arquivo de configuração:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "forward"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://dominio-novo.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "redirect_www"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="alternativas-ao-forwarddomain">Alternativas ao ForwardDomain</h2>
+<p>Se o ForwardDomain não atender suas necessidades, existem outras opções:</p>
+<h3 id="1-cloudflare-page-rules-gratuito">1. Cloudflare Page Rules (Gratuito)</h3>
+<p>Se você usa Cloudflare, pode criar regras de redirecionamento:</p>
+<ol>
+<li>Vá em <strong>Rules</strong> → <strong>Page Rules</strong></li>
+<li>Crie uma regra: <code>*dominio-antigo.com/*</code></li>
+<li>Selecione <strong>Forwarding URL</strong> → <strong>301 Permanent Redirect</strong></li>
+<li>Destino: <code>https://dominio-novo.com/$2</code></li>
+</ol>
+<p><strong>Vantagem:</strong> Integrado com CDN e proteção DDoS
+<strong>Desvantagem:</strong> Precisa usar os nameservers do Cloudflare</p>
+<h3 id="2-seu-próprio-servidor">2. Seu Próprio Servidor</h3>
+<p>Se você tem um servidor, pode configurar um redirect simples:</p>
+<p><strong>Nginx:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="nginx"><code><span class="line"><span style="color:#F97583">server</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    listen </span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    server_name </span><span style="color:#E1E4E8">dominio-antigo.com www.dominio-antigo.com;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 301</span><span style="color:#E1E4E8"> https://dominio-novo.com$request_uri;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>Apache (.htaccess):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="apache"><code><span class="line"><span style="color:#F97583">RewriteEngine</span><span style="color:#B392F0"> On</span></span>
+<span class="line"><span style="color:#F97583">RewriteRule</span><span style="color:#DBEDFF"> ^(.*)$</span><span style="color:#9ECBFF"> https://dominio-novo.com/$1</span><span style="color:#E1E4E8"> [R=</span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">,L]</span></span></code></pre>
+<h3 id="3-serviços-de-hosting-com-redirect">3. Serviços de Hosting com Redirect</h3>
+<p>Muitos serviços de hosting oferecem redirecionamento nativo:</p>
+<ul>
+<li><strong>Netlify</strong>: Redirects via <code>_redirects</code> file</li>
+<li><strong>Vercel</strong>: Redirects via <code>vercel.json</code></li>
+<li><strong>GitHub Pages</strong>: Limitado, mas possível com meta refresh</li>
+</ul>
+<h2 id="problemas-comuns-e-soluções">Problemas Comuns e Soluções</h2>
+<h3 id="redirect-não-funciona">Redirect Não Funciona</h3>
+<p><strong>Problema:</strong> Acesso o domínio mas não redireciona</p>
+<p><strong>Soluções:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 1. Verifique se o DNS está apontando corretamente</span></span>
+<span class="line"><span style="color:#B392F0">dig</span><span style="color:#9ECBFF"> seu-dominio.com</span><span style="color:#9ECBFF"> A</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Deve retornar o IP do ForwardDomain (88.198.58.135)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 2. Verifique se o arquivo de configuração está acessível</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#9ECBFF"> http://seu-dominio.com/.well-known/forwarddomain.json</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Deve retornar o JSON de configuração</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 3. Limpe o cache do navegador</span></span>
+<span class="line"><span style="color:#6A737D"># Ctrl+Shift+Delete (Chrome/Firefox)</span></span></code></pre>
+<h3 id="demora-para-propagar">Demora para Propagar</h3>
+<p><strong>Problema:</strong> Configurei mas ainda não funciona</p>
+<p><strong>Causa:</strong> Propagação DNS pode levar até 48 horas (mas geralmente é mais rápido)</p>
+<p><strong>Solução:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Verifique a propagação em diferentes servidores DNS</span></span>
+<span class="line"><span style="color:#6A737D"># Use: https://dnschecker.org</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Para forçar atualização local (Linux/Mac)</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemd-resolve</span><span style="color:#79B8FF"> --flush-caches</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Windows</span></span>
+<span class="line"><span style="color:#B392F0">ipconfig</span><span style="color:#9ECBFF"> /flushdns</span></span></code></pre>
+<h3 id="https-não-funciona">HTTPS Não Funciona</h3>
+<p><strong>Problema:</strong> <code>https://seu-dominio.com</code> não funciona</p>
+<p><strong>Causa:</strong> ForwardDomain pode não ter certificado SSL para seu domínio</p>
+<p><strong>Solução:</strong> Use um serviço que suporte HTTPS, como Cloudflare Page Rules</p>
+<h2 id="quando-não-usar-forwarddomain">Quando NÃO Usar ForwardDomain</h2>
+<p>O ForwardDomain é ótimo para redirecionamentos simples, mas não é ideal para:</p>
+<h3 id="1-sites-de-produção-críticos">1. Sites de Produção Críticos</h3>
+<ul>
+<li>Use serviços pagos com SLA</li>
+<li>Considere Cloudflare ou seu próprio servidor</li>
+</ul>
+<h3 id="2-redirecionamentos-complexos">2. Redirecionamentos Complexos</h3>
+<ul>
+<li>Múltiplas regras condicionais</li>
+<li>Redirecionamentos baseados em geolocalização</li>
+<li>Precisa de analytics detalhado</li>
+</ul>
+<h3 id="3-quando-você-precisa-de-https">3. Quando Você Precisa de HTTPS</h3>
+<ul>
+<li>ForwardDomain pode ter limitações com SSL</li>
+<li>Use alternativas com certificados gerenciados</li>
+</ul>
+<h2 id="boas-práticas">Boas Práticas</h2>
+<h3 id="1-sempre-use-redirect-301-para-mudanças-permanentes">1. Sempre Use Redirect 301 para Mudanças Permanentes</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "forward"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://dominio-novo.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "status_code"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">301</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Isso ajuda com SEO - os buscadores transferem o “ranking” do domínio antigo para o novo.</p>
+<h3 id="2-preserve-o-caminho-quando-possível">2. Preserve o Caminho Quando Possível</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "forward"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://dominio-novo.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "preserve_path"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Assim, links específicos continuam funcionando:</p>
+<ul>
+<li><code>dominio-antigo.com/artigo</code> → <code>dominio-novo.com/artigo</code></li>
+</ul>
+<h3 id="3-teste-antes-de-anunciar">3. Teste Antes de Anunciar</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Teste todos os cenários</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -L</span><span style="color:#9ECBFF"> http://dominio-antigo.com</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -L</span><span style="color:#9ECBFF"> http://www.dominio-antigo.com</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -L</span><span style="color:#9ECBFF"> http://dominio-antigo.com/pagina-especifica</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -L</span><span style="color:#9ECBFF"> https://dominio-antigo.com</span></span></code></pre>
+<h3 id="4-monitore-por-algum-tempo">4. Monitore por Algum Tempo</h3>
+<ul>
+<li>Use Google Analytics para ver se há tráfego no domínio antigo</li>
+<li>Configure alertas para saber se o redirecionamento parar de funcionar</li>
+<li>Mantenha o redirecionamento por pelo menos 6-12 meses</li>
+</ul>
+<h2 id="conclusão">Conclusão</h2>
+<p>DNS não faz redirecionamentos HTTP porque essa não é a função dele. DNS resolve nomes para IPs, ponto final. Para fazer redirecionamentos, você precisa de um servidor web respondendo com códigos HTTP 301 ou 302.</p>
+<p>O ForwardDomain.net resolve esse problema fornecendo gratuitamente a infraestrutura necessária para fazer redirecionamentos simples. É perfeito para:</p>
+<ul>
+<li>Redirecionar domínios antigos para novos</li>
+<li>Criar aliases simples</li>
+<li>Projetos pessoais ou pequenos</li>
+</ul>
+<p>Para necessidades mais complexas ou críticas, considere usar Cloudflare, seu próprio servidor, ou serviços pagos com melhor SLA.</p>
+<h2 id="recursos-úteis">Recursos Úteis</h2>
+<ul>
+<li><a href="https://forwarddomain.net">ForwardDomain.net</a> - Serviço gratuito de redirecionamento</li>
+<li><a href="https://dnschecker.org">DNSChecker.org</a> - Verificar propagação DNS</li>
+<li><a href="https://cloudflare.com">Cloudflare</a> - Alternativa com CDN e Page Rules</li>
+<li><a href="https://tools.ietf.org/html/rfc7231#section-6.4">RFC 7231</a> - Especificação de redirects HTTP</li>
+</ul>
+<hr>
+<p><em>Última atualização: Novembro 2025</em></p>  </div> <!-- Share Buttons --> <div class="mt-12 pt-8 border-t border-slate-800"> <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"> <h3 class="text-lg font-semibold text-white">Compartilhe este post</h3> <div class="flex items-center space-x-4"> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcoders.ia.br%2Fblog%2Fcomo-fazer-direcionamento-via-dns%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> <span class="hidden sm:inline">LinkedIn</span> </a> <a href="https://wa.me/?text=Como%20fazer%20direcionamento%20via%20DNS https%3A%2F%2Fcoders.ia.br%2Fblog%2Fcomo-fazer-direcionamento-via-dns%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-message-circle w-4 h-4">  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>  </svg> <span class="hidden sm:inline">WhatsApp</span> </a> </div> </div> </div> <!-- Navigation to other posts could be added here --> </article>  </main> <!-- Footer --> <footer class="border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-8"> <div class="text-center"> <div class="flex items-center justify-center space-x-2 mb-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-6 h-6 opacity-60"> <span class="text-slate-400 font-mono">© 2025 CODERS.IA.BR. TODOS OS DIREITOS RESERVADOS.</span> </div> </div> </div> </footer> </div> <script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-L7RDWGH1GM");</script> </body> </html>
