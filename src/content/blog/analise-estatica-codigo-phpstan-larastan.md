@@ -1,7 +1,7 @@
 ---
 title: "Análise estática de código com PHPStan e Larastan"
 description: "Como usar PHPStan e Larastan para encontrar bugs antes de rodar o código e melhorar a qualidade do seu projeto Laravel"
-date: 2025-11-25
+date: 2025-11-21
 category: "Desenvolvimento"
 author: "Jonathan dos Santos"
 tags: ["php", "laravel", "phpstan", "larastan", "qualidade", "testes"]

@@ -1,7 +1,7 @@
 ---
 title: "Dicas práticas sobre desenvolvimento web com IA"
 description: "Dicas essenciais para criar frontends sólidos que funcionam bem com agentes de IA e facilitam manutenção futura"
-date: 2025-11-26
+date: 2025-11-23
 category: "Desenvolvimento"
 author: "Jonathan dos Santos"
 tags: ["frontend", "ia", "react", "vue", "angular", "svelte", "boas-praticas", "typescript"]
