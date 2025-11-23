@@ -1,6 +1,6 @@
 ---
-title: "Boas práticas de desenvolvimento web com IA: frontend"
-description: "Regras essenciais para criar frontends sólidos que funcionam bem com agentes de IA e facilitam manutenção futura"
+title: "Dicas práticas sobre desenvolvimento web com IA"
+description: "Dicas essenciais para criar frontends sólidos que funcionam bem com agentes de IA e facilitam manutenção futura"
 date: 2025-11-26
 category: "Desenvolvimento"
 author: "Jonathan dos Santos"
