@@ -5,6 +5,7 @@ date: 2025-10-10
 category: "Inteligência Artificial"
 author: "Jonathan dos Santos"
 tags: ["claude", "self-hosted", "desenvolvimento", "agentes", "claude-code"]
+image: "/images/blog/claudable-lovable-self-hosted.jpg"
 ---
 
 
@@ -127,7 +128,8 @@ E por ser open-source, você sempre pode adaptar a ferramenta às suas necessida
 
 ---
 
-**Links Úteis:**
+## Links Úteis
+
 - [Repositório Claudable](https://github.com/opactorai/Claudable)
 - [Claude Code Oficial](https://www.anthropic.com/claude/code)
 - [Documentação da API Claude](https://docs.anthropic.com/)

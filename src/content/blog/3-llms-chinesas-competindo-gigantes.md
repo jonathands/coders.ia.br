@@ -6,6 +6,7 @@ category: "Inteligência Artificial"
 author: "Jonathan dos Santos"
 tags: ["ia", "llm", "china", "glm", "moonshot", "qwen", "api", "desenvolvimento"]
 featured: true
+image: "/images/blog/3-llms-chinesas-competindo-gigantes.jpg"
 ---
 
 O mercado de Large Language Models tem sido historicamente dominado por empresas americanas como Anthropic com o Claude, OpenAI com o GPT-4 e Google com o Gemini. Com pouquíssimas exceções vindas de fora dos EUA, como a francesa Mistral AI, o cenário global de IA tem sido praticamente um monopólio americano.
@@ -116,9 +117,14 @@ O pior que pode acontecer é você descobrir uma ferramenta incrível que custa 
 
 ---
 
-**Links Úteis:**
+## Links Úteis
 
-GLM-4.6 está disponível em z.ai. O Moonshot Kimi pode ser acessado em kimi-ai.chat, e a Kimi CLI está no GitHub em github.com/MoonshotAI/kimi-cli. O Qwen e Alibaba Cloud Model Studio podem ser acessados pela documentação da Alibaba Cloud. Para acesso unificado a múltiplas LLMs use OpenRouter em openrouter.ai, e para inferência ultra-rápida experimente Groq em groq.com.
+- [GLM-4.6 (Z.AI)](https://z.ai)
+- [Moonshot Kimi](https://kimi-ai.chat)
+- [Kimi CLI no GitHub](https://github.com/MoonshotAI/kimi-cli)
+- [Alibaba Cloud Model Studio](https://www.alibabacloud.com/help/en/model-studio/)
+- [OpenRouter - Acesso unificado a múltiplas LLMs](https://openrouter.ai)
+- [Groq - Inferência ultra-rápida](https://groq.com)
 
 ---
 

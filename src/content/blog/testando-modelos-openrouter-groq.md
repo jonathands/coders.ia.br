@@ -5,6 +5,7 @@ date: 2025-11-30
 category: "Inteligência Artificial"
 author: "Jonathan dos Santos"
 tags: ["ia", "llm", "openrouter", "groq", "api", "testes", "desenvolvimento"]
+image: "/images/blog/testando-modelos-openrouter-groq.jpg"
 ---
 
 
@@ -573,7 +574,7 @@ Se você ainda não usa nem OpenRouter nem Groq, está perdendo tempo e dinheiro
 
 ---
 
-**Links Úteis:**
+## Links Úteis
 
 - [OpenRouter](https://openrouter.ai)
 - [OpenRouter Rankings](https://openrouter.ai/rankings) (veja modelos mais populares)

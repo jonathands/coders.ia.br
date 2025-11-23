@@ -5,6 +5,7 @@ date: 2025-11-28
 category: "Inteligência Artificial"
 author: "Jonathan dos Santos"
 tags: ["claude-code", "cursor", "opencode", "agentes", "terminal", "ia"]
+image: "/images/blog/claude-code-cursor-agent-opencode.jpg"
 ---
 
 

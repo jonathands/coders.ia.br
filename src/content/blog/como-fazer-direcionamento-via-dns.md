@@ -5,6 +5,7 @@ date: 2025-10-05
 category: "Desenvolvimento Web"
 author: "Jonathan dos Santos"
 tags: ["dns", "domínio", "redirecionamento", "networking", "forwarddomain"]
+image: "/images/blog/como-fazer-direcionamento-via-dns.jpg"
 ---
 
 ## O Problema: DNS Não Faz Redirecionamentos

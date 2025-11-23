@@ -76,6 +76,17 @@ const whatsappUrl = `https://wa.me/?text=${shareTitle} ${shareUrl}`;
       </div>
     </header>
 
+    <!-- Featured Image -->
+    {image && (
+      <div class="mb-12">
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-auto rounded-xl shadow-2xl"
+        />
+      </div>
+    )}
+
     <!-- Post Content -->
     <div class="prose prose-lg prose-invert max-w-none mx-auto">
       <slot />

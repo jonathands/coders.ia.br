@@ -1,11 +1,12 @@
 ---
-title: "GLM-4.6 da Z.AI: Guia Completo para Desenvolvedores - OpenCode e Zed Editor"
+title: "GLM-4.6 da Z.AI: Primeiros passos para usar o modelo - OpenCode e Zed Editor"
 description: "Aprenda a configurar e usar o GLM-4.6, a LLM chinesa que compete com Claude por apenas $3/mês, em suas ferramentas de desenvolvimento favoritas"
 date: 2025-11-20
 category: "Ferramentas"
 author: "Jonathan dos Santos"
 tags: ["ia", "glm", "z-ai", "opencode", "zed", "coding", "tutorial", "api"]
 featured: false
+image: "/images/blog/glm-4-6-guia-completo-opencode-zed.jpg"
 ---
 
 O GLM-4.6 da Zhipu AI (Z.AI) está revolucionando o mercado de coding assistants ao oferecer performance comparável ao Claude 3.5 Sonnet por uma fração do custo. Com o plano GLM Coding custando apenas $3 por mês e incluindo centenas de bilhões de tokens, desenvolvedores ao redor do mundo estão migrando suas ferramentas para esse modelo chinês.
