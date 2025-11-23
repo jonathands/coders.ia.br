@@ -5,6 +5,7 @@ date: 2025-11-25
 category: "Reflexão"
 author: "Jonathan dos Santos"
 tags: ["mindset", "indie", "comunidade", "empreendedorismo", "impacto-social"]
+image: "/images/blog/you-are-a-rounding-error.jpg"
 ---
 
 

@@ -5,6 +5,7 @@ date: 2025-10-15
 category: "Ferramentas"
 author: "Jonathan dos Santos"
 tags: ["lovable", "bolt", "ia", "desenvolvimento", "ferramentas", "ai-coding"]
+image: "/images/blog/10-ferramentas-como-lovable-bolt.jpg"
 ---
 
 

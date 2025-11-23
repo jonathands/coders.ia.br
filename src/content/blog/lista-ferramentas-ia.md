@@ -5,6 +5,7 @@ date: 2025-11-20
 category: "Ferramentas"
 author: "Jonathan dos Santos"
 tags: ["ia", "ferramentas", "desenvolvimento", "ai-coding", "produtividade"]
+image: "/images/blog/lista-ferramentas-ia.jpg"
 ---
 
 

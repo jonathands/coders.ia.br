@@ -5,6 +5,7 @@ date: 2025-10-20
 category: "Ferramentas"
 author: "Jonathan dos Santos"
 tags: ["deploy", "frontend", "netlify", "vercel", "cloudflare", "devops"]
+image: "/images/blog/3-servicos-deploy-frontend-facilitado.jpg"
 ---
 
 

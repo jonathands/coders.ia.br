@@ -5,6 +5,7 @@ date: 2025-11-10
 category: "Desenvolvimento"
 author: "Jonathan dos Santos"
 tags: ["claude", "agents", "desenvolvimento", "ferramentas"]
+image: "/images/blog/suporte-agents-claude-code.jpg"
 ---
 
 

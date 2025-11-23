@@ -6,6 +6,7 @@ category: "Infraestrutura"
 author: "Jonathan dos Santos"
 tags: ["dns", "infraestrutura", "domínios", "cloudflare", "registro-br", "email"]
 featured: false
+image: "/images/blog/dns-minimo-desenvolvedor-deve-saber.jpg"
 ---
 
 DNS é uma daquelas coisas que todo desenvolvedor precisa lidar em algum momento, mas muita gente vai empurrando com a barriga até ser obrigado a aprender na urgência. Já vi projetos inteiros atrasarem porque o desenvolvedor não sabia apontar um domínio pro servidor certo, ou emails importantes sendo perdidos por configuração errada de DNS.

@@ -5,6 +5,7 @@ date: 2025-10-25
 category: "Ferramentas"
 author: "Jonathan dos Santos"
 tags: ["dyad", "desktop", "gerador", "sites", "landing-pages", "desenvolvimento"]
+image: "/images/blog/dyad-app-desktop-gerador-sites.jpg"
 ---
 
 

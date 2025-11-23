@@ -6,6 +6,7 @@ category: "Infra"
 tags: ["domínios", "ia.br", "app.br", "registro.br", "SEO", "marketing digital"]
 author: "JonathanDS"
 draft: false
+image: "/images/blog/como-comprar-dominio-ia-br.jpg"
 ---
 
 
