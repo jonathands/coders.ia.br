@@ -1,5 +1,5 @@
 ---
-title: "Como Comprar Seu Domínio .ia.br e .app.br"
+title: "Como comprar seu domínio .ia.br e .app.br"
 description: "Os novos domínios do NIC.BR na nova fronteira de IA no Brasil: registro, considerações para SEO e domain parking à brasileira."
 date: 2025-10-27
 category: "Infra"

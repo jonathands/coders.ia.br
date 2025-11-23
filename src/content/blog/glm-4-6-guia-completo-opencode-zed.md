@@ -1,5 +1,5 @@
 ---
-title: "GLM-4.6 da Z.AI: Primeiros passos para usar o modelo - OpenCode e Zed Editor"
+title: "GLM-4.6 da Z.AI: primeiros passos para usar o modelo - OpenCode e Zed Editor"
 description: "Aprenda a configurar e usar o GLM-4.6, a LLM chinesa que compete com Claude por apenas $3/mês, em suas ferramentas de desenvolvimento favoritas"
 date: 2025-11-20
 category: "Ferramentas"

@@ -104,6 +104,15 @@ function getCategoryColor(category: string) {
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
           <article class="bg-slate-800/30 rounded-xl overflow-hidden border border-slate-700 hover:border-slate-600 transition-all duration-300 hover:shadow-xl hover:shadow-accent-500/5 group hover:-translate-y-1">
+            {post.data.image && (
+              <div class="w-full h-48 overflow-hidden">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            )}
             <div class="p-6">
               <div class="flex items-center justify-between mb-4">
                 <time class="text-xs text-slate-400">{formatDate(post.data.date)}</time>

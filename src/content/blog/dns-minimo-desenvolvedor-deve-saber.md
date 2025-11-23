@@ -1,5 +1,5 @@
 ---
-title: "DNS: O Mínimo que um Desenvolvedor Deve Saber"
+title: "DNS: o mínimo que um desenvolvedor deve saber"
 description: "Entenda DNS de forma prática: o que é, como funcionam os registros básicos, onde gerenciar e como configurar emails profissionais"
 date: 2025-11-23
 category: "Infraestrutura"

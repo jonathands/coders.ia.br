@@ -1,5 +1,5 @@
 ---
-title: "Dyad: O app desktop para gerar sites, apps e landing pages"
+title: "Dyad: o app desktop para gerar sites, apps e landing pages"
 description: "Conheça o Dyad, uma ferramenta desktop que simplifica a criação de sites, aplicações e landing pages com uma interface intuitiva"
 date: 2025-10-25
 category: "Ferramentas"
