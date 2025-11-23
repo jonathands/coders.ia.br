@@ -1,5 +1,5 @@
 ---
-title: "Você é um Erro de Arredondamento (E É Aí Que Está Seu Poder)"
+title: "Você é um erro de arredondamento (e é aí que está seu poder)"
 description: "Por que ser insignificante para as Big Techs é exatamente o que te dá poder para criar mudança real"
 date: 2025-11-25
 category: "Reflexão"

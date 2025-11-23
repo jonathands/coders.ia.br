@@ -1,12 +1,11 @@
 ---
-title: "Astro: Usando o Gerador de Sites Estáticos com IA"
+title: "Astro: usando o gerador de sites estáticos com IA"
 description: "Como usamos Astro e Claude Code para criar, revisar e estruturar artigos em Markdown de forma eficiente e profissional"
 date: 2025-11-24
 category: "Desenvolvimento"
 author: "Jonathan dos Santos"
 tags: ["astro", "ia", "claude", "markdown", "blog", "desenvolvimento"]
 featured: true
-image: "/images/blog/astro-gerador-sites-estaticos-com-ia.jpg"
 ---
 
 Este site que você está lendo agora foi construído com Astro e é mantido com a ajuda de Claude Code. Não é só mais um tutorial sobre "como fazer um blog" - é sobre como combinamos um gerador de sites estáticos moderno com IA para criar conteúdo de forma eficiente, estruturada e escalável.

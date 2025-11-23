@@ -1,5 +1,5 @@
 ---
-title: "Como Fazer Direcionamento via DNS"
+title: "Como fazer direcionamento via DNS"
 description: "Entenda por que DNS não suporta redirecionamentos HTTP e como usar forwarddomain.net para redirecionar domínios de forma simples e eficiente"
 date: 2025-10-05
 category: "Desenvolvimento Web"
