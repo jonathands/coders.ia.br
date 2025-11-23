@@ -97,15 +97,6 @@ function getCategoryColor(category: string) {
             data-category={post.data.category}
           >
             <div class="md:flex">
-              {post.data.image && (
-                <div class="md:w-80 h-48 md:h-auto overflow-hidden flex-shrink-0">
-                  <img
-                    src={post.data.image}
-                    alt={post.data.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              )}
               <div class="p-6 md:p-8 flex-1">
               <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-3">
                 <div class="flex items-center space-x-4">
@@ -152,6 +143,15 @@ function getCategoryColor(category: string) {
                 <span>→</span>
               </a>
               </div>
+              {post.data.image && (
+                <div class="md:w-80 h-48 md:h-auto overflow-hidden flex-shrink-0">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              )}
             </div>
           </article>
         ))}
