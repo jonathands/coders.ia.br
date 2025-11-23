@@ -7,61 +7,29 @@ author: "Jonathan dos Santos"
 tags: ["frontend", "ia", "react", "vue", "angular", "svelte", "boas-praticas", "typescript"]
 ---
 
-Angular, Vue, React, Svelte, AlpineJS... Não falta framework para você criar seu frontend. E preferências à parte, todos eles precisam de fundamentos sólidos no desenvolvimento de aplicações, especialmente quando você trabalha com agentes de IA.
+Depois de construir dezenas de projetos com Claude Code, Cursor e outros agentes de IA, aprendi quais práticas fazem a diferença entre um frontend que evolui suavemente e um que vira pesadelo de manutenção.
 
-Depois de construir dezenas de projetos com Claude Code, Cursor e outros agentes, aprendi na prática quais práticas fazem a diferença entre um frontend que evolui suavemente e um que vira pesadelo de manutenção.
+Aqui estão regras práticas para criar frontends que funcionam bem com agentes de IA.
 
-Aqui estão algumas regras que eu sempre sigo para criar frontends que vão ajudar você a usar agentes de forma produtiva e debugar melhor seu código no futuro.
+## Por que boas práticas importam com IA
 
-## Por que boas práticas importam ainda mais com IA
+Agentes de IA veem apenas o código que você mostra. Se não for bem estruturado, eles vão criar código duplicado, gerar SVG inline ao invés de usar bibliotecas, e ignorar padrões existentes.
 
-Quando você programa sozinho, pode manter contexto mental sobre todo o código. Você lembra por que fez aquela gambiarra, onde está aquele componente específico, qual service busca quais dados.
-
-Com agentes de IA, esse contexto não existe. O agente vê apenas o código que você mostra a ele. Se seu código não for bem estruturado e explícito, o agente vai:
-
-- **Criar código duplicado** porque não encontrou o service existente
-- **Gerar SVG inline** ao invés de usar sua biblioteca de ícones
-- **Repetir lógica de fetch** porque não viu a camada de dados
-- **Ignorar padrões** porque não estão documentados ou óbvios
-
-Boas práticas tornam seu código **legível para máquinas**, não só para humanos. E isso é fundamental quando você trabalha com IA.
+Boas práticas tornam seu código **legível para máquinas**, não só para humanos.
 
 ## 1. Use bibliotecas de ícones sólidas
 
-### O problema: Agentes adoram criar SVGs
+### O problema: SVGs inline
 
-Quando você pede "adicione um ícone de usuário", agentes têm forte tendência a fazer isso:
-
-```jsx
-// ❌ Agente criou SVG inline
-function UserProfile() {
-  return (
-    <div>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-        <circle cx="12" cy="7" r="4"/>
-      </svg>
-      <span>Perfil</span>
-    </div>
-  );
-}
-```
-
-Problemas com essa abordagem:
-
-- **Inconsistência visual** - Cada ícone vem de fonte diferente
-- **Difícil de manter** - SVG gigante no meio do componente
-- **Não reutilizável** - Próximo componente que precisar desse ícone vai ter outro SVG
-- **Tamanho do bundle** - SVGs inline aumentam código duplicado
+Agentes adoram criar SVG inline para ícones. Isso gera inconsistência visual, duplicação de código, e dificulta manutenção.
 
 ### A solução: Bibliotecas estabelecidas
 
 Use bibliotecas com ícones consistentes e bem mantidas:
 
-**Lucide Icons** (minha favorita):
 ```jsx
 // ✅ Usando Lucide
-import { User, Mail, Settings, ChevronRight } from 'lucide-react';
+import { User, Mail, Settings } from 'lucide-react';
 
 function UserProfile() {
   return (
@@ -73,70 +41,28 @@ function UserProfile() {
 }
 ```
 
-**Hero Icons** (excelente para Tailwind):
-```jsx
-// ✅ Usando Hero Icons
-import { UserIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+### Bibliotecas recomendadas:
 
-function Navigation() {
-  return (
-    <nav>
-      <UserIcon className="w-6 h-6" />
-      <EnvelopeIcon className="w-6 h-6" />
-    </nav>
-  );
-}
-```
+- **Lucide** - 1000+ ícones, React/Vue/Svelte
+- **Hero Icons** - Perfeito com Tailwind CSS
+- **Phosphor Icons** - Muito flexível
+- **Feather Icons** - Minimalista e leve
 
-**Por que funciona melhor com IA:**
-
-Quando você documenta no início do projeto:
-
+**Documente suas escolhas:**
 ```typescript
 // src/components/README.md
 /**
- * ICONS
- * Always use Lucide Icons for all icons in this project
+ * ICONS: Always use Lucide Icons
  * Import from: 'lucide-react'
  * Never create inline SVGs
  */
 ```
 
-Agentes vão respeitar isso e usar a biblioteca correta. Resultado: consistência automática.
-
-### Outras bibliotecas sólidas:
-
-- **Lucide** - 1000+ ícones, React/Vue/Svelte, design clean
-- **Hero Icons** - Por Tailwind Labs, perfeito com Tailwind CSS
-- **Phosphor Icons** - Muito flexível, vários estilos
-- **Feather Icons** - Minimalista, leve
-- **Font Awesome** - Clássico, gigante biblioteca (mas pode ser pesado)
-
-**Evite:**
-- Ícones de bibliotecas diferentes no mesmo projeto
-- SVGs inline (salvo casos muito específicos)
-- Icon fonts genéricos sem tree-shaking
-
 ## 2. Selecione e configure fontes profissionalmente
 
-### O problema: Fontes mal configuradas
+### O problema: Google Fonts CDN
 
-Já viu projeto assim?
-
-```css
-/* ❌ Fonte carregada direto no CSS */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-body {
-  font-family: 'Roboto', sans-serif;
-}
-```
-
-Problemas:
-
-- **Performance ruim** - Blocking request, FOUT (Flash of Unstyled Text)
-- **Privacy** - Google rastreia seus usuários
-- **Sem controle de cache** - Depende de CDN externo
+Carregar fontes direto do Google Fonts causa problemas de performance (blocking requests), privacidade (tracking), e falta de controle de cache.
 
 ### A solução: Fontes auto-hospedadas
 
@@ -168,79 +94,13 @@ export default {
 };
 ```
 
-**Vantagens:**
-
-✅ **Sem requests externos** - Fonte vem no bundle
-✅ **Melhor performance** - Preload automático possível
-✅ **Privacidade** - Sem tracking do Google
-✅ **Controle total** - Versão fixa, sem surpresas
-
-### Alternativa: FontBunny
-
-Se preferir CDN sem tracking:
-
-```html
-<!-- Substitui Google Fonts, mas sem rastreamento -->
-<link rel="preconnect" href="https://fonts.bunny.net">
-<link href="https://fonts.bunny.net/css?family=inter:400,700" rel="stylesheet">
-```
-
-**Dica para agentes:**
-
-Documente escolhas de fonte:
-
-```typescript
-// src/styles/typography.md
-/**
- * TYPOGRAPHY
- * Primary font: Inter (via Fontsource)
- * Import weights needed: 400 (regular), 700 (bold)
- *
- * Never use Google Fonts CDN directly
- * Always import from @fontsource/inter
- */
-```
+**Vantagens:** Sem requests externos, melhor performance, privacidade, e controle total sobre versões.
 
 ## 3. Separe consumo de dados desde o início
 
-### O problema: Fetch espalhado por componentes
+### O problema: Fetch espalhado
 
-Código típico que agentes criam:
-
-```tsx
-// ❌ Fetch direto no componente
-function UserList() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/users')
-      .then(res => res.json())
-      .then(data => setUsers(data));
-  }, []);
-
-  return <div>{/* renderiza users */}</div>;
-}
-
-// Outro componente faz a mesma coisa
-function UserDropdown() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/users')  // Código duplicado!
-      .then(res => res.json())
-      .then(data => setUsers(data));
-  }, []);
-
-  return <select>{/* renderiza users */}</select>;
-}
-```
-
-Problemas:
-
-- **Duplicação** - Mesma lógica em vários lugares
-- **Sem tipagem** - Dados não são tipados
-- **Difícil de testar** - Fetch acoplado ao componente
-- **Refatoração complexa** - Mudar API requer mexer em N arquivos
+Agentes criam fetch direto nos componentes, gerando duplicação, falta de tipagem, e dificuldade de manutenção.
 
 ### A solução: Camada de dados com services
 
@@ -364,40 +224,13 @@ function UserList() {
 }
 ```
 
-**Por que isso importa com IA:**
-
-Quando você pede ao agente:
-
-```
-Crie um componente que lista produtos
-```
-
-Se você tem `productService` bem estruturado, o agente vai:
-
-1. **Encontrar** o service existente
-2. **Usar** os tipos definidos
-3. **Seguir** o padrão do projeto
-4. **Não duplicar** código
-
-Sem service layer, agente cria fetch inline toda vez. Refatoração vira pesadelo.
+Com service layer bem estruturado, agentes encontram e reutilizam código existente, seguindo padrões do projeto automaticamente.
 
 ## 4. Use `<figure>` para imagens responsivas
 
-### O problema: `<img>` simples demais
+### O problema: `<img>` sem otimização
 
-Código que agentes geram:
-
-```tsx
-// ❌ Imagem sem contexto semântico
-<img src="/product.jpg" alt="Product" />
-```
-
-Problemas:
-
-- Sem lazy loading
-- Sem responsividade
-- Sem fallback
-- Sem caption/créditos
+Tags `<img>` simples não têm lazy loading, responsividade, ou contexto semântico.
 
 ### A solução: Elemento `<figure>`
 
@@ -418,93 +251,19 @@ Problemas:
 </figure>
 ```
 
-**Vantagens:**
+### Componentes otimizados por framework
 
-✅ **Semântica** - `<figure>` indica conteúdo independente
-✅ **Acessibilidade** - Screen readers entendem melhor
-✅ **Lazy loading** - `loading="lazy"` otimiza performance
-✅ **Responsivo** - Width/height previnem layout shift
-✅ **Context** - `<figcaption>` dá contexto visual
+**Next.js:** Use `next/image`
+**Nuxt:** Use `<NuxtImg>`
+**Astro:** Use componente `Image` de `astro:assets`
 
-### Framework wrappers
-
-Cada framework tem componente otimizado:
-
-**Next.js:**
-```tsx
-import Image from 'next/image';
-
-<figure>
-  <Image
-    src="/product.jpg"
-    alt="Product"
-    width={800}
-    height={600}
-    className="rounded-lg"
-  />
-  <figcaption>Product image</figcaption>
-</figure>
-```
-
-**Nuxt:**
-```vue
-<template>
-  <figure>
-    <NuxtImg
-      src="/product.jpg"
-      alt="Product"
-      width="800"
-      height="600"
-      loading="lazy"
-    />
-    <figcaption>Product image</figcaption>
-  </figure>
-</template>
-```
-
-**Astro:**
-```astro
----
-import { Image } from 'astro:assets';
-import productImg from '@/assets/product.jpg';
----
-
-<figure>
-  <Image src={productImg} alt="Product" />
-  <figcaption>Product image</figcaption>
-</figure>
-```
-
-**Documente para o agente:**
-
-```markdown
-# IMAGES
-
-Always wrap images in `<figure>` element with `<figcaption>`.
-Use Next.js Image component for optimization.
-Always include `alt`, `width`, `height`.
-Use `loading="lazy"` for images below the fold.
-```
+Sempre documente o padrão de imagens do projeto para guiar agentes.
 
 ## 5. Nunca use imagens em Base64 no frontend
 
-### O problema: Agentes adoram Base64
+### O problema: Base64 inline
 
-Quando você pede "adicione uma logo", agentes fazem isso:
-
-```tsx
-// ❌ NUNCA faça isso
-const Logo = () => (
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..." />
-);
-```
-
-Isso parece conveniente, mas é **terrível**:
-
-- **Bundle gigante** - Base64 aumenta tamanho em ~33%
-- **Sem cache** - Navegador não pode cachear
-- **Difícil de manter** - Impossível editar imagem
-- **Git poluído** - Diffs gigantes
+Base64 aumenta bundle em ~33%, impede cache do navegador, e polui o Git com diffs gigantes.
 
 ### A solução: Arquivos estáticos
 
@@ -549,57 +308,19 @@ import logo from '@/assets/logo.png';
 ```
 ```
 
-## 6. Revise e re-revise: Pair programming com IA
+## 6. Revise e re-revise
 
-### A prática mais importante
+Código rápido não é código bom. A diferença entre frontend sólido e bagunça é **revisão**.
 
-Agentes de IA geram código rapidamente. Mas código rápido não é código bom. A diferença entre frontend sólido e bagunça é **revisão**.
+### Checklist essencial
 
-### Workflow de revisão
+✅ **Tipos:** Dados têm tipos explícitos?
+✅ **Imports:** Usa bibliotecas corretas?
+✅ **Duplicação:** Já existe código similar?
+✅ **Acessibilidade:** Labels e ARIA corretos?
+✅ **Performance:** Memoization necessário?
 
-**1. Gere o código inicial:**
-```
-Crie um componente de formulário de login com validação
-```
-
-**2. Revise estrutura:**
-```
-Revise o LoginForm:
-- Tipos estão corretos?
-- Validação está usando Zod/Yup?
-- Segue padrões do projeto?
-- Usa components existentes?
-```
-
-**3. Revise qualidade:**
-```
-Analise o código:
-- Há duplicação?
-- Acessibilidade está ok?
-- Performance está otimizada?
-- Testes são necessários?
-```
-
-**4. Refatore se necessário:**
-```
-Extraia validação para hook separado.
-Use nosso Button component ao invés de HTML puro.
-Adicione error boundary.
-```
-
-### Checklist de revisão
-
-Sempre pergunte ao agente:
-
-✅ **Tipos:** Todos os dados têm tipos explícitos?
-✅ **Imports:** Está usando bibliotecas corretas do projeto?
-✅ **Duplicação:** Código similar já existe em outro lugar?
-✅ **Acessibilidade:** Labels, ARIA, keyboard navigation?
-✅ **Performance:** Memoization onde necessário?
-✅ **Testes:** Precisa de testes unitários?
-✅ **Documentação:** Código complexo está documentado?
-
-### Exemplo prático
+### Exemplo
 
 ```tsx
 // ❌ Código inicial do agente
@@ -664,51 +385,7 @@ export const ProductCard = memo<ProductCardProps>(({ product }) => {
 ProductCard.displayName = 'ProductCard';
 ```
 
-Diferenças:
-
-- **Tipos explícitos** com TypeScript
-- **Componente Link** ao invés de window.location
-- **Image component** otimizado
-- **Formatação de preço** correta para pt-BR
-- **Acessibilidade** com aria-label
-- **Memo** para performance
-- **Semântica** com `<figure>`
-
-## Bônus: Estrutura de projeto que funciona com IA
-
-Organize assim:
-
-```
-src/
-├── components/
-│   ├── ui/              # Componentes base (Button, Input, etc)
-│   ├── features/        # Componentes de features específicas
-│   └── layouts/         # Layouts (Header, Footer, Sidebar)
-├── services/
-│   ├── api.service.ts
-│   ├── user.service.ts
-│   └── product.service.ts
-├── types/
-│   ├── user.types.ts
-│   └── product.types.ts
-├── hooks/
-│   ├── useAuth.ts
-│   └── useProducts.ts
-├── utils/
-│   ├── format.ts
-│   └── validation.ts
-├── styles/
-│   └── globals.css
-└── lib/
-    └── constants.ts
-```
-
-**Por que essa estrutura?**
-
-- **Previsível** - Agente sabe onde buscar/criar código
-- **Escalável** - Fácil adicionar features
-- **Manutenível** - Tudo tem lugar certo
-- **Colaborativa** - Equipe e IA trabalham bem
+Melhorias: tipos explícitos, Link ao invés de window.location, Image component otimizado, formatação de preço, acessibilidade, e memoization.
 
 ## Conclusão
 
