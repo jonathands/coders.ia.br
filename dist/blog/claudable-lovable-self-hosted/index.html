@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="pt-BR" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Um wrapper Next.js e Python em torno do Claude Code que traz a experiência do Lovable para sua própria máquina"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.10"><!-- Primary Meta Tags --><title>Claudable: seu Lovable self hosted que roda no seu agente</title><meta name="title" content="Claudable: seu Lovable self hosted que roda no seu agente"><meta name="description" content="Um wrapper Next.js e Python em torno do Claude Code que traz a experiência do Lovable para sua própria máquina"><link rel="canonical" href="https://coders.ia.br/blog/claudable-lovable-self-hosted/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://coders.ia.br/blog/claudable-lovable-self-hosted/"><meta property="og:title" content="Claudable: seu Lovable self hosted que roda no seu agente"><meta property="og:description" content="Um wrapper Next.js e Python em torno do Claude Code que traz a experiência do Lovable para sua própria máquina"><meta property="og:site_name" content="Coders.ia.br"><meta property="og:image" content="https://coders.ia.br/images/blog/claudable-lovable-self-hosted.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://coders.ia.br/blog/claudable-lovable-self-hosted/"><meta property="twitter:title" content="Claudable: seu Lovable self hosted que roda no seu agente"><meta property="twitter:description" content="Um wrapper Next.js e Python em torno do Claude Code que traz a experiência do Lovable para sua própria máquina"><meta property="twitter:image" content="https://coders.ia.br/images/blog/claudable-lovable-self-hosted.jpg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Coders.ia.br RSS Feed" href="/rss.xml"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RDWGH1GM"></script><script type="module">const e=document.getElementById("mobile-menu-button"),t=document.getElementById("mobile-menu");e?.addEventListener("click",()=>{t?.classList.toggle("hidden")});</script><link rel="stylesheet" href="/_astro/artigos.Dr8Cq3gt.css"></head> <body class="min-h-screen bg-black text-slate-100 font-['Inter',sans-serif] antialiased"> <div class="flex flex-col min-h-screen"> <!-- Header --> <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60"> <div class="container mx-auto flex h-16 items-center justify-between px-4"> <!-- Logo --> <a href="/" class="flex items-center space-x-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-8 h-8"> <span class="text-xl font-bold text-white font-mono uppercase">CODERS.IA.BR</span> </a> <!-- Centered Navigation --> <nav class="hidden md:flex items-center space-x-8"> <a href="/artigos" class="text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> </nav> <!-- Social Icons --> <div class="hidden md:flex items-center space-x-4"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> <!-- Mobile menu button --> <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-menu w-6 h-6">  <path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path>  </svg> </button> </div> <!-- Mobile menu --> <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-4 space-y-2"> <a href="/artigos" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> <div class="flex items-center space-x-4 pt-4 border-t border-slate-700"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> </div> </div> </header> <!-- Main Content --> <main class="flex-1">  <article class="container mx-auto px-4 py-8 max-w-4xl"> <!-- Breadcrumb --> <nav class="mb-8 text-sm"> <ol class="flex items-center space-x-2 text-slate-400"> <li><a href="/" class="hover:text-accent-400 transition-colors">Home</a></li> <li><span class="mx-2">/</span></li> <li><a href="/categorias/inteligência artificial" class="hover:text-accent-400 transition-colors">Inteligência Artificial</a></li> <li><span class="mx-2">/</span></li> <li class="text-slate-300 truncate">Claudable: seu Lovable self hosted que roda no seu agente</li> </ol> </nav> <!-- Post Header --> <header class="mb-12 text-center"> <div class="mb-4"> <span class="inline-block px-3 py-1 text-xs font-medium text-accent-300 bg-accent-900/30 rounded-full border border-accent-800"> Inteligência Artificial </span> </div> <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"> Claudable: seu Lovable self hosted que roda no seu agente </h1> <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"> Um wrapper Next.js e Python em torno do Claude Code que traz a experiência do Lovable para sua própria máquina </p> <div class="flex items-center justify-center space-x-6 text-sm text-slate-400"> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-user w-4 h-4">  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle>  </svg> <span>Jonathan dos Santos</span> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition-colors duration-200" title="LinkedIn de Jonathan dos Santos"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4 ml-1">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> </div> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-calendar w-4 h-4">  <path d="M8 2v4"></path> <path d="M16 2v4"></path> <rect width="18" height="18" x="3" y="4" rx="2"></rect> <path d="M3 10h18"></path>  </svg> <time datetime="2025-10-10T00:00:00.000Z">10 de outubro de 2025</time> </div> </div> </header> <!-- Featured Image --> <div class="mb-12"> <img src="/images/blog/claudable-lovable-self-hosted.jpg" alt="Claudable: seu Lovable self hosted que roda no seu agente" class="w-full h-auto rounded-xl shadow-2xl"> </div> <!-- Post Content --> <div class="prose prose-lg prose-invert max-w-none mx-auto">  <p>O Lovable revolucionou o desenvolvimento de aplicações com IA através de uma interface visual intuitiva. E se você pudesse ter uma experiência similar, mas rodando localmente na sua máquina com controle total?</p>
+<h2 id="o-que-é-claudable">O que é Claudable?</h2>
+<p><strong>Claudable</strong> é um wrapper em Next.js e Python construído em torno do <strong>Claude Code</strong> que traz a experiência de desenvolvimento visual do Lovable para o seu ambiente local.</p>
+<p><strong>Repositório</strong>: <a href="https://github.com/opactorai/Claudable">GitHub - Claudable</a></p>
+<h2 id="o-que-é-claude-code">O que é Claude Code?</h2>
+<p>Para quem não conhece, <strong>Claude Code</strong> é a ferramenta oficial da Anthropic para desenvolvimento assistido por IA. É um agente de IA que:</p>
+<ul>
+<li><strong>Entende seu código</strong>: Analisa repositórios completos e compreende o contexto do seu projeto</li>
+<li><strong>Executa comandos</strong>: Pode rodar testes, instalar dependências, fazer commits no Git</li>
+<li><strong>Edita arquivos</strong>: Modifica código diretamente com compreensão do contexto</li>
+<li><strong>Integra com ferramentas</strong>: Trabalha com seu terminal, editor, Git, e outras ferramentas de desenvolvimento</li>
+<li><strong>Raciocina sobre arquitetura</strong>: Planeja mudanças complexas antes de executá-las</li>
+</ul>
+<p>Claude Code é como ter um desenvolvedor sênior trabalhando ao seu lado, mas que vive no seu terminal e tem acesso direto ao seu código.</p>
+<h2 id="como-claudable-funciona">Como Claudable Funciona</h2>
+<p>O Claudable pega toda a potência do Claude Code e adiciona uma interface web visual inspirada no Lovable. Ao invés de interagir apenas via terminal, você tem:</p>
+<ul>
+<li><strong>Interface visual moderna</strong>: Built com Next.js para uma experiência fluida</li>
+<li><strong>Backend Python</strong>: Orquestra as chamadas para o Claude Code</li>
+<li><strong>Desenvolvimento iterativo</strong>: Assim como no Lovable, você descreve o que quer e itera visualmente</li>
+<li><strong>Execução local</strong>: Tudo roda na sua máquina, seus dados ficam com você</li>
+</ul>
+<h2 id="principais-vantagens">Principais Vantagens</h2>
+<h3 id="1-controle-total">1. Controle Total</h3>
+<ul>
+<li>Roda 100% na sua máquina</li>
+<li>Você controla quando e como usar</li>
+<li>Sem dependência de serviços externos</li>
+</ul>
+<h3 id="2-privacidade-garantida">2. Privacidade Garantida</h3>
+<ul>
+<li>Seus projetos não saem do seu computador</li>
+<li>Ideal para projetos proprietários ou sensíveis</li>
+<li>Você decide o que compartilhar</li>
+</ul>
+<h3 id="3-customização-ilimitada">3. Customização Ilimitada</h3>
+<ul>
+<li>É código aberto, você pode modificar como quiser</li>
+<li>Adapte para seu workflow específico</li>
+<li>Adicione integrações personalizadas</li>
+</ul>
+<h3 id="4-economia">4. Economia</h3>
+<ul>
+<li>Pague apenas pela API do Claude</li>
+<li>Sem assinaturas mensais fixas</li>
+<li>Custo proporcional ao uso real</li>
+</ul>
+<h2 id="recursos-principais">Recursos Principais</h2>
+<p>O Claudable herda as capacidades do Claude Code e adiciona uma camada visual:</p>
+<ul>
+<li><strong>Geração de aplicações</strong>: React, Vue, Next.js, e outros frameworks modernos</li>
+<li><strong>Backend integrado</strong>: Suporte para Node.js, Python, e mais</li>
+<li><strong>Git nativo</strong>: Integração completa com controle de versão</li>
+<li><strong>Templates customizáveis</strong>: Crie seus próprios templates de projeto</li>
+<li><strong>Interface web intuitiva</strong>: Experiência visual similar ao Lovable</li>
+</ul>
+<h2 id="claudable-vs-lovable">Claudable vs Lovable</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Característica</th><th>Claudable</th><th>Lovable</th></tr></thead><tbody><tr><td><strong>Hospedagem</strong></td><td>Self-hosted (sua máquina)</td><td>Cloud (servidores deles)</td></tr><tr><td><strong>Privacidade</strong></td><td>Total - tudo local</td><td>Dados na plataforma</td></tr><tr><td><strong>Custo</strong></td><td>API Claude (pay-as-you-go)</td><td>Assinatura mensal fixa</td></tr><tr><td><strong>IA</strong></td><td>Claude (Anthropic)</td><td>GPT-4 (OpenAI)</td></tr><tr><td><strong>Customização</strong></td><td>Open-source, modifique à vontade</td><td>Limitado à plataforma</td></tr><tr><td><strong>Setup</strong></td><td>Requer instalação local</td><td>Pronto para usar no browser</td></tr><tr><td><strong>Stack</strong></td><td>Baseado em Claude Code</td><td>Stack próprio do Lovable</td></tr></tbody></table>
+<h2 id="para-quem-é-o-claudable">Para Quem é o Claudable?</h2>
+<p>O Claudable é ideal se você:</p>
+<ul>
+<li><strong>Valoriza privacidade</strong>: Trabalha com código proprietário ou sensível</li>
+<li><strong>Quer controle</strong>: Prefere rodar ferramentas localmente</li>
+<li><strong>Gosta de customizar</strong>: Quer adaptar a ferramenta ao seu workflow</li>
+<li><strong>Busca economia</strong>: Prefere pagar por uso ao invés de assinatura fixa</li>
+<li><strong>Já usa Claude Code</strong>: Quer uma interface visual sobre a ferramenta CLI</li>
+</ul>
+<h2 id="considerações-importantes">Considerações Importantes</h2>
+<p><strong>Vantagens de rodar local:</strong></p>
+<ul>
+<li>Privacidade total dos seus projetos</li>
+<li>Nenhuma latência de rede para ações locais</li>
+<li>Funciona offline (exceto chamadas à API)</li>
+<li>Controle completo sobre versionamento</li>
+</ul>
+<p><strong>Trade-offs:</strong></p>
+<ul>
+<li>Requer setup inicial (instalação, configuração)</li>
+<li>Você gerencia a infraestrutura (ainda que seja só local)</li>
+<li>Atualizações são manuais</li>
+<li>Suporte vem da comunidade, não de empresa</li>
+</ul>
+<h2 id="começando-com-claudable">Começando com Claudable</h2>
+<p>Para começar a usar o Claudable:</p>
+<ol>
+<li><strong>Pré-requisitos</strong>: Node.js, Python, e uma chave da API do Claude</li>
+<li><strong>Clone o repositório</strong>: Disponível no GitHub</li>
+<li><strong>Configure suas credenciais</strong>: API key da Anthropic</li>
+<li><strong>Inicie o servidor</strong>: Interface web ficará disponível localmente</li>
+<li><strong>Comece a criar</strong>: Descreva seu projeto e deixe o Claude Code trabalhar</li>
+</ol>
+<p>Todo o processo de instalação e configuração está documentado no repositório oficial do projeto.</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>O <strong>Claudable</strong> representa o melhor dos dois mundos: a experiência visual e intuitiva do Lovable, combinada com a potência do Claude Code e a privacidade de rodar tudo localmente.</p>
+<p>Se você busca <strong>controle total</strong>, <strong>privacidade</strong>, e quer aproveitar o poder do Claude Code com uma interface moderna, o Claudable é uma excelente escolha.</p>
+<p>E por ser open-source, você sempre pode adaptar a ferramenta às suas necessidades específicas - algo impossível com soluções proprietárias cloud.</p>
+<hr>
+<h2 id="links-úteis">Links Úteis</h2>
+<ul>
+<li><a href="https://github.com/opactorai/Claudable">Repositório Claudable</a></li>
+<li><a href="https://www.anthropic.com/claude/code">Claude Code Oficial</a></li>
+<li><a href="https://docs.anthropic.com/">Documentação da API Claude</a></li>
+</ul>  </div> <!-- Share Buttons --> <div class="mt-12 pt-8 border-t border-slate-800"> <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"> <h3 class="text-lg font-semibold text-white">Compartilhe este post</h3> <div class="flex items-center space-x-4"> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcoders.ia.br%2Fblog%2Fclaudable-lovable-self-hosted%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> <span class="hidden sm:inline">LinkedIn</span> </a> <a href="https://wa.me/?text=Claudable%3A%20seu%20Lovable%20self%20hosted%20que%20roda%20no%20seu%20agente https%3A%2F%2Fcoders.ia.br%2Fblog%2Fclaudable-lovable-self-hosted%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-message-circle w-4 h-4">  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>  </svg> <span class="hidden sm:inline">WhatsApp</span> </a> </div> </div> </div> <!-- Navigation to other posts could be added here --> </article>  </main> <!-- Footer --> <footer class="border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-8"> <div class="text-center"> <div class="flex items-center justify-center space-x-2 mb-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-6 h-6 opacity-60"> <span class="text-slate-400 font-mono">© 2025 CODERS.IA.BR. TODOS OS DIREITOS RESERVADOS.</span> </div> </div> </div> </footer> </div> <script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-L7RDWGH1GM");</script> </body> </html>

@@ -1,80 +1,132 @@
 ---
-title: "Dyad: o app desktop para gerar sites, apps e landing pages"
-description: "Conheça o Dyad, uma ferramenta desktop que simplifica a criação de sites, aplicações e landing pages com uma interface intuitiva"
+title: "Dyad: construtor de apps com IA local e open-source"
+description: "Conheça o Dyad, uma alternativa open-source ao Lovable e Bolt que roda localmente no seu computador com privacidade total e sem vendor lock-in"
 date: 2025-10-25
 category: "Ferramentas"
 author: "Jonathan dos Santos"
-tags: ["dyad", "desktop", "gerador", "sites", "landing-pages", "desenvolvimento"]
+tags: ["dyad", "ai", "open-source", "local", "app-builder", "desenvolvimento"]
 image: "/images/blog/dyad-app-desktop-gerador-sites.jpg"
 ---
 
+O **Dyad** é um construtor de aplicações com IA que roda completamente no seu computador. Diferente de ferramentas cloud como Lovable, v0 ou Bolt, o Dyad é **gratuito, local e open-source**, dando controle total sobre seus dados e código.
 
-Existem tantas ferramentas web para criar sites hoje em dia que às vezes esquecemos que **aplicações desktop ainda têm seu valor**. O **Dyad** é uma dessas ferramentas que me chamou atenção justamente por ser um app que você instala no seu computador, não mais uma plataforma online que depende de internet e assinatura mensal.
+## O que é o Dyad?
 
-A proposta do Dyad é simples: criar sites, aplicações web e landing pages de forma visual, mas com a vantagem de ter tudo rodando localmente na sua máquina. Isso significa que você pode trabalhar offline, tem controle total sobre os arquivos, e não fica preso a nenhuma plataforma online.
+O Dyad é uma **aplicação desktop Electron** para **macOS e Windows** que permite construir aplicações web usando inteligência artificial. Você descreve o que quer em linguagem natural através de um chat, e a IA gera o código necessário - interfaces, lógica e até banco de dados.
 
-## Por que um app desktop em 2025?
+A grande diferença está na arquitetura **desktop-first e local**: tudo roda na sua máquina usando sua própria infraestrutura. O Dyad não depende de servidores da empresa - você usa suas próprias API keys e sua própria infraestrutura para gerar as aplicações. Isso significa privacidade total (nenhum código enviado para servidores terceiros), respostas mais rápidas (sem latência de rede) e controle completo do projeto.
 
-Eu sei, parece contra-intuitivo num mundo onde tudo está migrando para a nuvem. Mas pensa comigo: quantas vezes você já ficou travado porque sua internet caiu no meio de um projeto? Ou teve que pagar assinatura mensal pra uma ferramenta que você usa esporadicamente?
+## Principais características
 
-O Dyad resolve isso sendo uma **ferramenta desktop multiplataforma** que funciona em Windows, Mac e Linux. Você baixa uma vez, instala, e pronto. Não tem cobrança recorrente, não tem dependência de internet pra trabalhar, e seus projetos ficam salvos localmente onde você quiser.
+### Open Source e sem lock-in
 
-A interface do Dyad é bem amigável, com um editor visual estilo drag & drop que lembra ferramentas mais conhecidas como Webflow ou Wix, mas sem a necessidade de estar sempre conectado. Você arrasta componentes pré-construídos, personaliza em tempo real, e vê o preview instantaneamente.
+O Dyad é **totalmente open-source** sob licença Apache 2.0, com mais de **17.6k stars no GitHub**. Todo código gerado é seu - você pode exportar, editar no VS Code ou Cursor, e fazer o que quiser com ele.
 
-## O que você consegue fazer
+Não existe vendor lock-in. Se amanhã você quiser migrar para outra ferramenta ou continuar manualmente, basta exportar o projeto e seguir em frente.
 
-O Dyad vem com uma **biblioteca bem completa de templates** pra diferentes tipos de projeto. Desde sites institucionais simples até landing pages otimizadas pra conversão, portfólios profissionais, blogs e até e-commerce básico. Os templates são todos responsivos e seguem boas práticas de design moderno.
+### Flexibilidade de modelos de IA
 
-E aqui vem uma das partes que eu mais gosto: o Dyad exporta código limpo. HTML5 semântico, CSS3 moderno, JavaScript vanilla. Nada de código poluído ou dependências desnecessárias. Se você quiser pegar o código exportado e continuar trabalhando manualmente, dá pra fazer tranquilo.
+Diferente de ferramentas que te prendem a um único modelo, o Dyad permite usar **qualquer modelo de IA** via API própria:
 
-A ferramenta também oferece integração com serviços populares como Google Analytics, Mailchimp, Stripe e PayPal. Então mesmo sendo uma ferramenta focada em simplicidade, ela não te limita quando você precisa de funcionalidades mais avançadas.
+- **Gemini 2.5 Pro** (Google)
+- **GPT-5** (OpenAI)
+- **Claude Sonnet 4.5** (Anthropic)
+- **Modelos locais via Ollama** (para privacidade máxima)
+
+Você traz sua própria API key (BYO API key) e escolhe qual modelo usar dependendo do contexto. Isso dá flexibilidade e reduz custos, já que você paga diretamente para os provedores de IA pelos créditos que usar.
+
+### Full-stack com Supabase
+
+O Dyad não se limita a gerar interfaces. Com integração nativa ao **Supabase**, você pode construir aplicações completas incluindo:
+
+- **Autenticação de usuários**
+- **Banco de dados** (PostgreSQL)
+- **Funções serverless**
+- **APIs REST**
+
+Isso significa que você pode criar desde landing pages simples até aplicações complexas com backend, tudo através de conversas com a IA.
+
+### Desenvolvimento local integrado
+
+Por rodar localmente, o Dyad oferece:
+
+- **Preview instantâneo** das mudanças
+- **Sem latência** de rede
+- **Integração perfeita** com editores como VS Code e Cursor
+- **Privacidade total** - nenhum dado enviado para nuvem
+
+Você continua usando suas ferramentas favoritas de desenvolvimento e o Dyad complementa seu workflow, sem substituir nada.
+
+## Modelo de preços
+
+O Dyad tem três planos:
+
+**Dyad Free - $0**
+- Construtor local completo
+- Você traz sua própria API key
+- Suporte via comunidade
+- Ideal para começar e testar
+
+**Dyad Pro - $30/mês**
+- 300 créditos de IA mensais
+- Modos exclusivos Pro
+- Suporte direto da equipe
+- Upgrades e downgrades flexíveis
+
+**Dyad Max - $79/mês**
+- 900 créditos mensais (3x mais que Pro)
+- Créditos recarregáveis
+- Todos os recursos Pro inclusos
+
+A versão gratuita já é completamente funcional. Os planos pagos adicionam créditos de IA pré-inclusos e suporte premium, mas você sempre pode usar a versão free com suas próprias API keys.
 
 ## Para quem serve?
 
-Na minha opinião, o Dyad se encaixa perfeitamente pra três perfis diferentes:
+O Dyad é ideal para:
 
-**Desenvolvedores** que querem acelerar a criação de protótipos ou landing pages simples sem ter que partir do zero toda vez. Em vez de gastar tempo montando estrutura HTML/CSS básica, você já começa com um template e customiza. O código gerado é limpo e você pode integrar com suas ferramentas de sempre.
+**Desenvolvedores** que valorizam privacidade e controle. Se você não quer enviar código sensível para servidores terceiros ou quer manter projetos de clientes completamente privados, o Dyad roda tudo localmente.
 
-**Designers** que querem ter controle total sobre o visual sem depender de um desenvolvedor pra coisas simples. A interface visual do Dyad permite criar layouts complexos sem escrever código, mas ainda mantendo consistência através de um sistema de design com componentes reutilizáveis.
+**Equipes pequenas** que querem evitar vendor lock-in. Você não fica preso a plataformas cloud caras e mantém total portabilidade do código gerado.
 
-**Empresários e freelancers** que precisam criar sites de forma rápida e profissional, mas não querem ficar pagando assinaturas mensais de ferramentas online. Com o Dyad você paga uma vez e usa indefinidamente, o que faz muito mais sentido se você não está criando sites todos os dias.
+**Projetos open-source** onde transparência importa. Sendo open-source, você pode auditar, modificar e contribuir com melhorias na própria ferramenta.
 
-## Comparando com as alternativas online
-
-Quando você compara o Dyad com ferramentas como Webflow ou Wix, a diferença principal é a **autonomia**. No Webflow, você tem uma plataforma super poderosa mas está completamente preso ao ecossistema deles e pagando mensalmente. No Wix, nem sequer consegue exportar seu código de forma limpa.
-
-O Dyad oferece o melhor dos dois mundos: interface visual amigável como o Wix, mas com código exportável e limpo como o Webflow. E ainda por cima, funciona offline e você não depende de servidor terceiro pra trabalhar nos seus projetos.
-
-A única desvantagem real é que sendo desktop, você não tem a facilidade de acessar seus projetos de qualquer lugar como nas ferramentas web. Mas pra quem trabalha principalmente de um único computador ou não se importa em sincronizar via Git/Dropbox, não é um problema real.
-
-## Modelo de preços que faz sentido
-
-O Dyad tem três versões: Free, Pro e Enterprise.
-
-A versão gratuita já dá pra testar e criar projetos simples, mas vem com templates básicos, export limitado e marca d'água. É útil pra conhecer a ferramenta.
-
-A versão Pro libera todos os templates, export ilimitado, remove a marca d'água e dá suporte prioritário. É o sweet spot pra maioria dos usuários.
-
-Já a versão Enterprise é pra quem precisa de licença comercial pra revender sites ou quer templates exclusivos e suporte dedicado.
-
-O diferencial aqui é que você **paga uma vez**, não mensalmente. Isso muda completamente a matemática, especialmente se você não está criando sites todo dia. Uma assinatura de Webflow ou Wix pode custar dezenas de dólares por mês. O Dyad você paga uma vez e usa pra sempre.
-
-## Vale a pena?
-
-Eu diria que **sim, especialmente se você valoriza autonomia e não gosta de ficar preso a assinaturas**. O Dyad não vai substituir ferramentas mais avançadas pra projetos complexos, mas pra landing pages, sites simples, portfólios e protótipos, ele resolve muito bem.
-
-A comunidade do Dyad está crescendo e já tem uma biblioteca legal de templates compartilhados pelos usuários. A documentação é completa, tem tutoriais em vídeo, e o suporte responde rápido.
-
-Outra vantagem é que por ser uma ferramenta desktop, ela **não te obriga a usar tecnologias ou frameworks específicos**. Você exporta HTML/CSS/JS puro e faz o que quiser depois. Quer integrar com React? Pode. Quer subir num servidor Apache tradicional? Pode também.
+**Quem trabalha offline** ou em ambientes com conectividade limitada. Como tudo roda local, você continua produtivo mesmo sem internet confiável (apenas necessária para chamadas às APIs de IA quando não usar modelos locais).
 
 ## Como começar
 
-O processo é bem direto: você baixa o instalador do site oficial, instala na sua máquina, abre a ferramenta e já pode começar escolhendo um template ou partindo do zero. A interface em português ajuda bastante pra quem não é fluente em inglês.
+1. **Baixe o instalador** em [dyad.sh](https://dyad.sh)
+   - Disponível para macOS (Apple Silicon e Intel) e Windows
+   - Mais de 500.000 downloads
+   - Rating 4.9/5 dos usuários
 
-Minha recomendação é começar com um template próximo do que você quer criar, mesmo que não seja perfeito. É muito mais rápido customizar um template existente do que começar do zero. Você pode trocar cores, fontes, textos e imagens com poucos cliques, e ir refinando conforme necessário.
+2. **Instale na sua máquina**
+   - Processo simples e rápido
+   - Sem necessidade de configurações complexas
 
-Quando estiver satisfeito, é só exportar o projeto. Você vai receber os arquivos HTML, CSS e JavaScript organizados, prontos pra fazer upload no servidor de sua escolha ou integrar com seu pipeline de deploy.
+3. **Configure suas API keys**
+   - Adicione chaves do Gemini, GPT, Claude ou outros
+   - Ou configure Ollama para modelos locais
+
+4. **Comece a construir**
+   - Descreva o que quer em linguagem natural
+   - A IA gera o código em tempo real
+   - Preview instantâneo das mudanças
+
+## Comunidade ativa
+
+O Dyad tem uma **comunidade crescente de 2.500+ desenvolvedores** no Reddit compartilhando projetos, templates e dicas. A documentação é completa e há tutoriais em vídeo para começar rapidamente.
+
+Sendo open-source, você também pode contribuir com melhorias no [GitHub](https://github.com/dyad-sh/dyad) ou reportar bugs diretamente com a comunidade de desenvolvedores.
+
+## Vale a pena?
+
+Se você valoriza **privacidade, autonomia e flexibilidade**, o Dyad é uma excelente escolha. Não é a ferramenta mais simples para iniciantes completos (você precisa entender conceitos de desenvolvimento), mas para desenvolvedores que querem acelerar o workflow sem perder controle, é uma alternativa sólida às plataformas cloud.
+
+A combinação de ser **gratuito, open-source, local e sem lock-in** torna o Dyad único no mercado de AI app builders. Você tem liberdade total para escolher modelos de IA, exportar código e manter projetos privados - tudo rodando na sua própria máquina.
 
 ---
 
-O **Dyad** não é a ferramenta mais poderosa do mercado nem a mais conhecida, mas tem um nicho bem definido: desenvolvedores e designers que querem **rapidez, autonomia e código limpo sem assinaturas mensais**. Se isso faz sentido pro seu caso de uso, vale muito a pena dar uma chance.
+**Links úteis:**
+- Site oficial: [dyad.sh](https://dyad.sh)
+- GitHub: [github.com/dyad-sh/dyad](https://github.com/dyad-sh/dyad)
+- Download: Disponível no site oficial para macOS e Windows

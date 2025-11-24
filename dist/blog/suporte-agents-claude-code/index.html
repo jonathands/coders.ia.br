@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="pt-BR" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Como adicionar suporte para arquivos AGENTS.md no Claude Code para equipes de ferramentas híbridas"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.10"><!-- Primary Meta Tags --><title>Adicionando suporte a AGENTS.md no Claude Code</title><meta name="title" content="Adicionando suporte a AGENTS.md no Claude Code"><meta name="description" content="Como adicionar suporte para arquivos AGENTS.md no Claude Code para equipes de ferramentas híbridas"><link rel="canonical" href="https://coders.ia.br/blog/suporte-agents-claude-code/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://coders.ia.br/blog/suporte-agents-claude-code/"><meta property="og:title" content="Adicionando suporte a AGENTS.md no Claude Code"><meta property="og:description" content="Como adicionar suporte para arquivos AGENTS.md no Claude Code para equipes de ferramentas híbridas"><meta property="og:site_name" content="Coders.ia.br"><meta property="og:image" content="https://coders.ia.br/images/blog/suporte-agents-claude-code.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://coders.ia.br/blog/suporte-agents-claude-code/"><meta property="twitter:title" content="Adicionando suporte a AGENTS.md no Claude Code"><meta property="twitter:description" content="Como adicionar suporte para arquivos AGENTS.md no Claude Code para equipes de ferramentas híbridas"><meta property="twitter:image" content="https://coders.ia.br/images/blog/suporte-agents-claude-code.jpg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Coders.ia.br RSS Feed" href="/rss.xml"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RDWGH1GM"></script><script type="module">const e=document.getElementById("mobile-menu-button"),t=document.getElementById("mobile-menu");e?.addEventListener("click",()=>{t?.classList.toggle("hidden")});</script><link rel="stylesheet" href="/_astro/artigos.Dr8Cq3gt.css"></head> <body class="min-h-screen bg-black text-slate-100 font-['Inter',sans-serif] antialiased"> <div class="flex flex-col min-h-screen"> <!-- Header --> <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60"> <div class="container mx-auto flex h-16 items-center justify-between px-4"> <!-- Logo --> <a href="/" class="flex items-center space-x-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-8 h-8"> <span class="text-xl font-bold text-white font-mono uppercase">CODERS.IA.BR</span> </a> <!-- Centered Navigation --> <nav class="hidden md:flex items-center space-x-8"> <a href="/artigos" class="text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> </nav> <!-- Social Icons --> <div class="hidden md:flex items-center space-x-4"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> <!-- Mobile menu button --> <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-menu w-6 h-6">  <path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path>  </svg> </button> </div> <!-- Mobile menu --> <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-4 space-y-2"> <a href="/artigos" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> <div class="flex items-center space-x-4 pt-4 border-t border-slate-700"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> </div> </div> </header> <!-- Main Content --> <main class="flex-1">  <article class="container mx-auto px-4 py-8 max-w-4xl"> <!-- Breadcrumb --> <nav class="mb-8 text-sm"> <ol class="flex items-center space-x-2 text-slate-400"> <li><a href="/" class="hover:text-accent-400 transition-colors">Home</a></li> <li><span class="mx-2">/</span></li> <li><a href="/categorias/desenvolvimento" class="hover:text-accent-400 transition-colors">Desenvolvimento</a></li> <li><span class="mx-2">/</span></li> <li class="text-slate-300 truncate">Adicionando suporte a AGENTS.md no Claude Code</li> </ol> </nav> <!-- Post Header --> <header class="mb-12 text-center"> <div class="mb-4"> <span class="inline-block px-3 py-1 text-xs font-medium text-accent-300 bg-accent-900/30 rounded-full border border-accent-800"> Desenvolvimento </span> </div> <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"> Adicionando suporte a AGENTS.md no Claude Code </h1> <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"> Como adicionar suporte para arquivos AGENTS.md no Claude Code para equipes de ferramentas híbridas </p> <div class="flex items-center justify-center space-x-6 text-sm text-slate-400"> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-user w-4 h-4">  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle>  </svg> <span>Jonathan dos Santos</span> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition-colors duration-200" title="LinkedIn de Jonathan dos Santos"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4 ml-1">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> </div> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-calendar w-4 h-4">  <path d="M8 2v4"></path> <path d="M16 2v4"></path> <rect width="18" height="18" x="3" y="4" rx="2"></rect> <path d="M3 10h18"></path>  </svg> <time datetime="2025-11-10T00:00:00.000Z">10 de novembro de 2025</time> </div> </div> </header> <!-- Featured Image --> <div class="mb-12"> <img src="/images/blog/suporte-agents-claude-code.jpg" alt="Adicionando suporte a AGENTS.md no Claude Code" class="w-full h-auto rounded-xl shadow-2xl"> </div> <!-- Post Content --> <div class="prose prose-lg prose-invert max-w-none mx-auto">  <p>Embora a Anthropic não tenha liberado suporte para AGENTS.md no Claude Code (se eles forem), desenvolvedores em equipes de ferramentas híbridas precisam contornar as convenções de nomenclatura para cada ferramenta.</p>
+<p>(Se você não sabe sobre AGENTS.md, dê uma olhada em <a href="https://agents.md/">https://agents.md/</a>)</p>
+<p>Para mim, a maneira mais direta de adicionar suporte foi simplesmente usando um hook do Claude Code.</p>
+<p>Você pode simplesmente usar um symlink assim: <code>ln -s AGENTS.md CLAUDE.md</code>, mas fazer isso em vários projetos pode ficar bem tedioso.</p>
+<p>Outra boa opção é criar um Hook global que verifica se o projeto ou o monorepo tem um AGENTS.md e carrega junto com o CLAUDE.md.</p>
+<p>Hooks podem parecer assustadores no início, mas não são tão assustadores assim quando você consegue fazê-los funcionar.</p>
+<p>Um hook é basicamente um Evento no fluxo REPL do Claude Code. Para isso, usaremos o hook SessionStart, então toda vez que você inicializar uma sessão, o Claude lê o AGENTS.md se ele existir.</p>
+<h2 id="criando-o-hook-global">Criando o Hook Global</h2>
+<h3 id="passo-1-criar-o-arquivo-de-hook">Passo 1: Criar o arquivo de hook</h3>
+<p>Crie o arquivo de hook em <code>~/.config/claude/hooks/agents-support.md</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Criar o diretório se não existir</span></span>
+<span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#79B8FF"> -p</span><span style="color:#9ECBFF"> ~/.config/claude/hooks</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Criar o arquivo do hook</span></span>
+<span class="line"><span style="color:#B392F0">touch</span><span style="color:#9ECBFF"> ~/.config/claude/hooks/agents-support.md</span></span></code></pre>
+<h3 id="passo-2-adicionar-o-conteúdo-do-hook">Passo 2: Adicionar o conteúdo do hook</h3>
+<p>Edite o arquivo <code>~/.config/claude/hooks/agents-support.md</code> e adicione:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">---</span></span>
+<span class="line"><span style="color:#85E89D">description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Hook para carregar AGENTS.md automaticamente se existir"</span></span>
+<span class="line"><span style="color:#85E89D">matcher</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"*"</span></span>
+<span class="line"><span style="color:#85E89D">event</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">SessionStart</span></span>
+<span class="line"><span style="color:#E1E4E8">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Se existir um arquivo chamado AGENTS.md no diretório atual ou em qualquer diretório pai (procurando até a raiz do repositório), leia seu conteúdo e incorpore as instruções.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Procure recursivamente por AGENTS.md começando do diretório atual até encontrar:</span></span>
+<span class="line"><span style="color:#FFAB70">1.</span><span style="color:#E1E4E8"> Um arquivo AGENTS.md</span></span>
+<span class="line"><span style="color:#FFAB70">2.</span><span style="color:#E1E4E8"> Um diretório .git (raiz do repositório)</span></span>
+<span class="line"><span style="color:#FFAB70">3.</span><span style="color:#E1E4E8"> O diretório home do usuário</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Se encontrar AGENTS.md, leia e siga as instruções nele contidas junto com o CLAUDE.md (se existir).</span></span></code></pre>
+<h3 id="passo-3-como-funciona">Passo 3: Como funciona</h3>
+<p>Quando você inicia uma sessão do Claude Code, o hook será executado automaticamente e:</p>
+<ol>
+<li>Procura por um arquivo <code>AGENTS.md</code> no diretório atual</li>
+<li>Se não encontrar, procura em diretórios pai</li>
+<li>Para quando encontra <code>.git</code> (indicando raiz do repositório)</li>
+<li>Se encontrar <code>AGENTS.md</code>, carrega o conteúdo junto com <code>CLAUDE.md</code></li>
+</ol>
+<h3 id="exemplo-de-agentsmd">Exemplo de AGENTS.md</h3>
+<p>Aqui está um exemplo de arquivo <code>AGENTS.md</code> que você pode usar em seus projetos:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold"># Agent Instructions</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## Project Overview</span></span>
+<span class="line"><span style="color:#E1E4E8">Este é um projeto que usa múltiplas ferramentas de IA (Claude Code, Cursor, etc.)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## Code Style</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Use TypeScript para todos os arquivos</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Prefira programação funcional</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Sempre adicione testes para novas features</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## Architecture</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Frontend: React + Vite</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Backend: Node.js + Express</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Database: PostgreSQL</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## Commands</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#79B8FF"> `npm run dev`</span><span style="color:#E1E4E8"> - Inicia servidor de desenvolvimento</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#79B8FF"> `npm test`</span><span style="color:#E1E4E8"> - Executa testes</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#79B8FF"> `npm run build`</span><span style="color:#E1E4E8"> - Build de produção</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## Git Conventions</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Use conventional commits</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Branch naming: feature/, bugfix/, hotfix/</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Sempre crie PR para merge na main</span></span></code></pre>
+<h2 id="benefícios-dessa-abordagem">Benefícios dessa Abordagem</h2>
+<h3 id="compatibilidade-universal">Compatibilidade Universal</h3>
+<ul>
+<li>Funciona com Claude Code, Cursor, Windsurf e outras ferramentas</li>
+<li>Mantém um único arquivo de instruções para toda a equipe</li>
+</ul>
+<h3 id="automação">Automação</h3>
+<ul>
+<li>Não precisa criar symlinks manualmente</li>
+<li>Funciona automaticamente em novos projetos</li>
+</ul>
+<h3 id="manutenibilidade">Manutenibilidade</h3>
+<ul>
+<li>Um único hook global gerencia tudo</li>
+<li>Fácil de atualizar e modificar</li>
+</ul>
+<h2 id="verificando-se-funciona">Verificando se Funciona</h2>
+<p>Para testar se o hook está funcionando:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Crie um AGENTS.md de teste em um projeto</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> seu-projeto</span></span>
+<span class="line"><span style="color:#79B8FF">echo</span><span style="color:#9ECBFF"> "# Test Agent Instructions"</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF"> AGENTS.md</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Inicie o Claude Code</span></span>
+<span class="line"><span style="color:#B392F0">claude</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Pergunte se ele viu o AGENTS.md</span></span>
+<span class="line"><span style="color:#B392F0">"Você leu algum arquivo AGENTS.md neste projeto?"</span></span></code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="hook-não-está-sendo-executado">Hook não está sendo executado</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Verifique se o arquivo existe</span></span>
+<span class="line"><span style="color:#B392F0">ls</span><span style="color:#79B8FF"> -la</span><span style="color:#9ECBFF"> ~/.config/claude/hooks/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Verifique as permissões</span></span>
+<span class="line"><span style="color:#B392F0">chmod</span><span style="color:#79B8FF"> 644</span><span style="color:#9ECBFF"> ~/.config/claude/hooks/agents-support.md</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Verifique a sintaxe do hook</span></span>
+<span class="line"><span style="color:#B392F0">cat</span><span style="color:#9ECBFF"> ~/.config/claude/hooks/agents-support.md</span></span></code></pre>
+<h3 id="agentsmd-não-está-sendo-lido">AGENTS.md não está sendo lido</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Verifique se o arquivo existe</span></span>
+<span class="line"><span style="color:#B392F0">ls</span><span style="color:#79B8FF"> -la</span><span style="color:#9ECBFF"> AGENTS.md</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Verifique o conteúdo</span></span>
+<span class="line"><span style="color:#B392F0">cat</span><span style="color:#9ECBFF"> AGENTS.md</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Tente com caminho absoluto</span></span>
+<span class="line"><span style="color:#79B8FF">pwd</span></span></code></pre>
+<h2 id="alternativas">Alternativas</h2>
+<h3 id="opção-1-symlink-manual">Opção 1: Symlink (Manual)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">ln</span><span style="color:#79B8FF"> -s</span><span style="color:#9ECBFF"> AGENTS.md</span><span style="color:#9ECBFF"> CLAUDE.md</span></span></code></pre>
+<p><strong>Prós:</strong> Simples
+<strong>Contras:</strong> Precisa repetir em cada projeto</p>
+<h3 id="opção-2-script-de-setup">Opção 2: Script de Setup</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D">#!/bin/bash</span></span>
+<span class="line"><span style="color:#6A737D"># setup-agents.sh</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> [ </span><span style="color:#F97583">-f</span><span style="color:#9ECBFF"> "AGENTS.md"</span><span style="color:#E1E4E8"> ]; </span><span style="color:#F97583">then</span></span>
+<span class="line"><span style="color:#B392F0">  ln</span><span style="color:#79B8FF"> -sf</span><span style="color:#9ECBFF"> AGENTS.md</span><span style="color:#9ECBFF"> CLAUDE.md</span></span>
+<span class="line"><span style="color:#79B8FF">  echo</span><span style="color:#9ECBFF"> "✅ Symlink criado"</span></span>
+<span class="line"><span style="color:#F97583">fi</span></span></code></pre>
+<p><strong>Prós:</strong> Automatizável
+<strong>Contras:</strong> Precisa executar em cada projeto</p>
+<h3 id="opção-3-hook-global-recomendado">Opção 3: Hook Global (Recomendado)</h3>
+<p><strong>Prós:</strong> Funciona automaticamente, sem manutenção
+<strong>Contras:</strong> Requer configuração inicial</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>Adicionar suporte para AGENTS.md no Claude Code através de hooks globais é a melhor solução para equipes que trabalham com múltiplas ferramentas de IA. Isso permite manter um único arquivo de instruções que funciona em todas as ferramentas, sem necessidade de duplicação ou manutenção manual.</p>
+<h3 id="próximos-passos">Próximos Passos</h3>
+<ol>
+<li><strong>Crie o hook global</strong> seguindo os passos acima</li>
+<li><strong>Adicione AGENTS.md</strong> aos seus projetos</li>
+<li><strong>Teste</strong> para garantir que funciona</li>
+<li><strong>Compartilhe</strong> com sua equipe</li>
+</ol>
+<p>Com essa configuração, você terá uma experiência consistente independentemente de qual ferramenta de IA você ou sua equipe usar!</p>
+<hr>
+<p><em>Última atualização: Setembro 2025</em></p>  </div> <!-- Share Buttons --> <div class="mt-12 pt-8 border-t border-slate-800"> <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"> <h3 class="text-lg font-semibold text-white">Compartilhe este post</h3> <div class="flex items-center space-x-4"> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcoders.ia.br%2Fblog%2Fsuporte-agents-claude-code%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> <span class="hidden sm:inline">LinkedIn</span> </a> <a href="https://wa.me/?text=Adicionando%20suporte%20a%20AGENTS.md%20no%20Claude%20Code https%3A%2F%2Fcoders.ia.br%2Fblog%2Fsuporte-agents-claude-code%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-message-circle w-4 h-4">  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>  </svg> <span class="hidden sm:inline">WhatsApp</span> </a> </div> </div> </div> <!-- Navigation to other posts could be added here --> </article>  </main> <!-- Footer --> <footer class="border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-8"> <div class="text-center"> <div class="flex items-center justify-center space-x-2 mb-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-6 h-6 opacity-60"> <span class="text-slate-400 font-mono">© 2025 CODERS.IA.BR. TODOS OS DIREITOS RESERVADOS.</span> </div> </div> </div> </footer> </div> <script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-L7RDWGH1GM");</script> </body> </html>

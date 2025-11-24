@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="pt-BR" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Entenda DNS de forma prática: o que é, como funcionam os registros básicos, onde gerenciar e como configurar emails profissionais"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.10"><!-- Primary Meta Tags --><title>DNS: o mínimo que um desenvolvedor deve saber</title><meta name="title" content="DNS: o mínimo que um desenvolvedor deve saber"><meta name="description" content="Entenda DNS de forma prática: o que é, como funcionam os registros básicos, onde gerenciar e como configurar emails profissionais"><link rel="canonical" href="https://coders.ia.br/blog/dns-minimo-desenvolvedor-deve-saber/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://coders.ia.br/blog/dns-minimo-desenvolvedor-deve-saber/"><meta property="og:title" content="DNS: o mínimo que um desenvolvedor deve saber"><meta property="og:description" content="Entenda DNS de forma prática: o que é, como funcionam os registros básicos, onde gerenciar e como configurar emails profissionais"><meta property="og:site_name" content="Coders.ia.br"><meta property="og:image" content="https://coders.ia.br/images/blog/dns-minimo-desenvolvedor-deve-saber.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://coders.ia.br/blog/dns-minimo-desenvolvedor-deve-saber/"><meta property="twitter:title" content="DNS: o mínimo que um desenvolvedor deve saber"><meta property="twitter:description" content="Entenda DNS de forma prática: o que é, como funcionam os registros básicos, onde gerenciar e como configurar emails profissionais"><meta property="twitter:image" content="https://coders.ia.br/images/blog/dns-minimo-desenvolvedor-deve-saber.jpg"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Coders.ia.br RSS Feed" href="/rss.xml"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RDWGH1GM"></script><script type="module">const e=document.getElementById("mobile-menu-button"),t=document.getElementById("mobile-menu");e?.addEventListener("click",()=>{t?.classList.toggle("hidden")});</script><link rel="stylesheet" href="/_astro/artigos.Dr8Cq3gt.css"></head> <body class="min-h-screen bg-black text-slate-100 font-['Inter',sans-serif] antialiased"> <div class="flex flex-col min-h-screen"> <!-- Header --> <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60"> <div class="container mx-auto flex h-16 items-center justify-between px-4"> <!-- Logo --> <a href="/" class="flex items-center space-x-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-8 h-8"> <span class="text-xl font-bold text-white font-mono uppercase">CODERS.IA.BR</span> </a> <!-- Centered Navigation --> <nav class="hidden md:flex items-center space-x-8"> <a href="/artigos" class="text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> </nav> <!-- Social Icons --> <div class="hidden md:flex items-center space-x-4"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> <!-- Mobile menu button --> <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-menu w-6 h-6">  <path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path>  </svg> </button> </div> <!-- Mobile menu --> <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-4 space-y-2"> <a href="/artigos" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> <div class="flex items-center space-x-4 pt-4 border-t border-slate-700"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> </div> </div> </header> <!-- Main Content --> <main class="flex-1">  <article class="container mx-auto px-4 py-8 max-w-4xl"> <!-- Breadcrumb --> <nav class="mb-8 text-sm"> <ol class="flex items-center space-x-2 text-slate-400"> <li><a href="/" class="hover:text-accent-400 transition-colors">Home</a></li> <li><span class="mx-2">/</span></li> <li><a href="/categorias/infraestrutura" class="hover:text-accent-400 transition-colors">Infraestrutura</a></li> <li><span class="mx-2">/</span></li> <li class="text-slate-300 truncate">DNS: o mínimo que um desenvolvedor deve saber</li> </ol> </nav> <!-- Post Header --> <header class="mb-12 text-center"> <div class="mb-4"> <span class="inline-block px-3 py-1 text-xs font-medium text-accent-300 bg-accent-900/30 rounded-full border border-accent-800"> Infraestrutura </span> </div> <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"> DNS: o mínimo que um desenvolvedor deve saber </h1> <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"> Entenda DNS de forma prática: o que é, como funcionam os registros básicos, onde gerenciar e como configurar emails profissionais </p> <div class="flex items-center justify-center space-x-6 text-sm text-slate-400"> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-user w-4 h-4">  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle>  </svg> <span>Jonathan dos Santos</span> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition-colors duration-200" title="LinkedIn de Jonathan dos Santos"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4 ml-1">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> </div> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-calendar w-4 h-4">  <path d="M8 2v4"></path> <path d="M16 2v4"></path> <rect width="18" height="18" x="3" y="4" rx="2"></rect> <path d="M3 10h18"></path>  </svg> <time datetime="2025-11-23T00:00:00.000Z">23 de novembro de 2025</time> </div> </div> </header> <!-- Featured Image --> <div class="mb-12"> <img src="/images/blog/dns-minimo-desenvolvedor-deve-saber.jpg" alt="DNS: o mínimo que um desenvolvedor deve saber" class="w-full h-auto rounded-xl shadow-2xl"> </div> <!-- Post Content --> <div class="prose prose-lg prose-invert max-w-none mx-auto">  <p>DNS é uma daquelas coisas que todo desenvolvedor precisa lidar em algum momento, mas muita gente vai empurrando com a barriga até ser obrigado a aprender na urgência. Já vi projetos inteiros atrasarem porque o desenvolvedor não sabia apontar um domínio pro servidor certo, ou emails importantes sendo perdidos por configuração errada de DNS.</p>
+<p>A boa notícia é que você não precisa ser especialista em infraestrutura pra entender o essencial de DNS. Com alguns conceitos básicos, você consegue resolver 95% das situações do dia a dia. Vamos direto ao que importa.</p>
+<h2 id="o-que-é-dns-e-porque-é-importante-entender">O que é DNS e porque é importante entender</h2>
+<p><strong>DNS (Domain Name System)</strong> é basicamente a agenda telefônica da internet. Quando você digita <code>google.com</code> no navegador, seu computador não faz ideia de onde fica o Google. Ele precisa perguntar pro DNS: “ei, qual o endereço IP desse domínio?”. O DNS responde algo como “74.125.224.72”, e aí sim o navegador consegue se conectar.</p>
+<p>Sem DNS, você teria que decorar endereços IP pra acessar sites. Imagina ter que lembrar que o YouTube é <code>142.250.185.206</code> ao invés de simplesmente <code>youtube.com</code>. Seria horrível.</p>
+<p>Mas pra desenvolvedor, DNS é importante por razões muito mais práticas. Quando você faz deploy de uma aplicação, precisa apontar seu domínio pro servidor onde ela está rodando. Se você usa um serviço de email profissional como Google Workspace ou Outlook, precisa configurar registros DNS específicos. Quer usar CDN? Precisa mexer no DNS. Quer configurar HTTPS? Alguns certificados precisam de validação via DNS.</p>
+<p>A diferença entre um desenvolvedor que entende DNS e um que não entende é simples: um consegue fazer essas tarefas em 5 minutos, o outro passa horas tentando descobrir por que nada funciona.</p>
+<p>O DNS funciona de forma hierárquica e distribuída. Quando você registra um domínio como <code>seusite.com.br</code>, você está basicamente alugando aquele nome por um período (normalmente 1 ano). Mas registrar o domínio não faz nada sozinho - você precisa configurar <strong>onde</strong> aquele domínio aponta.</p>
+<p>É aí que entram os <strong>nameservers</strong>. Nameservers são servidores que guardam os registros DNS do seu domínio. Quando alguém tenta acessar seu site, o navegador pergunta pros nameservers: “onde fica esse domínio?”. Os nameservers respondem com base nos registros que você configurou.</p>
+<p>Por padrão, quando você registra um domínio, ele vem com nameservers do próprio registrador (Registro.br, GoDaddy, etc). Mas você pode trocar os nameservers pra usar serviços especializados como Cloudflare, que oferecem recursos extras como cache, proteção DDoS, e interface mais amigável.</p>
+<h2 id="os-registros-básicos-de-dns-e-como-funcionam">Os registros básicos de DNS e como funcionam</h2>
+<p>Registros DNS são instruções que você configura pra dizer como seu domínio deve se comportar. Existem vários tipos, mas você vai usar principalmente quatro no dia a dia:</p>
+<h3 id="registro-a-address">Registro A (Address)</h3>
+<p>O registro <strong>A</strong> aponta um domínio ou subdomínio diretamente pra um endereço IPv4. É o mais comum e provavelmente o primeiro que você vai configurar.</p>
+<p><strong>Exemplo prático:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: A</span></span>
+<span class="line"><span>Valor: 192.168.1.100</span></span>
+<span class="line"><span>TTL: 3600</span></span></code></pre>
+<p>Isso significa: quando alguém acessar <code>seudominio.com</code> (o @ representa o domínio raiz), mande pra <code>192.168.1.100</code>. Você usa registro A quando tem um servidor com IP fixo rodando sua aplicação.</p>
+<p>Se você quer que <code>www.seudominio.com</code> aponte pro mesmo servidor:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: www</span></span>
+<span class="line"><span>Tipo: A</span></span>
+<span class="line"><span>Valor: 192.168.1.100</span></span>
+<span class="line"><span>TTL: 3600</span></span></code></pre>
+<p>O <strong>TTL (Time To Live)</strong> indica quanto tempo em segundos essa informação pode ficar em cache. Um TTL de 3600 significa 1 hora. Se você vai fazer mudanças, é bom reduzir o TTL antes pra as mudanças se propagarem mais rápido.</p>
+<h3 id="registro-cname-canonical-name">Registro CNAME (Canonical Name)</h3>
+<p>O registro <strong>CNAME</strong> cria um alias, ou seja, faz um domínio apontar pra outro domínio ao invés de um IP direto. É muito útil quando você usa serviços de terceiros.</p>
+<p><strong>Exemplo prático:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: blog</span></span>
+<span class="line"><span>Tipo: CNAME</span></span>
+<span class="line"><span>Valor: seusite.vercel.app</span></span>
+<span class="line"><span>TTL: 3600</span></span></code></pre>
+<p>Isso faz <code>blog.seudominio.com</code> apontar pra <code>seusite.vercel.app</code>. Quando alguém acessa seu blog, o DNS resolve primeiro o CNAME, descobre que deve ir pra Vercel, e então resolve o IP do servidor da Vercel.</p>
+<p><strong>Regra importante:</strong> você NÃO pode usar CNAME no domínio raiz (@). Então isso aqui é <strong>errado</strong>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: CNAME</span></span>
+<span class="line"><span>Valor: seusite.vercel.app</span></span></code></pre>
+<p>É uma limitação técnica do protocolo DNS. Pra domínio raiz, você precisa usar registro A ou então o CNAME especial da Cloudflare (que tecnicamente é um A dinâmico, mas funciona como CNAME).</p>
+<h3 id="registro-mx-mail-exchange">Registro MX (Mail Exchange)</h3>
+<p>O registro <strong>MX</strong> define quais servidores recebem emails do seu domínio. Se você usa Google Workspace, Outlook, ou qualquer serviço de email profissional, precisa configurar registros MX.</p>
+<p><strong>Exemplo prático (Google Workspace):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: MX</span></span>
+<span class="line"><span>Prioridade: 1</span></span>
+<span class="line"><span>Valor: aspmx.l.google.com</span></span>
+<span class="line"><span>TTL: 3600</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: MX</span></span>
+<span class="line"><span>Prioridade: 5</span></span>
+<span class="line"><span>Valor: alt1.aspmx.l.google.com</span></span>
+<span class="line"><span>TTL: 3600</span></span></code></pre>
+<p>A <strong>prioridade</strong> indica qual servidor deve ser tentado primeiro. Quanto menor o número, maior a prioridade. Você normalmente configura vários servidores MX pra ter redundância - se o primeiro não responder, o email tenta o próximo.</p>
+<h3 id="registro-txt-text">Registro TXT (Text)</h3>
+<p>O registro <strong>TXT</strong> armazena texto arbitrário e é usado principalmente pra verificações e configurações de segurança. Você vai usar TXT em três situações principais:</p>
+<p><strong>1. Verificação de domínio:</strong>
+Quando você configura Google Workspace, GitHub Pages, ou qualquer serviço que precise confirmar que você é dono do domínio, eles pedem pra você adicionar um registro TXT específico.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: TXT</span></span>
+<span class="line"><span>Valor: google-site-verification=abc123xyz</span></span>
+<span class="line"><span>TTL: 3600</span></span></code></pre>
+<p><strong>2. SPF (Sender Policy Framework):</strong>
+Define quais servidores podem enviar email em nome do seu domínio. Ajuda a prevenir spam e phishing.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: TXT</span></span>
+<span class="line"><span>Valor: v=spf1 include:_spf.google.com ~all</span></span>
+<span class="line"><span>TTL: 3600</span></span></code></pre>
+<p><strong>3. DKIM e DMARC:</strong>
+Autenticação avançada de emails. O provedor de email fornece os valores que você deve configurar.</p>
+<p>Esses quatro tipos de registro (A, CNAME, MX, TXT) cobrem 99% do que você vai precisar como desenvolvedor. Existem outros como AAAA (pra IPv6), NS (nameservers), CAA (certificados SSL), mas você só mexe neles em casos específicos.</p>
+<h2 id="registrobr-cloudflare-e-seu-provedor">Registro.br, Cloudflare e seu Provedor</h2>
+<p>Agora que você entende os registros, vamos falar sobre <strong>onde</strong> você gerencia isso. Existem basicamente três opções, e cada uma tem suas vantagens.</p>
+<h3 id="registrobr---gerenciamento-direto">Registro.br - Gerenciamento direto</h3>
+<p>Se você registrou um domínio <code>.br</code> no Registro.br, pode gerenciar os DNS diretamente pela plataforma deles. A interface não é a mais bonita do mundo, mas funciona.</p>
+<p><strong>Vantagens:</strong></p>
+<ul>
+<li>Controle total, sem intermediários</li>
+<li>Gratuito (já incluído no registro)</li>
+<li>Funciona bem pra configurações simples</li>
+</ul>
+<p><strong>Desvantagens:</strong></p>
+<ul>
+<li>Interface antiga e pouco intuitiva</li>
+<li>Sem recursos extras (cache, proteção DDoS, analytics)</li>
+<li>Propagação pode ser mais lenta</li>
+</ul>
+<p><strong>Quando usar:</strong> Se você tem um site simples, com poucas mudanças de DNS, e não precisa de funcionalidades avançadas, o Registro.br resolve tranquilo.</p>
+<p>Para acessar: vá em registro.br, faça login, entre em “Domínios” → “Gerenciar” → “DNS”. Lá você pode adicionar registros A, CNAME, MX, TXT e outros.</p>
+<h3 id="cloudflare---o-favorito-dos-desenvolvedores">Cloudflare - O favorito dos desenvolvedores</h3>
+<p>A Cloudflare oferece <strong>DNS gerenciado gratuito</strong> com uma interface excelente e recursos extras poderosos. É a escolha mais popular entre desenvolvedores.</p>
+<p><strong>Vantagens:</strong></p>
+<ul>
+<li>Interface moderna e muito intuitiva</li>
+<li>Propagação instantânea (literalmente segundos)</li>
+<li>CDN grátis incluído</li>
+<li>Proteção DDoS automática</li>
+<li>SSL/HTTPS gratuito com certificado automático</li>
+<li>Analytics detalhado de tráfego</li>
+<li>Cache inteligente que acelera seu site</li>
+<li>Suporte técnico bom no plano gratuito</li>
+</ul>
+<p><strong>Desvantagens:</strong></p>
+<ul>
+<li>Você precisa trocar os nameservers (isso pode parecer assustador no início)</li>
+<li>Se a Cloudflare cair, seu site cai também (raramente acontece)</li>
+</ul>
+<p><strong>Quando usar:</strong> Se você se importa com performance, segurança, ou simplesmente quer uma interface decente pra gerenciar DNS, use Cloudflare. É grátis e vale muito a pena.</p>
+<p><strong>Como configurar:</strong></p>
+<ol>
+<li>Crie conta na Cloudflare (cloudflare.com)</li>
+<li>Adicione seu domínio</li>
+<li>A Cloudflare vai escanear seus registros DNS atuais</li>
+<li>Ela vai te dar dois nameservers (tipo <code>ava.ns.cloudflare.com</code> e <code>bob.ns.cloudflare.com</code>)</li>
+<li>Vá no Registro.br (ou onde você registrou o domínio) e troque os nameservers pros da Cloudflare</li>
+<li>Aguarde algumas horas pra propagar (normalmente é rápido)</li>
+<li>Pronto! Agora você gerencia tudo pela Cloudflare</li>
+</ol>
+<h3 id="seu-provedor-vercel-netlify-etc">Seu Provedor (Vercel, Netlify, etc)</h3>
+<p>Se você usa plataformas como Vercel, Netlify ou similares, elas oferecem DNS gerenciado também. É conveniente porque fica tudo no mesmo lugar.</p>
+<p><strong>Vantagens:</strong></p>
+<ul>
+<li>Tudo integrado (deploy + DNS)</li>
+<li>Configuração automática pra seus projetos</li>
+<li>Uma ferramenta a menos pra gerenciar</li>
+</ul>
+<p><strong>Desvantagens:</strong></p>
+<ul>
+<li>Se você mudar de provedor, precisa migrar o DNS também</li>
+<li>Menos flexível que Cloudflare pra casos de uso diversos</li>
+</ul>
+<p><strong>Quando usar:</strong> Se você tem apenas um projeto rodando na Vercel/Netlify e não planeja ter outros serviços no mesmo domínio, faz sentido usar o DNS deles mesmo.</p>
+<p><strong>Minha recomendação pessoal:</strong>
+Para domínios <code>.br</code>, registre no Registro.br (é o mais barato e confiável), mas use Cloudflare pra gerenciar o DNS. Você paga apenas o registro anual pro Registro.br (~R$40/ano) e tem acesso a toda a infraestrutura da Cloudflare de graça.</p>
+<h2 id="um-pouco-a-mais-registros-dns-para-emails">Um pouco a mais: Registros DNS para emails</h2>
+<p>Configurar email profissional é uma das coisas que mais confunde desenvolvedores iniciantes, mas é mais simples do que parece quando você entende os registros.</p>
+<p>Digamos que você registrou <code>suaempresa.com.br</code> e quer emails <code>voce@suaempresa.com.br</code> usando Google Workspace (antigo G Suite).</p>
+<h3 id="passo-1-registros-mx">Passo 1: Registros MX</h3>
+<p>Primeiro, você configura os registros MX pra dizer onde os emails devem ser entregues:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: MX</span></span>
+<span class="line"><span>Prioridade: 1</span></span>
+<span class="line"><span>Valor: aspmx.l.google.com</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: MX</span></span>
+<span class="line"><span>Prioridade: 5</span></span>
+<span class="line"><span>Valor: alt1.aspmx.l.google.com</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: MX</span></span>
+<span class="line"><span>Prioridade: 5</span></span>
+<span class="line"><span>Valor: alt2.aspmx.l.google.com</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: MX</span></span>
+<span class="line"><span>Prioridade: 10</span></span>
+<span class="line"><span>Valor: alt3.aspmx.l.google.com</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: MX</span></span>
+<span class="line"><span>Prioridade: 10</span></span>
+<span class="line"><span>Valor: alt4.aspmx.l.google.com</span></span></code></pre>
+<p>Esses são os servidores MX do Google. Outros provedores têm valores diferentes - eles sempre fornecem a lista exata.</p>
+<h3 id="passo-2-spf-evitar-que-seus-emails-vão-pra-spam">Passo 2: SPF (evitar que seus emails vão pra spam)</h3>
+<p>SPF diz quais servidores têm permissão pra enviar emails usando seu domínio:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: @</span></span>
+<span class="line"><span>Tipo: TXT</span></span>
+<span class="line"><span>Valor: v=spf1 include:_spf.google.com ~all</span></span></code></pre>
+<p>O <code>include:_spf.google.com</code> significa “os servidores do Google podem enviar email por mim”. O <code>~all</code> no final significa “outros servidores não deveriam, mas não rejeite automaticamente” (é o modo suave).</p>
+<h3 id="passo-3-dkim-assinatura-digital-dos-emails">Passo 3: DKIM (assinatura digital dos emails)</h3>
+<p>DKIM adiciona uma assinatura digital nos emails pra provar que eles realmente vieram de você:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: google._domainkey</span></span>
+<span class="line"><span>Tipo: TXT</span></span>
+<span class="line"><span>Valor: v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA...</span></span></code></pre>
+<p>O Google Workspace fornece esse valor gigante. Você só precisa copiar e colar. Cada provedor tem seu próprio jeito de gerar isso.</p>
+<h3 id="passo-4-dmarc-política-de-email">Passo 4: DMARC (política de email)</h3>
+<p>DMARC define o que fazer com emails que falharem nas verificações SPF/DKIM:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Nome: _dmarc</span></span>
+<span class="line"><span>Tipo: TXT</span></span>
+<span class="line"><span>Valor: v=DMARC1; p=quarantine; rua=mailto:dmarc@suaempresa.com.br</span></span></code></pre>
+<p>Esse exemplo diz: “se um email falhar nas verificações, coloque na quarentena (spam) e me envie relatórios”.</p>
+<h3 id="por-que-tudo-isso">Por que tudo isso?</h3>
+<p>Sem esses registros, seus emails funcionam, mas provavelmente vão direto pra pasta de spam. Gmail, Outlook e outros provedores são muito rigorosos hoje em dia. Se você não tem SPF, DKIM e DMARC configurados, eles assumem que seus emails podem ser spam ou phishing.</p>
+<p><strong>Verificando se está tudo certo:</strong></p>
+<p>Depois de configurar, você pode testar:</p>
+<ol>
+<li>Envie um email de teste</li>
+<li>Use ferramentas como mxtoolbox.com ou mail-tester.com</li>
+<li>Elas vão checar se seus registros estão corretos</li>
+</ol>
+<p><strong>Tempo de propagação:</strong></p>
+<p>Mudanças de DNS não são instantâneas. Quando você adiciona ou modifica um registro, pode levar de alguns minutos até 48 horas pra propagar completamente pela internet. Na prática:</p>
+<ul>
+<li><strong>Cloudflare:</strong> 2-5 minutos normalmente</li>
+<li><strong>Registro.br:</strong> 2-4 horas em média</li>
+<li><strong>Outros provedores:</strong> Varia, mas conte com até 24 horas</li>
+</ul>
+<p>Se você vai fazer mudanças importantes (trocar servidor, mudar email), reduza o TTL dos registros com antecedência pra acelerar a propagação.</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>DNS não precisa ser complicado. Com esses conceitos básicos, você consegue:</p>
+<ul>
+<li>Apontar seu domínio pro servidor certo (registro A ou CNAME)</li>
+<li>Configurar email profissional (registros MX, SPF, DKIM, DMARC)</li>
+<li>Verificar propriedade de domínio pra serviços (registro TXT)</li>
+<li>Escolher onde gerenciar tudo isso (Cloudflare é minha recomendação)</li>
+</ul>
+<p>A melhor forma de aprender é fazendo. Registre um domínio barato, configure na Cloudflare, aponte pra uma aplicação simples. Você vai ver que não é nenhum bicho de sete cabeças.</p>
+<p>E lembre: se algo não funciona depois de mexer no DNS, espere algumas horas. A propagação pode levar tempo, e é normal nada funcionar imediatamente.</p>
+<hr>
+<h2 id="referências">Referências</h2>
+<ul>
+<li><a href="https://www.cloudflare.com/pt-br/learning/dns/what-is-dns/">Cloudflare - O que é DNS?</a></li>
+<li><a href="https://registro.br/tecnologia/ferramentas/dns/">Registro.br - Serviços de DNS</a></li>
+<li><a href="https://support.google.com/a/answer/174125">Google Workspace - Configurar registros MX</a></li>
+<li><a href="https://mxtoolbox.com/">MXToolbox - Ferramentas de diagnóstico DNS</a></li>
+</ul>
+<hr>
+<p><em>Última atualização: Novembro 2025</em></p>  </div> <!-- Share Buttons --> <div class="mt-12 pt-8 border-t border-slate-800"> <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"> <h3 class="text-lg font-semibold text-white">Compartilhe este post</h3> <div class="flex items-center space-x-4"> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcoders.ia.br%2Fblog%2Fdns-minimo-desenvolvedor-deve-saber%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> <span class="hidden sm:inline">LinkedIn</span> </a> <a href="https://wa.me/?text=DNS%3A%20o%20m%C3%ADnimo%20que%20um%20desenvolvedor%20deve%20saber https%3A%2F%2Fcoders.ia.br%2Fblog%2Fdns-minimo-desenvolvedor-deve-saber%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-message-circle w-4 h-4">  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>  </svg> <span class="hidden sm:inline">WhatsApp</span> </a> </div> </div> </div> <!-- Navigation to other posts could be added here --> </article>  </main> <!-- Footer --> <footer class="border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-8"> <div class="text-center"> <div class="flex items-center justify-center space-x-2 mb-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-6 h-6 opacity-60"> <span class="text-slate-400 font-mono">© 2025 CODERS.IA.BR. TODOS OS DIREITOS RESERVADOS.</span> </div> </div> </div> </footer> </div> <script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-L7RDWGH1GM");</script> </body> </html>

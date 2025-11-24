@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="pt-BR" class="dark"> <head><meta charset="UTF-8"><meta name="description" content="Dicas essenciais para criar frontends sólidos que funcionam bem com agentes de IA e facilitam manutenção futura"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.13.10"><!-- Primary Meta Tags --><title>Dicas práticas sobre desenvolvimento web com IA</title><meta name="title" content="Dicas práticas sobre desenvolvimento web com IA"><meta name="description" content="Dicas essenciais para criar frontends sólidos que funcionam bem com agentes de IA e facilitam manutenção futura"><link rel="canonical" href="https://coders.ia.br/blog/boas-praticas-desenvolvimento-web-ia-frontend/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://coders.ia.br/blog/boas-praticas-desenvolvimento-web-ia-frontend/"><meta property="og:title" content="Dicas práticas sobre desenvolvimento web com IA"><meta property="og:description" content="Dicas essenciais para criar frontends sólidos que funcionam bem com agentes de IA e facilitam manutenção futura"><meta property="og:site_name" content="Coders.ia.br"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://coders.ia.br/blog/boas-praticas-desenvolvimento-web-ia-frontend/"><meta property="twitter:title" content="Dicas práticas sobre desenvolvimento web com IA"><meta property="twitter:description" content="Dicas essenciais para criar frontends sólidos que funcionam bem com agentes de IA e facilitam manutenção futura"><!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="Coders.ia.br RSS Feed" href="/rss.xml"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RDWGH1GM"></script><script type="module">const e=document.getElementById("mobile-menu-button"),t=document.getElementById("mobile-menu");e?.addEventListener("click",()=>{t?.classList.toggle("hidden")});</script><link rel="stylesheet" href="/_astro/artigos.Dr8Cq3gt.css"></head> <body class="min-h-screen bg-black text-slate-100 font-['Inter',sans-serif] antialiased"> <div class="flex flex-col min-h-screen"> <!-- Header --> <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60"> <div class="container mx-auto flex h-16 items-center justify-between px-4"> <!-- Logo --> <a href="/" class="flex items-center space-x-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-8 h-8"> <span class="text-xl font-bold text-white font-mono uppercase">CODERS.IA.BR</span> </a> <!-- Centered Navigation --> <nav class="hidden md:flex items-center space-x-8"> <a href="/artigos" class="text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> </nav> <!-- Social Icons --> <div class="hidden md:flex items-center space-x-4"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> <!-- Mobile menu button --> <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-menu w-6 h-6">  <path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path>  </svg> </button> </div> <!-- Mobile menu --> <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-4 space-y-2"> <a href="/artigos" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Artigos</a> <a href="/categorias" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Categorias</a> <a href="/sobre" class="block py-2 text-slate-300 hover:text-white transition-colors duration-200">Sobre</a> <div class="flex items-center space-x-4 pt-4 border-t border-slate-700"> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-5 h-5">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> <a href="https://github.com/jonathands" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-400 transition-colors duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-github w-5 h-5">  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path> <path d="M9 18c-4.51 2-5-2-7-2"></path>  </svg> </a> </div> </div> </div> </header> <!-- Main Content --> <main class="flex-1">  <article class="container mx-auto px-4 py-8 max-w-4xl"> <!-- Breadcrumb --> <nav class="mb-8 text-sm"> <ol class="flex items-center space-x-2 text-slate-400"> <li><a href="/" class="hover:text-accent-400 transition-colors">Home</a></li> <li><span class="mx-2">/</span></li> <li><a href="/categorias/desenvolvimento" class="hover:text-accent-400 transition-colors">Desenvolvimento</a></li> <li><span class="mx-2">/</span></li> <li class="text-slate-300 truncate">Dicas práticas sobre desenvolvimento web com IA</li> </ol> </nav> <!-- Post Header --> <header class="mb-12 text-center"> <div class="mb-4"> <span class="inline-block px-3 py-1 text-xs font-medium text-accent-300 bg-accent-900/30 rounded-full border border-accent-800"> Desenvolvimento </span> </div> <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"> Dicas práticas sobre desenvolvimento web com IA </h1> <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"> Dicas essenciais para criar frontends sólidos que funcionam bem com agentes de IA e facilitam manutenção futura </p> <div class="flex items-center justify-center space-x-6 text-sm text-slate-400"> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-user w-4 h-4">  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle>  </svg> <span>Jonathan dos Santos</span> <a href="https://www.linkedin.com/in/jonathands-web-developer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition-colors duration-200" title="LinkedIn de Jonathan dos Santos"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4 ml-1">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> </a> </div> <div class="flex items-center space-x-2"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-calendar w-4 h-4">  <path d="M8 2v4"></path> <path d="M16 2v4"></path> <rect width="18" height="18" x="3" y="4" rx="2"></rect> <path d="M3 10h18"></path>  </svg> <time datetime="2025-11-23T00:00:00.000Z">23 de novembro de 2025</time> </div> </div> </header> <!-- Featured Image -->  <!-- Post Content --> <div class="prose prose-lg prose-invert max-w-none mx-auto">  <p>Depois de construir dezenas de projetos com Claude Code, Cursor e outros agentes de IA, aprendi quais práticas fazem a diferença entre um frontend que evolui suavemente e um que vira pesadelo de manutenção.</p>
+<p>Aqui estão regras práticas para criar frontends que funcionam bem com agentes de IA.</p>
+<h2 id="por-que-boas-práticas-importam-com-ia">Por que boas práticas importam com IA</h2>
+<p>Agentes de IA veem apenas o código que você mostra. Se não for bem estruturado, eles vão criar código duplicado, gerar SVG inline ao invés de usar bibliotecas, e ignorar padrões existentes.</p>
+<p>Boas práticas tornam seu código <strong>legível para máquinas</strong>, não só para humanos.</p>
+<h2 id="1-use-bibliotecas-de-ícones-sólidas">1. Use bibliotecas de ícones sólidas</h2>
+<h3 id="o-problema-svgs-inline">O problema: SVGs inline</h3>
+<p>Agentes adoram criar SVG inline para ícones. Isso gera inconsistência visual, duplicação de código, e dificulta manutenção.</p>
+<h3 id="a-solução-bibliotecas-estabelecidas">A solução: Bibliotecas estabelecidas</h3>
+<p>Use bibliotecas com ícones consistentes e bem mantidas:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// ✅ Usando Lucide</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { User, Mail, Settings } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'lucide-react'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> UserProfile</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#79B8FF">User</span><span style="color:#B392F0"> size</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">24</span><span style="color:#E1E4E8">} /></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">span</span><span style="color:#E1E4E8">>Perfil&#x3C;/</span><span style="color:#85E89D">span</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="bibliotecas-recomendadas">Bibliotecas recomendadas:</h3>
+<ul>
+<li><strong>Lucide</strong> - 1000+ ícones, React/Vue/Svelte</li>
+<li><strong>Hero Icons</strong> - Perfeito com Tailwind CSS</li>
+<li><strong>Phosphor Icons</strong> - Muito flexível</li>
+<li><strong>Feather Icons</strong> - Minimalista e leve</li>
+</ul>
+<p><strong>Documente suas escolhas:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D">// src/components/README.md</span></span>
+<span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * ICONS: Always use Lucide Icons</span></span>
+<span class="line"><span style="color:#6A737D"> * Import from: 'lucide-react'</span></span>
+<span class="line"><span style="color:#6A737D"> * Never create inline SVGs</span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span></code></pre>
+<h2 id="2-selecione-e-configure-fontes-profissionalmente">2. Selecione e configure fontes profissionalmente</h2>
+<h3 id="o-problema-google-fonts-cdn">O problema: Google Fonts CDN</h3>
+<p>Carregar fontes direto do Google Fonts causa problemas de performance (blocking requests), privacidade (tracking), e falta de controle de cache.</p>
+<h3 id="a-solução-fontes-auto-hospedadas">A solução: Fontes auto-hospedadas</h3>
+<p>Use <strong>Fontsource</strong> ou <strong>FontBunny</strong> (mirror do Google Fonts sem tracking):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Instale a fonte como dependência</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> @fontsource/inter</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D">// src/main.tsx ou src/app.tsx</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#9ECBFF"> '@fontsource/inter/400.css'</span><span style="color:#E1E4E8">;  </span><span style="color:#6A737D">// Regular</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#9ECBFF"> '@fontsource/inter/700.css'</span><span style="color:#E1E4E8">;  </span><span style="color:#6A737D">// Bold</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Agora use no Tailwind ou CSS</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// tailwind.config.js</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  theme: {</span></span>
+<span class="line"><span style="color:#E1E4E8">    extend: {</span></span>
+<span class="line"><span style="color:#E1E4E8">      fontFamily: {</span></span>
+<span class="line"><span style="color:#E1E4E8">        sans: [</span><span style="color:#9ECBFF">'Inter'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'system-ui'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'sans-serif'</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p><strong>Vantagens:</strong> Sem requests externos, melhor performance, privacidade, e controle total sobre versões.</p>
+<h2 id="3-separe-consumo-de-dados-desde-o-início">3. Separe consumo de dados desde o início</h2>
+<h3 id="o-problema-fetch-espalhado">O problema: Fetch espalhado</h3>
+<p>Agentes criam fetch direto nos componentes, gerando duplicação, falta de tipagem, e dificuldade de manutenção.</p>
+<h3 id="a-solução-camada-de-dados-com-services">A solução: Camada de dados com services</h3>
+<p>Estruture assim desde o primeiro dia:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>src/</span></span>
+<span class="line"><span>├── services/</span></span>
+<span class="line"><span>│   ├── api.service.ts       # Client HTTP base</span></span>
+<span class="line"><span>│   ├── user.service.ts      # User endpoints</span></span>
+<span class="line"><span>│   └── product.service.ts   # Product endpoints</span></span>
+<span class="line"><span>├── types/</span></span>
+<span class="line"><span>│   ├── user.types.ts</span></span>
+<span class="line"><span>│   └── product.types.ts</span></span>
+<span class="line"><span>└── components/</span></span>
+<span class="line"><span>    └── UserList.tsx</span></span></code></pre>
+<p><strong>1. Defina tipos sólidos:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D">// src/types/user.types.ts</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> interface</span><span style="color:#B392F0"> User</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  id</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  name</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  email</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  role</span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> 'admin'</span><span style="color:#F97583"> |</span><span style="color:#9ECBFF"> 'user'</span><span style="color:#F97583"> |</span><span style="color:#9ECBFF"> 'guest'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  createdAt</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Date</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> interface</span><span style="color:#B392F0"> CreateUserDto</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  name</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  email</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  password</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>2. Crie service layer:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D">// src/services/api.service.ts</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> axios </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'axios'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> apiClient</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> axios.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  baseURL: </span><span style="color:#F97583">import</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">meta</span><span style="color:#E1E4E8">.env.</span><span style="color:#79B8FF">VITE_API_URL</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  timeout: </span><span style="color:#79B8FF">10000</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  headers: {</span></span>
+<span class="line"><span style="color:#9ECBFF">    'Content-Type'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'application/json'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Interceptors para auth, error handling, etc</span></span>
+<span class="line"><span style="color:#E1E4E8">apiClient.interceptors.request.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">config</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> token</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> localStorage.</span><span style="color:#B392F0">getItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'token'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (token) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    config.headers.Authorization </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> `Bearer ${</span><span style="color:#E1E4E8">token</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> config;</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#6A737D">// src/services/user.service.ts</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { apiClient } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> './api.service'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> type</span><span style="color:#E1E4E8"> { User, CreateUserDto } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@/types/user.types'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> userService</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  async</span><span style="color:#B392F0"> getAll</span><span style="color:#E1E4E8">()</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">[]> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> apiClient.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">[]>(</span><span style="color:#9ECBFF">'/users'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> response.data;</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  async</span><span style="color:#B392F0"> getById</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">id</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> apiClient.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">>(</span><span style="color:#9ECBFF">`/users/${</span><span style="color:#E1E4E8">id</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> response.data;</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  async</span><span style="color:#B392F0"> create</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">data</span><span style="color:#F97583">:</span><span style="color:#B392F0"> CreateUserDto</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> apiClient.</span><span style="color:#B392F0">post</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">>(</span><span style="color:#9ECBFF">'/users'</span><span style="color:#E1E4E8">, data);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> response.data;</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  async</span><span style="color:#B392F0"> update</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">id</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">data</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Partial</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">>)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> apiClient.</span><span style="color:#B392F0">patch</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">>(</span><span style="color:#9ECBFF">`/users/${</span><span style="color:#E1E4E8">id</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">, data);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> response.data;</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  async</span><span style="color:#B392F0"> delete</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">id</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">void</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">    await</span><span style="color:#E1E4E8"> apiClient.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`/users/${</span><span style="color:#E1E4E8">id</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p><strong>3. Use nos componentes:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// ✅ Componente usa service, não fetch direto</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { useEffect, useState } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'react'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { userService } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@/services/user.service'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> type</span><span style="color:#E1E4E8"> { User } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@/types/user.types'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> UserList</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">users</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setUsers</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">[]>([]);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">loading</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setLoading</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    userService.</span><span style="color:#B392F0">getAll</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">      .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(setUsers)</span></span>
+<span class="line"><span style="color:#E1E4E8">      .</span><span style="color:#B392F0">finally</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#B392F0"> setLoading</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, []);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (loading) </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">>Carregando...&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">>;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      {users.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">user</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{user.id}>{user.name}&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      ))}</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Com service layer bem estruturado, agentes encontram e reutilizam código existente, seguindo padrões do projeto automaticamente.</p>
+<h2 id="4-use-figure-para-imagens-responsivas">4. Use <code>&#x3C;figure></code> para imagens responsivas</h2>
+<h3 id="o-problema-img-sem-otimização">O problema: <code>&#x3C;img></code> sem otimização</h3>
+<p>Tags <code>&#x3C;img></code> simples não têm lazy loading, responsividade, ou contexto semântico.</p>
+<h3 id="a-solução-elemento-figure">A solução: Elemento <code>&#x3C;figure></code></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// ✅ Imagem semântica e responsiva</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">figure</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"product-image"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">img</span></span>
+<span class="line"><span style="color:#B392F0">    src</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"/images/product.jpg"</span></span>
+<span class="line"><span style="color:#B392F0">    alt</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"Notebook Lenovo ThinkPad X1 Carbon"</span></span>
+<span class="line"><span style="color:#B392F0">    loading</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"lazy"</span></span>
+<span class="line"><span style="color:#B392F0">    width</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">800</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">    height</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">600</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">    className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"w-full h-auto object-cover rounded-lg"</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">figcaption</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"text-sm text-gray-600 mt-2"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    ThinkPad X1 Carbon Gen 11 - Imagem ilustrativa</span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;/</span><span style="color:#85E89D">figcaption</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">figure</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h3 id="componentes-otimizados-por-framework">Componentes otimizados por framework</h3>
+<p><strong>Next.js:</strong> Use <code>next/image</code>
+<strong>Nuxt:</strong> Use <code>&#x3C;NuxtImg></code>
+<strong>Astro:</strong> Use componente <code>Image</code> de <code>astro:assets</code></p>
+<p>Sempre documente o padrão de imagens do projeto para guiar agentes.</p>
+<h2 id="5-nunca-use-imagens-em-base64-no-frontend">5. Nunca use imagens em Base64 no frontend</h2>
+<h3 id="o-problema-base64-inline">O problema: Base64 inline</h3>
+<p>Base64 aumenta bundle em ~33%, impede cache do navegador, e polui o Git com diffs gigantes.</p>
+<h3 id="a-solução-arquivos-estáticos">A solução: Arquivos estáticos</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// ✅ Use arquivo estático</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> Logo</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">img</span><span style="color:#B392F0"> src</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"/images/logo.png"</span><span style="color:#B392F0"> alt</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"Company Logo"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>Ou com import:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// ✅ Import direto (Vite/Webpack otimiza)</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> logoUrl </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@/assets/logo.png'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> Logo</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">img</span><span style="color:#B392F0"> src</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{logoUrl} </span><span style="color:#B392F0">alt</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"Company Logo"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<p><strong>Documente explicitamente:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold"># IMAGES - IMPORTANT</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">⚠️ NEVER use base64 encoded images in components</span></span>
+<span class="line"><span style="color:#E1E4E8">⚠️ NEVER use data URIs for images</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Always use:</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Static files in </span><span style="color:#79B8FF">`/public/images/`</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> Import from </span><span style="color:#79B8FF">`/src/assets/`</span><span style="color:#E1E4E8"> (build-time optimization)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Example:</span></span>
+<span class="line"><span style="color:#E1E4E8">```tsx</span></span>
+<span class="line"><span style="color:#6A737D">// ✅ Correct</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> logo </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@/assets/logo.png'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">img</span><span style="color:#B392F0"> src</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{logo} </span><span style="color:#B392F0">alt</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"Logo"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// ❌ Wrong</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">img</span><span style="color:#B392F0"> src</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"data:image/png;base64,..."</span><span style="color:#E1E4E8"> /></span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span></span></span>
+<span class="line"><span>## 6. Revise e re-revise</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Código rápido não é código bom. A diferença entre frontend sólido e bagunça é **revisão**.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>### Checklist essencial</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>✅ **Tipos:** Dados têm tipos explícitos?</span></span>
+<span class="line"><span>✅ **Imports:** Usa bibliotecas corretas?</span></span>
+<span class="line"><span>✅ **Duplicação:** Já existe código similar?</span></span>
+<span class="line"><span>✅ **Acessibilidade:** Labels e ARIA corretos?</span></span>
+<span class="line"><span>✅ **Performance:** Memoization necessário?</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>### Exemplo</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```tsx</span></span>
+<span class="line"><span>// ❌ Código inicial do agente</span></span>
+<span class="line"><span>function ProductCard({ product }) {</span></span>
+<span class="line"><span>  return (</span></span>
+<span class="line"><span>    &#x3C;div onClick={() => window.location.href = `/product/${product.id}`}></span></span>
+<span class="line"><span>      &#x3C;img src={product.image} /></span></span>
+<span class="line"><span>      &#x3C;h3>{product.name}&#x3C;/h3></span></span>
+<span class="line"><span>      &#x3C;p>${product.price}&#x3C;/p></span></span>
+<span class="line"><span>    &#x3C;/div></span></span>
+<span class="line"><span>  );</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p><strong>Após revisão:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// ✅ Código depois de revisar com agente</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { memo } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'react'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { Link } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'react-router-dom'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { Image } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@/components/ui/Image'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> type</span><span style="color:#E1E4E8"> { Product } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@/types/product.types'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> ProductCardProps</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  product</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Product</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> ProductCard</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> memo</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">ProductCardProps</span><span style="color:#E1E4E8">>(({ </span><span style="color:#FFAB70">product</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> formattedPrice</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> Intl.</span><span style="color:#B392F0">NumberFormat</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'pt-BR'</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">    style: </span><span style="color:#9ECBFF">'currency'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    currency: </span><span style="color:#9ECBFF">'BRL'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  }).</span><span style="color:#B392F0">format</span><span style="color:#E1E4E8">(product.price);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#79B8FF">Link</span></span>
+<span class="line"><span style="color:#B392F0">      to</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#9ECBFF">`/product/${</span><span style="color:#E1E4E8">product</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">id</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">      className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"product-card group"</span></span>
+<span class="line"><span style="color:#B392F0">      aria-label</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#9ECBFF">`Ver detalhes de ${</span><span style="color:#E1E4E8">product</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">name</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    ></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">figure</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#79B8FF">Image</span></span>
+<span class="line"><span style="color:#B392F0">          src</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{product.image}</span></span>
+<span class="line"><span style="color:#B392F0">          alt</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{product.name}</span></span>
+<span class="line"><span style="color:#B392F0">          width</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">          height</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">          loading</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"lazy"</span></span>
+<span class="line"><span style="color:#B392F0">          className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"group-hover:scale-105 transition-transform"</span></span>
+<span class="line"><span style="color:#E1E4E8">        /></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;/</span><span style="color:#85E89D">figure</span><span style="color:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">h3</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"text-lg font-semibold mt-4"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        {product.name}</span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;/</span><span style="color:#85E89D">h3</span><span style="color:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"text-xl font-bold text-green-600"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        {formattedPrice}</span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#79B8FF">Link</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ProductCard.displayName </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'ProductCard'</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<p>Melhorias: tipos explícitos, Link ao invés de window.location, Image component otimizado, formatação de preço, acessibilidade, e memoization.</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>Trabalhar com agentes de IA no frontend não é sobre deixar a IA fazer tudo. É sobre criar estrutura que:</p>
+<ol>
+<li><strong>Guia</strong> o agente para decisões corretas</li>
+<li><strong>Previne</strong> código ruim através de padrões claros</li>
+<li><strong>Facilita</strong> revisão e manutenção</li>
+<li><strong>Escala</strong> conforme projeto cresce</li>
+</ol>
+<p><strong>Regras de ouro:</strong></p>
+<p>✅ Use bibliotecas estabelecidas (ícones, fontes)
+✅ Separe dados em service layer com tipos
+✅ Imagens sempre em <code>&#x3C;figure></code> com lazy loading
+✅ Nunca aceite Base64 inline
+✅ Revise tudo que o agente gera</p>
+<p>Seguindo essas práticas, você consegue velocidade da IA <strong>sem sacrificar qualidade</strong>. Melhor dos dois mundos.</p>
+<hr>
+<h2 id="referências">Referências</h2>
+<ul>
+<li><a href="https://lucide.dev/">Lucide Icons</a></li>
+<li><a href="https://heroicons.com/">Hero Icons</a></li>
+<li><a href="https://fontsource.org/">Fontsource</a></li>
+<li><a href="https://fonts.bunny.net/">FontBunny</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure">MDN - Figure Element</a></li>
+<li><a href="https://nextjs.org/docs/app/building-your-application/optimizing/images">Next.js Image Optimization</a></li>
+</ul>
+<hr>
+<p><em>Última atualização: Novembro 2025</em></p>  </div> <!-- Share Buttons --> <div class="mt-12 pt-8 border-t border-slate-800"> <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"> <h3 class="text-lg font-semibold text-white">Compartilhe este post</h3> <div class="flex items-center space-x-4"> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcoders.ia.br%2Fblog%2Fboas-praticas-desenvolvimento-web-ia-frontend%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-linkedin w-4 h-4">  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect width="4" height="12" x="2" y="9"></rect> <circle cx="4" cy="4" r="2"></circle>  </svg> <span class="hidden sm:inline">LinkedIn</span> </a> <a href="https://wa.me/?text=Dicas%20pr%C3%A1ticas%20sobre%20desenvolvimento%20web%20com%20IA https%3A%2F%2Fcoders.ia.br%2Fblog%2Fboas-praticas-desenvolvimento-web-ia-frontend%2F" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-all duration-200"> <svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="24" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" class="lucide lucide-message-circle w-4 h-4">  <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>  </svg> <span class="hidden sm:inline">WhatsApp</span> </a> </div> </div> </div> <!-- Navigation to other posts could be added here --> </article>  </main> <!-- Footer --> <footer class="border-t border-slate-800 bg-black"> <div class="container mx-auto px-4 py-8"> <div class="text-center"> <div class="flex items-center justify-center space-x-2 mb-2"> <img src="/glider-white.svg" alt="Coders.ia.br Logo" class="w-6 h-6 opacity-60"> <span class="text-slate-400 font-mono">© 2025 CODERS.IA.BR. TODOS OS DIREITOS RESERVADOS.</span> </div> </div> </div> </footer> </div> <script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-L7RDWGH1GM");</script> </body> </html>
